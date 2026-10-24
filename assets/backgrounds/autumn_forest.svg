@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="af" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#FFCC80"/>
+    <stop offset="55%" stop-color="#FFE0B2"/>
+    <stop offset="100%" stop-color="#FFF3E0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#af)"/>
+  <circle cx="200.0" cy="280.0" r="104.5" fill="#FFECB3" opacity="0.45"/>
+  <circle cx="200.0" cy="280.0" r="74.25" fill="#FFECB3" opacity="0.55"/>
+  <circle cx="200.0" cy="280.0" r="55.0" fill="#FFD54F"/>
+  <g opacity="0.6">
+    <ellipse cx="700.0" cy="220.0" rx="60.50000000000001" ry="30.250000000000004" fill="#FFE0C0"/>
+    <ellipse cx="669.75" cy="224.4" rx="38.5" ry="24.75" fill="#FFE0C0"/>
+    <ellipse cx="730.25" cy="222.75" rx="41.25" ry="26.4" fill="#FFE0C0"/>
+    <ellipse cx="700.0" cy="204.6" rx="30.250000000000004" ry="22.0" fill="#FFE0C0"/>
+  </g>
+  <path d="M0 1200 Q280 1080 540 1180 T1080 1120 L1080 1920 L0 1920 Z" fill="#A5D6A7" opacity="0.7"/>
+  <path d="M0 1450 Q300 1320 560 1420 T1080 1380 L1080 1920 L0 1920 Z" fill="#81C784" opacity="1.0"/>
+  <path d="M150 1500 L170 1100 L190 1500 Z" fill="#6D4C41"/>
+  <ellipse cx="170" cy="1080" rx="90" ry="70" fill="#EF6C00"/>
+  <ellipse cx="120" cy="1120" rx="50" ry="40" fill="#FF8F00"/>
+  <ellipse cx="220" cy="1110" rx="55" ry="42" fill="#E65100"/>
+  <path d="M850 1520 L875 1120 L900 1520 Z" fill="#6D4C41"/>
+  <ellipse cx="875" cy="1100" rx="100" ry="75" fill="#D84315"/>
+  <ellipse cx="820" cy="1140" rx="55" ry="42" fill="#FF7043"/>
+  <ellipse cx="930" cy="1130" rx="60" ry="45" fill="#BF360C"/>
+  <ellipse cx="400" cy="1380" rx="18" ry="10" fill="#EF6C00" opacity="0.8"/>
+  <ellipse cx="600" cy="1280" rx="14" ry="8" fill="#FF8F00" opacity="0.75"/>
+  <ellipse cx="500" cy="1480" rx="16" ry="9" fill="#D84315" opacity="0.7"/>
+
+</svg>

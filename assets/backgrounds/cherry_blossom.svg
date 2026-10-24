@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="cb" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#FCE4EC"/>
+    <stop offset="55%" stop-color="#F8BBD0"/>
+    <stop offset="100%" stop-color="#FFF0F5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#cb)"/>
+  <g opacity="0.7">
+    <ellipse cx="300.0" cy="220.0" rx="55.00000000000001" ry="27.500000000000004" fill="#FFFFFF"/>
+    <ellipse cx="272.5" cy="224.0" rx="35.0" ry="22.5" fill="#FFFFFF"/>
+    <ellipse cx="327.5" cy="222.5" rx="37.5" ry="24.0" fill="#FFFFFF"/>
+    <ellipse cx="300.0" cy="206.0" rx="27.500000000000004" ry="20.0" fill="#FFFFFF"/>
+  </g>
+  <g opacity="0.65">
+    <ellipse cx="800.0" cy="180.0" rx="49.50000000000001" ry="24.750000000000004" fill="#FFFFFF"/>
+    <ellipse cx="775.25" cy="183.6" rx="31.499999999999996" ry="20.25" fill="#FFFFFF"/>
+    <ellipse cx="824.75" cy="182.25" rx="33.75" ry="21.599999999999998" fill="#FFFFFF"/>
+    <ellipse cx="800.0" cy="167.4" rx="24.750000000000004" ry="18.0" fill="#FFFFFF"/>
+  </g>
+  <path d="M200 1600 Q280 900 400 600 Q480 450 520 400" fill="none" stroke="#5D4037" stroke-width="28" stroke-linecap="round"/>
+  <path d="M400 800 Q520 700 620 750" fill="none" stroke="#6D4C41" stroke-width="16" stroke-linecap="round"/>
+  <path d="M380 1000 Q250 950 180 1000" fill="none" stroke="#6D4C41" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="520" cy="380" r="22" fill="#F48FB1"/>
+  <circle cx="560" cy="420" r="18" fill="#F06292"/>
+  <circle cx="480" cy="430" r="20" fill="#EC407A"/>
+  <circle cx="600" cy="360" r="16" fill="#F8BBD0"/>
+  <circle cx="620" cy="720" r="18" fill="#F48FB1"/>
+  <circle cx="660" cy="760" r="15" fill="#F06292"/>
+  <circle cx="200" cy="980" r="16" fill="#F8BBD0"/>
+  <circle cx="160" cy="1020" r="14" fill="#F48FB1"/>
+  <circle cx="300" cy="500" r="10" fill="#F48FB1" opacity="0.7"/>
+  <circle cx="700" cy="550" r="8" fill="#F06292" opacity="0.65"/>
+  <circle cx="450" cy="700" r="9" fill="#F8BBD0" opacity="0.7"/>
+  <path d="M0 1450 Q300 1350 560 1430 T1080 1380 L1080 1920 L0 1920 Z" fill="#C8E6C9" opacity="1.0"/>
+  <path d="M0 1650 Q280 1560 540 1630 T1080 1580 L1080 1920 L0 1920 Z" fill="#A5D6A7" opacity="1.0"/>
+
+</svg>

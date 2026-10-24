@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="hab" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#FFCC80"/>
+    <stop offset="55%" stop-color="#FFE0B2"/>
+    <stop offset="100%" stop-color="#FFF3E0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#hab)"/>
+  <circle cx="900.0" cy="250.0" r="114.0" fill="#FFF59D" opacity="0.45"/>
+  <circle cx="900.0" cy="250.0" r="81.0" fill="#FFF59D" opacity="0.55"/>
+  <circle cx="900.0" cy="250.0" r="60.0" fill="#FFE082"/>
+  <g opacity="0.7">
+    <ellipse cx="200.0" cy="300.0" rx="60.50000000000001" ry="30.250000000000004" fill="#FFFFFF"/>
+    <ellipse cx="169.75" cy="304.4" rx="38.5" ry="24.75" fill="#FFFFFF"/>
+    <ellipse cx="230.25" cy="302.75" rx="41.25" ry="26.4" fill="#FFFFFF"/>
+    <ellipse cx="200.0" cy="284.6" rx="30.250000000000004" ry="22.0" fill="#FFFFFF"/>
+  </g>
+  <g opacity="0.65">
+    <ellipse cx="600.0" cy="200.0" rx="49.50000000000001" ry="24.750000000000004" fill="#FFFFFF"/>
+    <ellipse cx="575.25" cy="203.6" rx="31.499999999999996" ry="20.25" fill="#FFFFFF"/>
+    <ellipse cx="624.75" cy="202.25" rx="33.75" ry="21.599999999999998" fill="#FFFFFF"/>
+    <ellipse cx="600.0" cy="187.4" rx="24.750000000000004" ry="18.0" fill="#FFFFFF"/>
+  </g>
+  <ellipse cx="280" cy="500" rx="90" ry="110" fill="#EF5350"/>
+  <ellipse cx="280" cy="500" rx="70" ry="90" fill="#FF7043"/>
+  <rect x="255" y="620" width="50" height="35" rx="4" fill="#8D6E63"/>
+  <line x1="230" y1="560" x2="255" y2="620" stroke="#5D4037" stroke-width="3"/>
+  <line x1="330" y1="560" x2="305" y2="620" stroke="#5D4037" stroke-width="3"/>
+  <ellipse cx="700" cy="420" rx="75" ry="95" fill="#42A5F5"/>
+  <ellipse cx="700" cy="420" rx="55" ry="75" fill="#64B5F6"/>
+  <rect x="678" y="525" width="44" height="30" rx="4" fill="#8D6E63"/>
+  <line x1="655" y1="470" x2="678" y2="525" stroke="#5D4037" stroke-width="3"/>
+  <line x1="745" y1="470" x2="722" y2="525" stroke="#5D4037" stroke-width="3"/>
+  <ellipse cx="500" cy="650" rx="60" ry="75" fill="#AB47BC"/>
+  <ellipse cx="500" cy="650" rx="45" ry="58" fill="#CE93D8"/>
+  <rect x="482" y="735" width="36" height="26" rx="3" fill="#8D6E63"/>
+  <path d="M0 1300 Q300 1200 560 1280 T1080 1220 L1080 1920 L0 1920 Z" fill="#A5D6A7" opacity="1.0"/>
+  <path d="M0 1550 Q280 1460 540 1540 T1080 1480 L1080 1920 L0 1920 Z" fill="#81C784" opacity="1.0"/>
+
+</svg>

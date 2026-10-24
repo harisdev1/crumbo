@@ -1,0 +1,42 @@
+{
+  "sourceWidth": 24,
+  "sourceHeight": 24,
+  "shapes": [
+    {
+      "id": "zzz_glyph",
+      "type": "polygon",
+      "x": 12,
+      "y": 12,
+      "subpaths": [
+        {
+          "closed": false,
+          "points": [
+            {"x": -10.7, "y": -4.64, "cubic": {"rotation": 0, "inRotation": 0, "inDistance": 0, "outDistance": 2.33}},
+            {"x": -3.72, "y": -4.64, "cubic": {"rotation": 129.2, "inRotation": 180, "inDistance": 2.33, "outDistance": 3.68}},
+            {"x": -10.7, "y": 3.93, "cubic": {"rotation": 0, "inRotation": -50.8, "inDistance": 3.68, "outDistance": 2.33}},
+            {"x": -3.72, "y": 3.93, "cubic": {"rotation": 0, "inRotation": 180, "inDistance": 2.33, "outDistance": 0}}
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {"x": 0.74, "y": -11.02, "cubic": {"rotation": 0, "inRotation": 0, "inDistance": 0, "outDistance": 1.74}},
+            {"x": 5.95, "y": -11.02, "cubic": {"rotation": 129.2, "inRotation": 180, "inDistance": 1.74, "outDistance": 2.75}},
+            {"x": 0.74, "y": -4.64, "cubic": {"rotation": 0, "inRotation": -50.8, "inDistance": 2.75, "outDistance": 1.74}},
+            {"x": 5.95, "y": -4.64, "cubic": {"rotation": 0, "inRotation": 180, "inDistance": 1.74, "outDistance": 0}}
+          ]
+        },
+        {
+          "closed": false,
+          "points": [
+            {"x": 2.43, "y": 0.87, "cubic": {"rotation": 0, "inRotation": 0, "inDistance": 0, "outDistance": 2.76}},
+            {"x": 10.71, "y": 0.87, "cubic": {"rotation": 129.2, "inRotation": 180, "inDistance": 2.76, "outDistance": 4.37}},
+            {"x": 2.43, "y": 11.02, "cubic": {"rotation": 0, "inRotation": -50.8, "inDistance": 4.37, "outDistance": 2.76}},
+            {"x": 10.71, "y": 11.02, "cubic": {"rotation": 0, "inRotation": 180, "inDistance": 2.76, "outDistance": 0}}
+          ]
+        }
+      ],
+      "stroke": {"color": "#8d8cc0", "thickness": 2.2, "cap": "round", "join": "round"}
+    }
+  ]
+}

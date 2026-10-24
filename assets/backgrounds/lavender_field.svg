@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="lf" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#CE93D8"/>
+    <stop offset="55%" stop-color="#E1BEE7"/>
+    <stop offset="100%" stop-color="#F3E5F5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#lf)"/>
+  <circle cx="200.0" cy="240.0" r="104.5" fill="#E1BEE7" opacity="0.45"/>
+  <circle cx="200.0" cy="240.0" r="74.25" fill="#E1BEE7" opacity="0.55"/>
+  <circle cx="200.0" cy="240.0" r="55.0" fill="#FFE082"/>
+  <g opacity="0.7">
+    <ellipse cx="700.0" cy="200.0" rx="55.00000000000001" ry="27.500000000000004" fill="#FFFFFF"/>
+    <ellipse cx="672.5" cy="204.0" rx="35.0" ry="22.5" fill="#FFFFFF"/>
+    <ellipse cx="727.5" cy="202.5" rx="37.5" ry="24.0" fill="#FFFFFF"/>
+    <ellipse cx="700.0" cy="186.0" rx="27.500000000000004" ry="20.0" fill="#FFFFFF"/>
+  </g>
+  <path d="M0 1100 Q300 1000 560 1080 T1080 1020 L1080 1920 L0 1920 Z" fill="#B39DDB" opacity="1.0"/>
+  <path d="M0 1400 Q280 1300 540 1380 T1080 1320 L1080 1920 L0 1920 Z" fill="#9575CD" opacity="1.0"/>
+  <g opacity="0.85">
+    <ellipse cx="120" cy="1200" rx="18" ry="40" fill="#7E57C2"/>
+    <ellipse cx="200" cy="1180" rx="16" ry="38" fill="#7E57C2"/>
+    <ellipse cx="280" cy="1210" rx="18" ry="42" fill="#673AB7"/>
+    <ellipse cx="400" cy="1160" rx="17" ry="40" fill="#7E57C2"/>
+    <ellipse cx="500" cy="1190" rx="18" ry="44" fill="#673AB7"/>
+    <ellipse cx="620" cy="1170" rx="16" ry="38" fill="#7E57C2"/>
+    <ellipse cx="740" cy="1200" rx="18" ry="42" fill="#673AB7"/>
+    <ellipse cx="860" cy="1180" rx="17" ry="40" fill="#7E57C2"/>
+    <ellipse cx="960" cy="1210" rx="16" ry="38" fill="#673AB7"/>
+    <ellipse cx="160" cy="1450" rx="18" ry="42" fill="#5E35B1"/>
+    <ellipse cx="320" cy="1480" rx="17" ry="40" fill="#7E57C2"/>
+    <ellipse cx="480" cy="1460" rx="18" ry="44" fill="#5E35B1"/>
+    <ellipse cx="640" cy="1490" rx="16" ry="38" fill="#7E57C2"/>
+    <ellipse cx="800" cy="1470" rx="18" ry="42" fill="#5E35B1"/>
+    <ellipse cx="940" cy="1500" rx="17" ry="40" fill="#7E57C2"/>
+  </g>
+
+</svg>

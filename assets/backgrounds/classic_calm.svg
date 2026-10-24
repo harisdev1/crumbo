@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="cc" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#7EC8FF"/>
+    <stop offset="55%" stop-color="#B8E4FF"/>
+    <stop offset="100%" stop-color="#FFF0D0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#cc)"/>
+  <circle cx="880.0" cy="220.0" r="133.0" fill="#FFF59D" opacity="0.45"/>
+  <circle cx="880.0" cy="220.0" r="94.5" fill="#FFF59D" opacity="0.55"/>
+  <circle cx="880.0" cy="220.0" r="70.0" fill="#FFE082"/>
+  <g opacity="0.85">
+    <ellipse cx="160.0" cy="240.0" rx="88.0" ry="44.0" fill="#FFFFFF"/>
+    <ellipse cx="116.0" cy="246.4" rx="56.0" ry="36.0" fill="#FFFFFF"/>
+    <ellipse cx="204.0" cy="244.0" rx="60.0" ry="38.4" fill="#FFFFFF"/>
+    <ellipse cx="160.0" cy="217.6" rx="44.0" ry="32.0" fill="#FFFFFF"/>
+  </g>
+  <g opacity="0.8">
+    <ellipse cx="520.0" cy="160.0" rx="66.0" ry="33.0" fill="#FFFFFF"/>
+    <ellipse cx="487.0" cy="164.8" rx="42.0" ry="27.0" fill="#FFFFFF"/>
+    <ellipse cx="553.0" cy="163.0" rx="45.0" ry="28.799999999999997" fill="#FFFFFF"/>
+    <ellipse cx="520.0" cy="143.2" rx="33.0" ry="24.0" fill="#FFFFFF"/>
+  </g>
+  <g opacity="0.7">
+    <ellipse cx="300.0" cy="360.0" rx="55.00000000000001" ry="27.500000000000004" fill="#FFFFFF"/>
+    <ellipse cx="272.5" cy="364.0" rx="35.0" ry="22.5" fill="#FFFFFF"/>
+    <ellipse cx="327.5" cy="362.5" rx="37.5" ry="24.0" fill="#FFFFFF"/>
+    <ellipse cx="300.0" cy="346.0" rx="27.500000000000004" ry="20.0" fill="#FFFFFF"/>
+  </g>
+  <path d="M0 1200 Q270 1050 540 1150 T1080 1100 L1080 1920 L0 1920 Z" fill="#B8E8C8" opacity="0.85"/>
+  <path d="M0 1450 Q320 1280 600 1400 T1080 1350 L1080 1920 L0 1920 Z" fill="#8FD4A8" opacity="1.0"/>
+  <circle cx="120" cy="820" r="28" fill="#FFB4D6" opacity="0.45"/>
+  <circle cx="960" cy="900" r="34" fill="#A8F0C8" opacity="0.4"/>
+
+</svg>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="nl" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0A1628"/>
+    <stop offset="55%" stop-color="#122038"/>
+    <stop offset="100%" stop-color="#1A3050"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#nl)"/>
+  <circle cx="120" cy="180" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="260" cy="90" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="420" cy="150" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="580" cy="70" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="740" cy="130" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="900" cy="100" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="180" cy="320" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="500" cy="250" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="820" cy="280" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="960" cy="220" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="60" cy="420" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="340" cy="380" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="680" cy="360" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="880" cy="400" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="200" cy="520" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="450" cy="480" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+  <circle cx="720" cy="500" r="2.5" fill="#E8F0FF" opacity="0.9"/>
+
+  <path d="M0 400 Q200 200 400 380 Q600 560 800 300 Q950 150 1080 280 L1080 700 Q800 500 540 620 Q280 740 0 560 Z" fill="#69F0AE" opacity="0.35"/>
+  <path d="M0 500 Q250 300 500 480 Q750 660 1080 400 L1080 750 Q700 600 400 680 Q150 760 0 620 Z" fill="#40C4FF" opacity="0.3"/>
+  <path d="M0 580 Q300 420 600 560 Q850 680 1080 500 L1080 800 Q700 700 350 760 Q100 800 0 700 Z" fill="#E040FB" opacity="0.22"/>
+  <circle cx="200.0" cy="220.0" r="70.0" fill="#E8F0FF" opacity="0.2"/>
+  <circle cx="200.0" cy="220.0" r="50.0" fill="#F5F7FF"/>
+  <circle cx="217.5" cy="212.5" r="39.0" fill="#1A2748"/>
+  <path d="M0 1400 Q300 1280 560 1380 T1080 1320 L1080 1920 L0 1920 Z" fill="#0E1A30" opacity="1.0"/>
+  <path d="M0 1620 Q280 1540 540 1600 T1080 1560 L1080 1920 L0 1920 Z" fill="#081018" opacity="1.0"/>
+  <path d="M150 1450 L170 1200 L190 1450 Z" fill="#1A2838"/>
+  <path d="M850 1480 L880 1180 L910 1480 Z" fill="#1A2838"/>
+
+</svg>

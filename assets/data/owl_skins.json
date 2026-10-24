@@ -1,0 +1,25 @@
+{
+  "defaultId": "classic_brown",
+  "skins": [
+    {"id": "classic_brown", "name": "Classic Brown", "cardBg": "#F8EBDD", "body": "#BE8C6C", "accent": "#76421C", "belly": "#F1E1BE", "bow": "#3F8DD2"},
+    {"id": "blue_sky", "name": "Blue Sky", "cardBg": "#E3F1FC", "body": "#7AB8E6", "accent": "#3D78B8", "belly": "#E4F2FC", "bow": "#3F7FD0"},
+    {"id": "purple_dream", "name": "Purple Dream", "cardBg": "#EFE6F8", "body": "#B08AD8", "accent": "#7550A8", "belly": "#F0E6FA", "bow": "#8A5CC8"},
+    {"id": "mint_green", "name": "Mint Green", "cardBg": "#E6F4E6", "body": "#86C98E", "accent": "#4C8A55", "belly": "#EAF6E4", "bow": "#4F9E5A"},
+    {"id": "pink_blossom", "name": "Pink Blossom", "cardBg": "#FDE7EC", "body": "#EC8FA6", "accent": "#B8566E", "belly": "#FDE6EC", "bow": "#E0607F"},
+    {"id": "night_sky", "name": "Night Sky", "cardBg": "#E3E7F3", "body": "#3B4F86", "accent": "#26355E", "belly": "#DFE6F5", "bow": "#3F8DD2"},
+    {"id": "sunshine_yellow", "name": "Sunshine Yellow", "cardBg": "#FEF5DA", "body": "#F2C64A", "accent": "#C99A1E", "belly": "#FFF4D0", "bow": "#3F8DD2"},
+    {"id": "teal_breeze", "name": "Teal Breeze", "cardBg": "#DFF3F1", "body": "#3FB7B0", "accent": "#22807A", "belly": "#E2F6F3", "bow": "#F2C64A"},
+    {"id": "lavender_mist", "name": "Lavender Mist", "cardBg": "#EEEDF8", "body": "#A9A4DC", "accent": "#7670B4", "belly": "#F1EFFA", "bow": "#8A7FD0"},
+    {"id": "coral_peach", "name": "Coral Peach", "cardBg": "#FDE8E2", "body": "#F2887A", "accent": "#C05A4E", "belly": "#FFE8DF", "bow": "#E8607A"},
+    {"id": "forest_green", "name": "Forest Green", "cardBg": "#E4EFDF", "body": "#5A8F4E", "accent": "#3D6634", "belly": "#E4EFD6", "bow": "#3F6E36"},
+    {"id": "ice_blue", "name": "Ice Blue", "cardBg": "#E8F4FB", "body": "#A9D6F2", "accent": "#6AA3C8", "belly": "#F6FBFF", "bow": "#4A9AD8"},
+    {"id": "sunset_orange", "name": "Sunset Orange", "cardBg": "#FDE9DA", "body": "#F0904A", "accent": "#B8622A", "belly": "#FFE9D6", "bow": "#C85A1E"},
+    {"id": "gray_cloud", "name": "Gray Cloud", "cardBg": "#EEEEEF", "body": "#A3A3A8", "accent": "#6A6A70", "belly": "#F2F2F2", "bow": "#70707A"},
+    {"id": "indigo_night", "name": "Indigo Night", "cardBg": "#E6E6F4", "body": "#5355A8", "accent": "#383A80", "belly": "#E6E6F6", "bow": "#F2C64A"},
+    {"id": "mint_pink", "name": "Mint Pink", "cardBg": "#FDE7EE", "body": "#72CDBF", "accent": "#3F9E90", "belly": "#FDE6EE", "bow": "#EC7FA6"},
+    {"id": "sleepy_blue", "name": "Sleepy Blue", "cardBg": "#E2EAF6", "body": "#3C6CB4", "accent": "#284C86", "belly": "#EEF3FB", "bow": "#2F5AA0"},
+    {"id": "chocolate", "name": "Chocolate", "cardBg": "#F1E4D8", "body": "#8A5A3C", "accent": "#5A3520", "belly": "#F0DCC0", "bow": "#F0904A"},
+    {"id": "peach_cream", "name": "Peach Cream", "cardBg": "#FEF0E4", "body": "#F7B98F", "accent": "#D08A60", "belly": "#FFF3E6", "bow": "#EC7FA6"},
+    {"id": "black_white", "name": "Black & White", "cardBg": "#ECECEC", "body": "#4A4A50", "accent": "#2A2A2E", "belly": "#ECECEC", "bow": "#8A8A90"}
+  ]
+}

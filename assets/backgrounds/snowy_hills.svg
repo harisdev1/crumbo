@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="sh" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#B0C4DE"/>
+    <stop offset="55%" stop-color="#D8E8F8"/>
+    <stop offset="100%" stop-color="#F0F6FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#sh)"/>
+  <g opacity="0.9">
+    <ellipse cx="200.0" cy="260.0" rx="77.0" ry="38.5" fill="#FFFFFF"/>
+    <ellipse cx="161.5" cy="265.6" rx="49.0" ry="31.5" fill="#FFFFFF"/>
+    <ellipse cx="238.5" cy="263.5" rx="52.5" ry="33.6" fill="#FFFFFF"/>
+    <ellipse cx="200.0" cy="240.4" rx="38.5" ry="28.0" fill="#FFFFFF"/>
+  </g>
+  <g opacity="0.85">
+    <ellipse cx="600.0" cy="180.0" rx="60.50000000000001" ry="30.250000000000004" fill="#FFFFFF"/>
+    <ellipse cx="569.75" cy="184.4" rx="38.5" ry="24.75" fill="#FFFFFF"/>
+    <ellipse cx="630.25" cy="182.75" rx="41.25" ry="26.4" fill="#FFFFFF"/>
+    <ellipse cx="600.0" cy="164.6" rx="30.250000000000004" ry="22.0" fill="#FFFFFF"/>
+  </g>
+  <g opacity="0.8">
+    <ellipse cx="900.0" cy="300.0" rx="66.0" ry="33.0" fill="#FFFFFF"/>
+    <ellipse cx="867.0" cy="304.8" rx="42.0" ry="27.0" fill="#FFFFFF"/>
+    <ellipse cx="933.0" cy="303.0" rx="45.0" ry="28.799999999999997" fill="#FFFFFF"/>
+    <ellipse cx="900.0" cy="283.2" rx="33.0" ry="24.0" fill="#FFFFFF"/>
+  </g>
+  <circle cx="160" cy="500" r="4" fill="#FFFFFF"/>
+  <circle cx="300" cy="420" r="3" fill="#FFFFFF"/>
+  <circle cx="500" cy="480" r="5" fill="#FFFFFF"/>
+  <circle cx="720" cy="400" r="3" fill="#FFFFFF"/>
+  <circle cx="880" cy="520" r="4" fill="#FFFFFF"/>
+  <circle cx="420" cy="600" r="3" fill="#FFFFFF"/>
+  <circle cx="640" cy="560" r="4" fill="#FFFFFF"/>
+  <path d="M0 1100 Q250 920 500 1050 T1080 980 L1080 1920 L0 1920 Z" fill="#E8F0F8" opacity="1.0"/>
+  <path d="M0 1400 Q300 1220 560 1360 T1080 1280 L1080 1920 L0 1920 Z" fill="#F5F9FF" opacity="1.0"/>
+  <path d="M200 1300 L230 1100 L260 1300 Z" fill="#5D4037"/>
+  <path d="M180 1180 L230 1050 L280 1180 Z" fill="#FFFFFF"/>
+  <path d="M190 1120 L230 1020 L270 1120 Z" fill="#F0F4F8"/>
+  <path d="M800 1350 L840 1120 L880 1350 Z" fill="#5D4037"/>
+  <path d="M770 1220 L840 1080 L910 1220 Z" fill="#FFFFFF"/>
+
+</svg>

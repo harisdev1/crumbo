@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="ml" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#90CAF9"/>
+    <stop offset="55%" stop-color="#BBDEFB"/>
+    <stop offset="100%" stop-color="#E3F2FD"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#ml)"/>
+  <circle cx="880.0" cy="220.0" r="104.5" fill="#FFF59D" opacity="0.45"/>
+  <circle cx="880.0" cy="220.0" r="74.25" fill="#FFF59D" opacity="0.55"/>
+  <circle cx="880.0" cy="220.0" r="55.0" fill="#FFE082"/>
+  <g opacity="0.75">
+    <ellipse cx="200.0" cy="200.0" rx="55.00000000000001" ry="27.500000000000004" fill="#FFFFFF"/>
+    <ellipse cx="172.5" cy="204.0" rx="35.0" ry="22.5" fill="#FFFFFF"/>
+    <ellipse cx="227.5" cy="202.5" rx="37.5" ry="24.0" fill="#FFFFFF"/>
+    <ellipse cx="200.0" cy="186.0" rx="27.500000000000004" ry="20.0" fill="#FFFFFF"/>
+  </g>
+  <path d="M0 900 L220 500 L440 900 Z" fill="#78909C"/>
+  <path d="M180 900 L450 380 L720 900 Z" fill="#607D8B"/>
+  <path d="M600 900 L850 520 L1080 900 Z" fill="#78909C"/>
+  <path d="M200 560 L220 500 L260 560 Z" fill="#ECEFF1"/>
+  <path d="M420 480 L450 380 L500 480 Z" fill="#FAFAFA"/>
+  <path d="M820 580 L850 520 L890 580 Z" fill="#ECEFF1"/>
+  <rect x="0" y="900" width="1080" height="400" fill="#4FC3F7" opacity="0.75"/>
+  <ellipse cx="540" cy="1050" rx="200" ry="30" fill="#81D4FA" opacity="0.35"/>
+  <path d="M0 1450 Q300 1380 560 1440 T1080 1400 L1080 1920 L0 1920 Z" fill="#A5D6A7" opacity="1.0"/>
+  <path d="M0 1650 Q280 1580 540 1640 T1080 1600 L1080 1920 L0 1920 Z" fill="#81C784" opacity="1.0"/>
+
+</svg>

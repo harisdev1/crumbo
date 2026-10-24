@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <!-- Soft cream BG is artboard; props start hidden via opacity in Rive -->
+  <g id="pillow" opacity="0">
+    <ellipse cx="540" cy="780" rx="220" ry="70" fill="#A8D4E8"/>
+    <ellipse cx="540" cy="770" rx="180" ry="48" fill="#C5E6F5"/>
+  </g>
+
+  <!-- Whole character pivots for sleep lie-down -->
+  <g id="character">
+    <g id="crust">
+      <path d="M250 260
+               C250 150 360 100 540 100
+               C720 100 830 150 830 260
+               L830 760
+               C830 860 730 920 540 920
+               C350 920 250 860 250 760 Z"
+            fill="#C98A4B"/>
+    </g>
+    <g id="body">
+      <path d="M300 280
+               C300 185 390 155 540 155
+               C690 155 780 185 780 280
+               L780 740
+               C780 815 700 870 540 870
+               C380 870 300 815 300 740 Z"
+            fill="#F9EAD3"/>
+    </g>
+    <g id="curl">
+      <ellipse cx="600" cy="130" rx="52" ry="46" fill="#C98A4B"/>
+      <ellipse cx="620" cy="118" rx="22" ry="18" fill="#B87A3E"/>
+    </g>
+    <g id="blush_L">
+      <ellipse cx="370" cy="560" rx="52" ry="34" fill="#F4A792" opacity="0.85"/>
+    </g>
+    <g id="blush_R">
+      <ellipse cx="710" cy="560" rx="52" ry="34" fill="#F4A792" opacity="0.85"/>
+    </g>
+    <!-- Open sleepy eyes (default idle) -->
+    <g id="eye_L">
+      <ellipse cx="400" cy="455" rx="72" ry="80" fill="#6D5348"/>
+      <ellipse cx="422" cy="432" rx="20" ry="24" fill="#FFF8F0"/>
+    </g>
+    <g id="eye_R">
+      <ellipse cx="680" cy="455" rx="72" ry="80" fill="#6D5348"/>
+      <ellipse cx="702" cy="432" rx="20" ry="24" fill="#FFF8F0"/>
+    </g>
+    <!-- Eyelids for blink / sleep cover -->
+    <g id="eyelid_L">
+      <path d="M328 390 C360 310 440 310 472 390 C440 355 360 355 328 390 Z"
+            fill="#F9EAD3" opacity="0.95"/>
+    </g>
+    <g id="eyelid_R">
+      <path d="M608 390 C640 310 720 310 752 390 C720 355 640 355 608 390 Z"
+            fill="#F9EAD3" opacity="0.95"/>
+    </g>
+    <!-- Closed sleep eyes (U arcs) — opacity 0 until sleep -->
+    <g id="eye_closed_L" opacity="0">
+      <path d="M350 470 Q400 510 450 470" fill="none" stroke="#6D5348"
+            stroke-width="12" stroke-linecap="round"/>
+    </g>
+    <g id="eye_closed_R" opacity="0">
+      <path d="M630 470 Q680 510 730 470" fill="none" stroke="#6D5348"
+            stroke-width="12" stroke-linecap="round"/>
+    </g>
+    <g id="brow_L">
+      <path d="M350 360 Q400 340 450 360" fill="none" stroke="#6D5348"
+            stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g id="brow_R">
+      <path d="M630 360 Q680 340 730 360" fill="none" stroke="#6D5348"
+            stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g id="mouth_closed">
+      <path d="M500 620 Q540 648 580 620" fill="none" stroke="#6D5348"
+            stroke-width="10" stroke-linecap="round"/>
+    </g>
+    <g id="mouth_open" opacity="0">
+      <ellipse cx="540" cy="645" rx="38" ry="42" fill="#6D5348"/>
+      <ellipse cx="540" cy="655" rx="22" ry="16" fill="#F4A792"/>
+    </g>
+    <g id="mouth_smile" opacity="0">
+      <path d="M485 610 Q540 680 595 610" fill="none" stroke="#6D5348"
+            stroke-width="10" stroke-linecap="round"/>
+    </g>
+    <g id="arm_L">
+      <ellipse cx="220" cy="600" rx="48" ry="58" fill="#F9EAD3"
+               stroke="#C98A4B" stroke-width="12"/>
+    </g>
+    <g id="arm_R">
+      <ellipse cx="860" cy="600" rx="48" ry="58" fill="#F9EAD3"
+               stroke="#C98A4B" stroke-width="12"/>
+    </g>
+    <g id="leg_L">
+      <ellipse cx="430" cy="945" rx="44" ry="50" fill="#F9EAD3"
+               stroke="#C98A4B" stroke-width="12"/>
+    </g>
+    <g id="leg_R">
+      <ellipse cx="650" cy="945" rx="44" ry="50" fill="#F9EAD3"
+               stroke="#C98A4B" stroke-width="12"/>
+    </g>
+  </g>
+
+  <g id="zzz" opacity="0">
+    <!-- Z shapes as paths (SVG text does not import into Rive) -->
+    <g id="z1">
+      <path d="M700 300 L760 300 L700 360 L760 360" fill="none" stroke="#6D5348"
+            stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="z2">
+      <path d="M780 230 L825 230 L780 275 L825 275" fill="none" stroke="#6D5348"
+            stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <g id="z3">
+      <path d="M840 175 L870 175 L840 205 L870 205" fill="none" stroke="#6D5348"
+            stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <g id="prop_honey" opacity="0">
+    <ellipse cx="720" cy="720" rx="60" ry="42" fill="#E8A317"/>
+    <ellipse cx="740" cy="740" rx="20" ry="24" fill="#FFD797"/>
+  </g>
+  <g id="prop_mug" opacity="0">
+    <rect x="150" y="640" width="78" height="88" rx="14" fill="#FFF8F0"
+          stroke="#6D5348" stroke-width="6"/>
+    <path d="M228 665 Q275 690 228 715" fill="none" stroke="#6D5348" stroke-width="6"/>
+  </g>
+</svg>

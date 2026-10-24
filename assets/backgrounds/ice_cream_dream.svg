@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="ic" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#F8BBD0"/>
+    <stop offset="55%" stop-color="#E1BEE7"/>
+    <stop offset="100%" stop-color="#BBDEFB"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#ic)"/>
+  <g opacity="0.75">
+    <ellipse cx="200.0" cy="240.0" rx="60.50000000000001" ry="30.250000000000004" fill="#FFFFFF"/>
+    <ellipse cx="169.75" cy="244.4" rx="38.5" ry="24.75" fill="#FFFFFF"/>
+    <ellipse cx="230.25" cy="242.75" rx="41.25" ry="26.4" fill="#FFFFFF"/>
+    <ellipse cx="200.0" cy="224.6" rx="30.250000000000004" ry="22.0" fill="#FFFFFF"/>
+  </g>
+  <g opacity="0.7">
+    <ellipse cx="800.0" cy="200.0" rx="55.00000000000001" ry="27.500000000000004" fill="#FFFFFF"/>
+    <ellipse cx="772.5" cy="204.0" rx="35.0" ry="22.5" fill="#FFFFFF"/>
+    <ellipse cx="827.5" cy="202.5" rx="37.5" ry="24.0" fill="#FFFFFF"/>
+    <ellipse cx="800.0" cy="186.0" rx="27.500000000000004" ry="20.0" fill="#FFFFFF"/>
+  </g>
+  <path d="M280 1400 L340 1100 L400 1400 Z" fill="#FFE0B2"/>
+  <ellipse cx="340" cy="1080" rx="70" ry="55" fill="#F48FB1"/>
+  <ellipse cx="340" cy="1020" rx="55" ry="45" fill="#CE93D8"/>
+  <ellipse cx="340" cy="970" rx="40" ry="35" fill="#80DEEA"/>
+  <circle cx="340" cy="930" r="12" fill="#EF5350"/>
+  <path d="M700 1450 L770 1120 L840 1450 Z" fill="#FFE0B2"/>
+  <ellipse cx="770" cy="1100" rx="75" ry="58" fill="#FFCC80"/>
+  <ellipse cx="770" cy="1040" rx="58" ry="48" fill="#A5D6A7"/>
+  <ellipse cx="770" cy="990" rx="42" ry="36" fill="#F48FB1"/>
+  <path d="M0 1550 Q300 1450 560 1530 T1080 1480 L1080 1920 L0 1920 Z" fill="#F8BBD0" opacity="0.7"/>
+  <path d="M0 1720 Q280 1640 540 1700 T1080 1660 L1080 1920 L0 1920 Z" fill="#F48FB1" opacity="0.8"/>
+  <circle cx="150" cy="500" r="20" fill="#80DEEA" opacity="0.6"/>
+  <circle cx="920" cy="450" r="24" fill="#CE93D8" opacity="0.55"/>
+
+</svg>

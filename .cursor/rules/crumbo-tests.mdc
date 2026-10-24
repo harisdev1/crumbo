@@ -1,0 +1,14 @@
+---
+description: Every Crumbo change needs tests plus flutter analyze and flutter test before done
+alwaysApply: true
+---
+
+# Crumbo: tests aur auto-check
+
+- Har feature, bugfix, aur meaningful refactor ke saath tests likho (unit aur/ya widget).
+- Task complete tabhi maano jab:
+  - `flutter analyze` clean ho
+  - `flutter test` saare green hon
+- Domain logic (needs decay, economy, card unlocks, journey gates, ad frequency) ke liye unit tests zaroori.
+- Analyze ya test fail ho to pehle woh fix karo; naya kaam mat chhoro tootay hue tests ke saath.
+- Manual phone check alag hai; yeh auto-check ka replacement nahi — dono chahiye jab task "done" bolo.
