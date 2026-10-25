@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/ui/glossy_button.dart';
+import '../../../../core/ui/glossy_icon_button.dart';
 import '../../domain/home_theme.dart';
 import '../cubit/home_theme_cubit.dart';
 
@@ -12,24 +14,12 @@ class ThemesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      shape: const CircleBorder(),
-      elevation: 4,
-      shadowColor: CrumboColors.crust.withValues(alpha: 0.3),
-      child: InkWell(
-        key: const Key('action_themes'),
-        customBorder: const CircleBorder(),
-        onTap: () => showThemesSheet(context),
-        child: const Padding(
-          padding: EdgeInsets.all(12),
-          child: Icon(
-            Icons.landscape_rounded,
-            color: Color(0xFF42A5F5),
-            size: 28,
-          ),
-        ),
-      ),
+    return GlossyIconButton(
+      key: const Key('action_themes'),
+      icon: Icons.landscape_rounded,
+      color: const Color(0xFF42A5F5),
+      size: 48,
+      onTap: () => showThemesSheet(context),
     );
   }
 }
@@ -205,23 +195,16 @@ class _ApplyButton extends StatelessWidget {
       builder: (context, state) {
         final activeId = state.activeThemeId;
         final already = state.themeId == activeId;
-        return FilledButton(
+        return GlossyButton(
           key: const Key('themes_apply_button'),
-          onPressed: () async {
+          label: already ? 'Looking good!' : 'Use this',
+          expand: true,
+          onPressed: () {
             if (!already) {
-              await context.read<HomeThemeCubit>().applyTheme(activeId);
+              context.read<HomeThemeCubit>().applyTheme(activeId);
             }
-            if (context.mounted) Navigator.of(context).pop();
+            Navigator.of(context).pop();
           },
-          style: FilledButton.styleFrom(
-            backgroundColor: CrumboColors.crust,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18),
-            ),
-          ),
-          child: Text(already ? 'Looking good!' : 'Use this'),
         );
       },
     );

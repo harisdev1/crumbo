@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
+import '../../../../core/di/injection.dart';
 import '../../data/theme_preferences.dart';
 import '../../domain/home_theme.dart';
 
@@ -32,9 +34,16 @@ class HomeThemeCubit extends Cubit<HomeThemeState> {
   HomeThemeCubit({
     ThemePreferences? preferences,
     HomeThemeCatalog? catalog,
-  })  : _preferences = preferences ?? SharedThemePreferences(),
+  })  : _preferences = preferences ?? _defaultThemePreferences(),
         _catalog = catalog,
         super(const HomeThemeState());
+
+  static ThemePreferences _defaultThemePreferences() {
+    if (GetIt.instance.isRegistered<ThemePreferences>()) {
+      return getIt<ThemePreferences>();
+    }
+    return MemoryThemePreferences();
+  }
 
   final ThemePreferences _preferences;
   HomeThemeCatalog? _catalog;
@@ -53,6 +62,8 @@ class HomeThemeCubit extends Cubit<HomeThemeState> {
     svg: 'assets/backgrounds/morning_glow.svg',
     stageColor: Color(0xFFFFF6E8),
     isDark: false,
+    perchY: 1290,
+    owlScale: 0.96,
   );
 
   Future<void> hydrate() async {

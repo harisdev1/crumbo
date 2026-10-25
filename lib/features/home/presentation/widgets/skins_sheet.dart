@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/ui/glossy_button.dart';
+import '../../../../core/ui/glossy_icon_button.dart';
 import '../../../crumbo/domain/owl_skin.dart';
 import '../../../crumbo/presentation/cubit/crumbo_cubit.dart';
 
@@ -11,24 +13,12 @@ class SkinsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      shape: const CircleBorder(),
-      elevation: 4,
-      shadowColor: CrumboColors.crust.withValues(alpha: 0.3),
-      child: InkWell(
-        key: const Key('action_skins'),
-        customBorder: const CircleBorder(),
-        onTap: () => showSkinsSheet(context),
-        child: const Padding(
-          padding: EdgeInsets.all(12),
-          child: Icon(
-            Icons.palette_rounded,
-            color: Color(0xFFFF9F43),
-            size: 28,
-          ),
-        ),
-      ),
+    return GlossyIconButton(
+      key: const Key('action_skins'),
+      icon: Icons.palette_rounded,
+      color: const Color(0xFFFF9F43),
+      size: 48,
+      onTap: () => showSkinsSheet(context),
     );
   }
 }
@@ -209,23 +199,16 @@ class _ApplyButton extends StatelessWidget {
       builder: (context, state) {
         final activeId = state.activeSkinId;
         final already = state.skinId == activeId;
-        return FilledButton(
+        return GlossyButton(
           key: const Key('skins_apply_button'),
-          onPressed: () async {
+          label: already ? 'Looking good!' : 'Use this',
+          expand: true,
+          onPressed: () {
             if (!already) {
-              await context.read<CrumboCubit>().applySkin(activeId);
+              context.read<CrumboCubit>().applySkin(activeId);
             }
-            if (context.mounted) Navigator.of(context).pop();
+            Navigator.of(context).pop();
           },
-          style: FilledButton.styleFrom(
-            backgroundColor: CrumboColors.crust,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18),
-            ),
-          ),
-          child: Text(already ? 'Looking good!' : 'Use this'),
         );
       },
     );

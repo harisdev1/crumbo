@@ -1,9 +1,12 @@
+import 'package:crumbo/core/di/injection.dart';
 import 'package:crumbo/features/crumbo/domain/owl_skin.dart';
+import 'package:crumbo/features/home/data/theme_preferences.dart';
 import 'package:crumbo/features/home/domain/home_theme.dart';
 import 'package:crumbo/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../helpers/hive_test_setup.dart';
 
 void main() {
   setUpAll(() {
@@ -13,7 +16,9 @@ void main() {
 
   // Catalogs stay cached between tests: rootBundle futures from an earlier
   // test's fake-async zone never complete in the next one.
-  setUp(() => SharedPreferences.setMockInitialValues({}));
+  setUp(() async {
+    await configureMemoryPreferences();
+  });
 
   testWidgets('Themes button opens 30-theme grid and applies background', (
     tester,
@@ -48,8 +53,7 @@ void main() {
     expect(find.byKey(const Key('home_bg_sleepy_night')), findsOneWidget);
     expect(find.byKey(const Key('home_bg_morning_glow')), findsNothing);
 
-    final prefs = await SharedPreferences.getInstance();
-    expect(prefs.getString('home_theme_id'), 'sleepy_night');
+    expect(await getIt<ThemePreferences>().readThemeId(), 'sleepy_night');
   });
 
   testWidgets('closing the sheet without apply restores the old theme', (
@@ -73,7 +77,6 @@ void main() {
 
     expect(find.byKey(const Key('themes_sheet')), findsNothing);
     expect(find.byKey(const Key('home_bg_morning_glow')), findsOneWidget);
-    final prefs = await SharedPreferences.getInstance();
-    expect(prefs.getString('home_theme_id'), isNull);
+    expect(await getIt<ThemePreferences>().readThemeId(), isNull);
   });
 }

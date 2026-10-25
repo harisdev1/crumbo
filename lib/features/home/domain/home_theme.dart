@@ -11,7 +11,7 @@ class HomeTheme {
     required this.svg,
     required this.stageColor,
     required this.isDark,
-    this.owlOffsetY = 0.06,
+    this.perchY = 1300,
     this.owlScale = 1,
   });
 
@@ -20,7 +20,8 @@ class HomeTheme {
   final String svg;
   final Color stageColor;
   final bool isDark;
-  final double owlOffsetY;
+  /// Y (in SVG units, 0–1920) of the surface the owl's feet stand on.
+  final double perchY;
   final double owlScale;
 
   static const morningGlowId = 'morning_glow';
@@ -37,7 +38,7 @@ class HomeTheme {
       svg: json['svg'] as String,
       stageColor: _parseColor(json['stageColor'] as String),
       isDark: json['isDark'] as bool? ?? false,
-      owlOffsetY: (json['owlOffsetY'] as num?)?.toDouble() ?? 0.06,
+      perchY: (json['perchY'] as num?)?.toDouble() ?? 1300,
       owlScale: (json['owlScale'] as num?)?.toDouble() ?? 1,
     );
   }

@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
+import '../../../../core/di/injection.dart';
 import '../../data/skin_preferences.dart';
+import '../../domain/owl_bonk.dart';
 import '../../domain/owl_expression.dart';
 import '../../domain/owl_skin.dart';
 
@@ -47,15 +50,24 @@ class CrumboCubit extends Cubit<CrumboCharacterState> {
   CrumboCubit({
     SkinPreferences? skinPreferences,
     OwlSkinCatalog? catalog,
-  })  : _skinPreferences = skinPreferences ?? SharedSkinPreferences(),
+  })  : _skinPreferences = skinPreferences ?? _defaultSkinPreferences(),
         _catalog = catalog,
         super(const CrumboCharacterState());
+
+  static SkinPreferences _defaultSkinPreferences() {
+    if (GetIt.instance.isRegistered<SkinPreferences>()) {
+      return getIt<SkinPreferences>();
+    }
+    return MemorySkinPreferences();
+  }
 
   static const _autoIdleDelay = Duration(milliseconds: 2800);
 
   final SkinPreferences _skinPreferences;
   OwlSkinCatalog? _catalog;
   Timer? _autoIdleTimer;
+  int _bonkStreak = 0;
+  DateTime? _lastBonkAt;
 
   OwlSkinCatalog? get catalogOrNull => _catalog;
 
@@ -113,16 +125,38 @@ class CrumboCubit extends Cubit<CrumboCharacterState> {
     }
   }
 
-  /// Brief wave, then auto-idle.
+  /// Brief wave, then auto-idle (care bar / moods — not body bonk).
   void poke() => setExpression(OwlExpression.poke);
 
-  /// Tap: wake from sleep, otherwise poke/wave (then idle).
-  void onCharacterTapped() {
+  /// Tap on the owl body: bonk combo (angry → dizzy → sleep) or wake from sleep.
+  void onCharacterTapped({DateTime? now}) {
     if (state.expression == OwlExpression.sleep) {
+      _bonkStreak = 0;
+      _lastBonkAt = null;
       goIdle();
-    } else {
-      poke();
+      return;
     }
+
+    final tapAt = now ?? DateTime.now();
+    final gap = _lastBonkAt == null
+        ? owlBonkComboWindow + const Duration(seconds: 1)
+        : tapAt.difference(_lastBonkAt!);
+    _bonkStreak = owlBonkStreakAfter(
+      previousStreak: _bonkStreak,
+      sinceLastTap: gap,
+    );
+    _lastBonkAt = tapAt;
+
+    final reaction = owlBonkReaction(_bonkStreak);
+    if (owlBonkIsExhausted(_bonkStreak)) {
+      _bonkStreak = 0;
+      _lastBonkAt = null;
+      _autoIdleTimer?.cancel();
+      emit(state.copyWith(expression: OwlExpression.sleep));
+      return;
+    }
+
+    setExpression(reaction);
   }
 
   void previewSkin(String skinId) {

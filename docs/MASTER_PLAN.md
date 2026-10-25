@@ -1,31 +1,51 @@
 # Crumbo: Final Master Plan (Concept + Features + Journey Map + Cards + Ads + Rive MCP + Cursor Vibe-Coding)
 
-Date: 2026-10-20
-Owner: Haris
-Yeh ek final file hai jis mein pichli saari baatein aur nayi cheezein (Journey Map, Card unlocks, 40 features) ek jagah hain. Is file ko Cursor ke project mein `docs/MASTER_PLAN.md` ki tarah rakh do aur LLM ko bolo "pehle isay padho".
+Date: 2026-10-20 (status refresh 2026-10-25)  
+Owner: Haris  
+Canonical file: `docs/MASTER_PLAN.md`. LLM ko bolo "pehle isay padho". Roz ka schedule: [`DAILY_CHECKLIST.md`](DAILY_CHECKLIST.md).
+
+---
+
+## 0. Implementation status (2026-10-25)
+
+| Area | Status | Notes / checklist IDs |
+| --- | --- | --- |
+| Foundation (DI, router, theme) | Done | A1–A3 |
+| Glossy UI shell + static routes | Done | A-UI1–A-UI8 |
+| Character Rive (owl pack + sleep) | Done / Partial | A-UI4; D10 polish + journey gates later |
+| Storage (Hive) | Done | A4 — four boxes + theme/skin in `settings` |
+| Needs meters + decay | Not started | A6–A8 (`NeedsCubit`; `CrumboCubit` = expressions) |
+| Economy / shop / daily | Partial shells | B3–B5; screens exist, logic nahi |
+| Journey / cards | Not started | B6–C2 |
+| Mini games (Flame) | Not started | C3–C7 (Play hub shell + JSON only) |
+| Voice | Not started | C8–C10 |
+| Ads | Not started | D1–D4 |
+| Parental / settings / onboarding | Partial | D5–D7 shells |
+
+**Aaj ka pehla core task:** checklist **A5** (Firebase stub / skeleton).
 
 ---
 
 ## 1. App ek line mein
 
-**Crumbo** ek sleepy talking bread-slice hai (US kids 4-10). Bacha usay jagata hai, khilata hai, toast karta hai, nehlata hai, sulata hai, saaf karta hai, mini games khelta hai, **Journey Map** par aage badhta hai, aur **cards** unlock karke nayi cheezein (outfits, food, rooms, friends) kholta hai. Revenue **ads** se hai (rewarded main), RevenueCat nahi.
+**Crumbo** ek sleepy talking **owl** kids app hai (US kids 4-10). Brand name Crumbo; mascot AnggaMotion Expression Pack (`assets/rive/owl.riv`, CC BY) + custom sleep riv. Bacha usay jagata hai, khilata hai, nehlata hai, sulata hai, saaf karta hai, mini games khelta hai, **Journey Map** par aage badhta hai, aur **cards** unlock karke nayi cheezein (skins, food, rooms, friends) kholta hai. Revenue **ads** se hai (rewarded main), RevenueCat nahi.
 
-**Haan, is mein sab hai:** sleep, bath, clean, food, toast, journey map, aur card-unlock system. Neeche 40 features ki list hai.
+**Haan, is mein sab hai:** sleep, bath, clean, food, play hub, journey map, aur card-unlock system. Neeche 40 features ki list hai.  
+*(Bread-slice / toast toaster pehle concept tha — ab core mascot owl hai. Toaster Pop etc. mini-game theme / v1.1 slot.)*
 
-**Platform:** Android pehle, phir iOS. **Market:** US (native English UI). **Tools:** Flutter + Rive (MCP se) + Cursor (vibe-coding).
+**Platform:** Android pehle, phir iOS. **Market:** US (native English UI). **Tools:** Flutter + Rive + Cursor (vibe-coding).
 
 ---
 
-## 2. Character: Crumbo
+## 2. Character: Crumbo (owl)
 
-- Round-square bread slice, golden-brown crust, cream andar, upar crust ka chhota curl
-- 2 bade sleepy aankhein, chhota mooh, blush circles, chhote haath-pair
-- Colors: cream, golden brown, butter yellow (accent), soft brown (eyes)
-- Personality: sleepy, bhookha, thoda clumsy, pyaara. Kabhi gussa ya darawna nahi
-- Voice: bachay ki awaaz soft, sleepy, high pitch mein repeat karta hai (presets: Sleepy, Chipmunk, Deep Bread)
-- Catchphrase: "Five more minutes..."
-- Backstory: Crumbo Bakery ka sabse chhota slice jo toaster mein jaane se pehle jaag gaya. Ab dost aur naye ghar dhoondh raha hai (isi se Journey Map ka bahana milta hai)
-- Naam trademark: launch se pehle USPTO aur Play Store par "Crumbo" check karo
+- Cute owl mascot — marketplace pack artboards; home pe bada owl + perch / branch scene
+- Soft brown / cream skins (JSON `owl_skins.json`); themes SVG backgrounds
+- Personality: sleepy, bhookha, thoda clumsy, pyaara. Care actions se mood expressions
+- Voice (future): bachay ki awaaz soft, sleepy, high pitch mein repeat (presets: Sleepy, Chipmunk, Deep Hoot)
+- Catchphrase (sleepy): "Five more minutes..."
+- Backstory: Crumbo ek chhota owl jo jungle / cozy nest se nikal kar dost aur naye ghar dhoondhta hai (Journey Map ka bahana)
+- Credit: AnggaMotion Expression Pack (CC BY) — Settings / About mein dikhana; launch se pehle USPTO / Play Store par "Crumbo" check
 
 ---
 
@@ -40,20 +60,21 @@ Ad hook: **R** = rewarded video (bacha khud choose kare), **I** = natural-break 
 | --- | --- | --- | --- | --- |
 | 1 | Wake up | Tap, shake ya alarm se Crumbo jaagta hai ("Five more minutes...") | R: double wake-up coins | MVP |
 | 2 | Voice repeat | Bacha bolta hai, Crumbo funny voice mein repeat karta hai | R: naye voice presets | MVP |
-| 3 | Feed | Butter, jam, egg, honey, fruit drag karke khilao | R: premium food free | MVP |
-| 4 | Toast | Toaster mein daalo: bread \u2192 golden \u2192 dark | I: toast complete ke baad | MVP |
-| 5 | Sleep / lullaby | Light band, gaana, Zzz | R: naye lullabies | MVP |
+| 3 | Feed | Food drag karke owl ko khilao | R: premium food free | MVP |
+| 4 | Toaster Pop (mini-game) | Timing game — Play hub slot (purana “toast Crumbo” core nahi) | I: game complete ke baad | MVP game / was bread care |
+| 5 | Sleep / lullaby | Light band, gaana, Zzz (`owl_sleep.riv`) | R: naye lullabies | MVP |
 | 6 | Bath | Bubbles, sponge, rubber duck | I: bath ke baad | MVP |
-| 7 | Clean (crumb cleaning) | Crumbs aur dhool saaf karo, sparkle | R: sparkle effect | MVP |
-| 8 | Pet / tickle | Tap-hold se hasna, giggle | - (trust ke liye) | MVP |
-| 9 | Dress up | Hats, glasses, pajamas, chef outfit | R: free outfit try/unlock | MVP |
-| 10 | Mood & needs | Hunger, Sleep, Fun, Clean, Love icons | - | MVP |
+| 7 | Clean | Dhool / crumbs saaf, sparkle | R: sparkle effect | MVP |
+| 8 | Pet / tickle | Tap-hold / bonk → giggle / angry / dizzy | - (trust ke liye) | MVP (bonk partial) |
+| 9 | Skins & themes | Owl color skins + home theme backgrounds | R: free unlock | MVP (UI shipped) |
+| 10a | Expressions | Moods sheet — Rive artboards (idle, wink, eat, dance…) | - | MVP (shipped) |
+| 10b | Needs meters | Hunger, Sleep, Fun, Clean, Love icons + decay | - | MVP (A6–A8) |
 
 ### B. Rooms (alag screens)
 
 | # | Feature | Actions | Unlock | Phase |
 | --- | --- | --- | --- | --- |
-| 11 | Kitchen | Feed, toast, butter/jam station | Free | MVP |
+| 11 | Kitchen | Feed, food station | Free | MVP |
 | 12 | Bedroom | Sleep, lullaby, night-light | Free | MVP |
 | 13 | Bathroom | Bubble bath, shower, duck | Free | MVP |
 | 14 | Playroom | Toys, games arcade | Journey Level 3 | v1.1 |
@@ -99,9 +120,9 @@ Har game ke end par: coins + "Watch ad for 2x coins" (R); 3 games ke baad ek int
 | --- | --- | --- | --- |
 | 33 | Coins aur Gems | Soft aur premium-feel currency (sirf gameplay/ads se) | MVP |
 | 34 | Daily reward calendar | 7-din cycle, 7th din bada gift | MVP |
-| 35 | Daily tasks | "3 toast banao", "1 game khelo" | MVP |
+| 35 | Daily tasks | "Owl ko khilao", "1 game khelo" | MVP |
 | 36 | Spin wheel | Roz 1 free, extra spin ad se (R) | MVP |
-| 37 | Achievements | "10 toasts", "First card set" | v1.1 |
+| 37 | Achievements | "10 feeds", "First card set" | v1.1 |
 | 38 | Streaks | 3/7/14/30 din ke rewards | v1.1 |
 | 39 | Record & replay video | Funny video record, save/share (parental gate) | v1.2 |
 | 40 | Events (Halloween, Xmas, Summer) | Limited-time outfits aur map zone | v1.2 |
@@ -330,58 +351,63 @@ General information hai, legal advice nahi. Launch se pehle ek expert se review 
 | Framework | Flutter (Dart), Android first |
 | Architecture | Clean Architecture + Cubit/BLoC |
 | DI / routing | GetIt + GoRouter |
-| Character | Rive (view model / data binding) |
-| Games | Flame |
+| Character | Rive owl pack (`owl.riv`) + custom sleep (`owl_sleep.riv`); Flutter switches artboards via cubit |
+| Games | Flame (target) |
 | Voice | `record` + pitch/speed playback (`just_audio` ya `flutter_soloud`, package docs verify karo) |
 | Ads | `google_mobile_ads` + certified mediation |
-| Storage | Hive (offline-first, no backend) |
-| Analytics | Firebase Analytics (kids config) + Crashlytics + Remote Config |
+| Storage | Hive (`hive_ce`; theme/skin in `settings`; SP one-shot migrate) |
+| Analytics | Firebase Analytics (kids config) + Crashlytics + Remote Config (A5) |
 | OTA fixes | Shorebird (optional) |
 
-### Folder structure
+### Folder structure (current + target)
 ```
 lib/
-  core/ (di, router, ads, audio, storage, theme, parental_gate, config)
+  core/ (di, router, theme, ui/, … later: ads, audio, storage, parental_gate, config)
   features/
-    home/ crumbo/ rooms/ shop/ economy/
-    journey/   (map, nodes, gates)
-    cards/     (album, reveal, unlock rules)
-    games/     (topping_catch, toaster_pop, bubble_pop, crumb_runner, match)
-    settings/
+    splash/ home/ crumbo/ play/ shop/ store/ settings/
+    rewards/ profile/ level/ owls/
+    # target:
+    rooms/ economy/ journey/ cards/ games/
 assets/
-  rive/crumbo.riv
-  data/ (journey.json, cards.json, items.json)
-  audio/ images/ fallback/
+  rive/owl.riv
+  rive/owl_sleep.riv
+  data/ (home_themes.json, owl_skins.json, play_content.json;
+         target: journey.json, cards.json, items.json)
+  backgrounds/ images/ fonts/
 ```
 
-**JSON-driven design:** journey, cards, shop items sab `assets/data/*.json` mein. Naya content = naya JSON, naya code nahi. Yahi "pehle 30-40 features, baad mein aur" ka asaan raasta hai.
+**JSON-driven design:** journey, cards, shop items sab `assets/data/*.json` mein. Naya content = naya JSON, naya code nahi.
 
 ---
 
-## 12. Rive: character aur animations (AI/MCP se)
+## 12. Rive: owl contract (primary)
 
-### Animation list (artist-free, MCP se banwani)
-`idle_breathe`, `blink`, `sleep_loop`, `wake_up`, `talk`, `listen`, `eat_chew`, `happy_jump`, `giggle`, `hungry`, `toast_light/golden/dark`, `sneeze`, `bath_splash`, `clean_sparkle`, `card_flip_happy`
+**Source of truth:** [`AGENTS.md`](../AGENTS.md) Rive contract. Do not guess APIs — `https://rive.app/docs/llms.txt`.
 
-### View model contract (naam fix, code aur Rive match karein)
+### Pack files
+- `assets/rive/owl.riv` — marketplace Expression Pack (AnggaMotion, CC BY); artboards `"1"`…`"15"`
+- `assets/rive/owl_sleep.riv` — custom sleep artboard `sleep` (closed eyes, breathe + Zzz)
 
-| Property | Type | Kaam |
-| --- | --- | --- |
-| `mood` | enum | idle, sleepy, hungry, happy, excited |
-| `isTalking` | bool | Mooh hilana |
-| `isListening` | bool | Sun raha hai |
-| `isChewing` | bool | Chew |
-| `toastLevel` | number | 0 bread, 1 golden, 2 dark |
-| `isBathing` | bool | Bubble/bath |
-| `pokeTrigger` | trigger | Giggle |
-| `wakeTrigger` | trigger | Jaagna |
-| `celebrateTrigger` | trigger | Card/level celebration |
-| `hatId` | number | Outfit slot |
+### Flutter mapping (examples)
+| Expression / action | Artboard / file |
+| --- | --- |
+| Idle (think) | `11` |
+| Wink | `2` |
+| Eat | `10` |
+| Dance / happy | `1` |
+| Poke / wave | `9` |
+| Bubbles | `13` |
+| Sleep | `owl_sleep.riv` → `sleep` |
 
-**Zaroori:** Rive ke docs ke mutabiq purana "Inputs" system deprecated hai; **Data Binding** use karo. LLM ko hamesha `https://rive.app/docs/llms.txt` do.
+Pack state machines have **no mood Inputs**; Flutter `CrumboCubit` switches artboards. Actions auto-return to idle except sleep. Oversized boards use `stageScale`. Talk = future mic (C10).
 
-### Layers ke naam (SVG/Rive mein)
-`body`, `crust`, `curl`, `eye_L`, `eye_R`, `eyelid_L`, `eyelid_R`, `mouth_closed`, `mouth_open`, `mouth_smile`, `blush_L`, `blush_R`, `arm_L`, `arm_R`, `leg_L`, `leg_R`
+### Appendix: bread-era contract (DEPRECATED)
+
+Purana bread-slice plan — **use mat karo** for new work. Historical only:
+
+- File was `assets/rive/crumbo.riv`, artboard `CrumboMain`
+- View model: `mood`, `isTalking`, `isListening`, `isChewing`, `toastLevel`, `hatId`, poke/wake triggers
+- Layers: `body`, `crust`, `curl`, eyes, mouth shapes, blush, arms, legs
 
 ---
 
@@ -391,7 +417,7 @@ assets/
 Rive ke latest docs ke mutabiq MCP desktop editor ke **Windows aur macOS** par available hai. Early Access hai, to kabhi kabhi gadbad ho sakti hai.
 
 1. Rive desktop app install karo (rive.app/downloads), account login
-2. Rive mein nayi file + ek Artboard (`CrumboMain`, 1080x1080)
+2. Owl pack already in repo (`owl.riv`); nayi custom work ke liye alag artboard / file (e.g. sleep already `owl_sleep.riv`)
 3. **Rive app khuli rakho** (server tabhi chalta hai)
 4. Cursor mein MCP add karo: `~/.cursor/mcp.json` (Windows: `C:\Users\<name>\.cursor\mcp.json`) ya Cursor Settings > Tools & MCP > Add Custom MCP:
 ```json
@@ -422,17 +448,19 @@ Free plan ki limits (export waghera) verify karo `rive.app/pricing` par; zaroora
 
 Project root mein `AGENTS.md` banao:
 ```markdown
-# Crumbo (kids talking-toast app)
+# Crumbo (kids talking-owl app)
 
 Read docs/MASTER_PLAN.md first.
+**Active schedule:** docs/DAILY_CHECKLIST.md
 
 ## Product
 - Flutter, Android first, US kids 4-10. Ads only (AdMob, child-directed). No backend, no accounts.
 - Content (journey nodes, cards, shop items) is JSON in assets/data. New content must not need code changes.
+- Character: Owl mascot — AnggaMotion pack (`assets/rive/owl.riv`, CC BY). See AGENTS.md Rive contract.
 
 ## Architecture
 - Clean Architecture: lib/core, lib/features/<feature>/{data,domain,presentation}
-- Cubit/BLoC, GetIt, GoRouter, Hive, Flame. Rive with Data Binding (NOT deprecated Inputs).
+- Cubit/BLoC, GetIt, GoRouter, Hive, Flame. Rive artboard switch from Flutter (pack has no mood Inputs).
 
 ## Kids-app hard rules
 - No personal data, login, chat, social. Mic audio on device only.
@@ -469,22 +497,22 @@ Har step: tests likho, `flutter analyze` + `flutter test` clean, phone par test,
 
 Neeche 12-hafte table **reference** hai; active schedule checklist wali hai.
 
-| Week | Kaam |
-| --- | --- |
-| 1 | Skeleton, DI, routing, theme, storage, placeholder Crumbo |
-| 2 | Needs aur mood, care actions (feed, sleep, bath, clean, pet) |
-| 3 | Rooms (kitchen/bedroom/bathroom), shop, coins/gems, daily reward |
-| 4 | Cards system (album, reveal, unlock rules, JSON) |
-| 5 | Journey Map (nodes, zones 1-2, gates, chests) |
-| 6 | Mini games (5) + result screens |
-| 7 | Voice repeat |
-| 8 | Ads (AdService, rewarded/interstitial/banner, Remote Config) |
-| 9 | Parental gate, settings, privacy, onboarding |
-| 10 | Rive character (SVG \u2192 animations \u2192 data binding \u2192 integrate) |
-| 11 | Polish, analytics, low-end phone test |
-| 12 | Soft launch, tuning (AFTER 24 Nov) |
+| Week | Kaam | UI shell (Oct 2025) |
+| --- | --- | --- |
+| 1 | Skeleton, DI, routing, theme, **Hive (A4)** | Done except Hive |
+| 2 | Needs + care actions (feed, sleep, bath, clean, pet) | Owl expressions / care bar shipped |
+| 3 | Rooms, shop, coins/gems, daily reward | Static shop/daily shells; themes exist |
+| 4 | Cards system (album, reveal, unlock rules, JSON) | — |
+| 5 | Journey Map (nodes, zones 1-2, gates, chests) | — |
+| 6 | Mini games (5) + result screens | Play hub shell + `play_content.json` |
+| 7 | Voice repeat | — |
+| 8 | Ads (AdService, rewarded/interstitial/banner, Remote Config) | — |
+| 9 | Parental gate, settings, privacy, onboarding | Partial gate + settings shell |
+| 10 | Owl Rive polish + journey-gated moods (D10) | Pack + sleep already integrated |
+| 11 | Polish, analytics, low-end phone test | Glossy UI largely done |
+| 12 | Soft launch, tuning (AFTER 24 Nov) | — |
 
-(Rive ka kaam parallel chalao; MCP atke to Plan D.)
+(Rive parallel; MCP atke to Plan D. **Next core:** A5.)
 
 ### Prompt: Cards (Week 4)
 > `docs/MASTER_PLAN.md` ke Section 5 ke mutabiq `features/cards` banao. `assets/data/cards.json` se cards load karo (id, type, rarity, set, unlock methods). Album screen (locked cards dhundhle), card flip animation (Flutter), unlock methods: task, journey, coins, ad (rewarded via AdService, aur ad ke saath hamesha ek non-ad raasta). Duplicate card par coins do. Hive mein collected cards save karo. Pehle plan dikhao.
@@ -495,15 +523,13 @@ Neeche 12-hafte table **reference** hai; active schedule checklist wali hai.
 ### Prompt: Ads (Week 8)
 > `core/ads` mein `AdService` interface aur `AdmobAdService` banao (Section 8). Child-directed settings init mein. Rewarded: opt-in. Interstitial: sirf natural breaks, min gap 90 sec. Banner: shop/result ke neeche. Frequencies Firebase Remote Config se. Test ad unit IDs.
 
-### Prompt: Rive (Week 10)
-> Rive docs (https://rive.app/docs/llms.txt) padho. `assets/rive/crumbo.riv` load karo aur `CrumboView` banao jo Section 12 ke view model properties `CrumboCubit` se bind kare. Placeholder hata do. Property naam alag ho to mujhe batao.
+### Prompt: Owl Rive polish (Week 10 / D10)
+> `AGENTS.md` Rive contract aur https://rive.app/docs/llms.txt padho. `CrumboView` pehle se `owl.riv` / `owl_sleep.riv` use karta hai. Journey-gated moods (`OwlExpression.isUnlocked`), perch tuning, talk placeholder — bread-era `crumbo.riv` / `CrumboMain` mat banao.
 
-### Rive MCP prompts (Cursor mein, Phase wise)
-1. Design: "Crumbo ka original cute SVG banao (Section 2 aur 12 ke layer naamon ke saath), `art/crumbo.svg`." (Browser mein dekh ke approve)
-2. Import: "SVG ko Rive Artboard `CrumboMain` mein laao, layer naam wahi rakho."
-3. Animations ek ek karke (pehle `idle_breathe`, `blink`, `sleep_loop`, `talk`), har ek ke baad review
-4. State machine + data binding: Section 12 ke properties ke saath (Data Binding, Inputs nahi)
-5. Export: `assets/rive/crumbo.riv`, size 1-2 MB se kam
+### Rive MCP prompts (optional custom work)
+1. Perch / scene polish ya custom talk artboard — pack artboards break mat karo
+2. Plan D: PNG layers agar MCP / pack limit atke
+3. Export custom pieces under `assets/rive/`; size chhota rakho
 
 ### Review checklist (animation)
 - [ ] Loop jhatka nahi deta
@@ -566,11 +592,12 @@ Neeche 12-hafte table **reference** hai; active schedule checklist wali hai.
 
 ---
 
-## 19. Pehle 3 din
+## 19. Where we are now (2026-10-25)
 
-- **Din 1:** Cursor + Flutter + Android Studio, `flutter create`, `AGENTS.md`, `docs/MASTER_PLAN.md`, git
-- **Din 2:** Rive install, MCP connect, circle test, Crumbo SVG (Phase 1) approve
-- **Din 3:** Week 1 prompt, placeholder Crumbo home screen par
+- Foundation + glossy owl home + static feature shells **done** (checklist A1–A3, A-UI1–A-UI8)
+- **Next core task:** [`DAILY_CHECKLIST.md`](DAILY_CHECKLIST.md) **A5** — Firebase skeleton ya stub + skip note
+- Phir A5 stub/Firebase, A6–A10 needs + feed/sleep polish
+- Soft launch / Play Console **after** 24 Nov full-dev deadline
 
 ---
 

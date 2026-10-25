@@ -1,0 +1,74 @@
+{
+  "profile": {
+    "name": "Player",
+    "level": 1,
+    "xp": 0,
+    "xpGoal": 100,
+    "gamesPlayed": 0
+  },
+  "games": [
+    {"id": "jump_owl", "name": "Jump Owl", "icon": "jump"},
+    {"id": "bubble_pop", "name": "Bubble Pop", "icon": "bubbles"},
+    {"id": "memory", "name": "Memory", "icon": "memory"},
+    {"id": "owl_runner", "name": "Owl Runner", "icon": "run"},
+    {"id": "whack_owl", "name": "Whack Owl", "icon": "whack"},
+    {"id": "match_3", "name": "Match 3", "icon": "match"}
+  ],
+  "achievements": [
+    {"id": "play_5", "name": "Play 5 Games", "progress": 0, "goal": 5},
+    {"id": "feed_owl", "name": "Feed Owl 10 Times", "progress": 0, "goal": 10},
+    {"id": "happy_owl", "name": "Make Owl Happy", "progress": 0, "goal": 3},
+    {"id": "stare_out", "name": "Stare Out 1 Time", "progress": 0, "goal": 1}
+  ],
+  "rewards": [
+    {"day": 1, "coins": 10, "unlocked": true},
+    {"day": 2, "coins": 15, "unlocked": false},
+    {"day": 3, "coins": 20, "unlocked": false},
+    {"day": 4, "coins": 25, "unlocked": false},
+    {"day": 5, "coins": 30, "unlocked": false},
+    {"day": 6, "coins": 40, "unlocked": false},
+    {"day": 7, "coins": 50, "unlocked": false}
+  ],
+  "foods": [
+    {"id": "fruits", "name": "Fruits", "icon": "fruit"},
+    {"id": "cake", "name": "Cake", "icon": "cake"},
+    {"id": "fish", "name": "Fish", "icon": "fish"},
+    {"id": "pizza", "name": "Pizza", "icon": "pizza"},
+    {"id": "nuts", "name": "Nuts", "icon": "nuts"},
+    {"id": "burger", "name": "Burger", "icon": "burger"}
+  ],
+  "market": [
+    {"id": "red_hat", "name": "Red Hat", "tab": "Hats", "icon": "hat"},
+    {"id": "blue_cap", "name": "Blue Cap", "tab": "Hats", "icon": "hat"},
+    {"id": "round_glasses", "name": "Round Glasses", "tab": "Glasses", "icon": "glasses"},
+    {"id": "star_glasses", "name": "Star Glasses", "tab": "Glasses", "icon": "glasses"},
+    {"id": "bow_tie", "name": "Bow Tie", "tab": "Neck", "icon": "neck"},
+    {"id": "scarf", "name": "Scarf", "tab": "Neck", "icon": "neck"},
+    {"id": "balloon", "name": "Balloon", "tab": "Others", "icon": "other"},
+    {"id": "book", "name": "Book", "tab": "Others", "icon": "other"}
+  ],
+  "shopItems": [
+    {"id": "coin_sack", "name": "Coin Sack", "price": "100", "tab": "Items"},
+    {"id": "gem_pouch", "name": "Gem Pouch", "price": "250", "tab": "Items"},
+    {"id": "theme_pack", "name": "Theme Pack", "price": "Free", "tab": "Themes"},
+    {"id": "room_pack", "name": "Room Pack", "price": "Free", "tab": "Themes"}
+  ],
+  "scores": [
+    {"game": "Jump Owl", "score": 0},
+    {"game": "Bubble Pop", "score": 0},
+    {"game": "Memory", "score": 0},
+    {"game": "Owl Runner", "score": 0},
+    {"game": "Whack Owl", "score": 0},
+    {"game": "Match 3", "score": 0}
+  ],
+  "coinPacks": [
+    {"id": "coins_100", "amount": 100, "price": "$0.99"},
+    {"id": "coins_500", "amount": 500, "price": "$2.99"},
+    {"id": "coins_1200", "amount": 1200, "price": "$4.99"}
+  ],
+  "gemPacks": [
+    {"id": "gems_20", "amount": 20, "price": "$0.99"},
+    {"id": "gems_80", "amount": 80, "price": "$2.99"},
+    {"id": "gems_200", "amount": 200, "price": "$4.99"}
+  ]
+}

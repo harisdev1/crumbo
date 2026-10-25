@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rive/rive.dart' as rive;
 
 import '../../domain/owl_expression.dart';
 import '../cubit/crumbo_cubit.dart';
+import 'owl_body_tap.dart';
 
 /// Loads owl Rive files and switches expression artboards from [CrumboCubit].
 ///
@@ -28,7 +30,17 @@ class CrumboView extends StatelessWidget {
           artboardName: expression.artboardName,
           stageScale: expression.stageScale,
           breathe: expression == OwlExpression.sleep,
-          onTap: () => context.read<CrumboCubit>().onCharacterTapped(),
+          onBodyTap: () {
+            final cubit = context.read<CrumboCubit>();
+            final before = cubit.state.expression;
+            cubit.onCharacterTapped();
+            final after = cubit.state.expression;
+            if (after == OwlExpression.sleep && before != OwlExpression.sleep) {
+              HapticFeedback.mediumImpact();
+            } else if (after != before) {
+              HapticFeedback.lightImpact();
+            }
+          },
         );
       },
     );
@@ -42,34 +54,40 @@ class _OwlArtboardPlayer extends StatefulWidget {
     required this.artboardName,
     required this.stageScale,
     required this.breathe,
-    required this.onTap,
+    required this.onBodyTap,
   });
 
   final String assetPath;
   final String artboardName;
   final double stageScale;
   final bool breathe;
-  final VoidCallback onTap;
+  final VoidCallback onBodyTap;
 
   @override
   State<_OwlArtboardPlayer> createState() => _OwlArtboardPlayerState();
 }
 
 class _OwlArtboardPlayerState extends State<_OwlArtboardPlayer>
-    with SingleTickerProviderStateMixin {
-  late final rive.FileLoader _fileLoader = rive.FileLoader.fromAsset(
-    widget.assetPath,
-    riveFactory: rive.Factory.rive,
-  );
-
-  late final AnimationController _breath = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 2400),
-  );
+    with TickerProviderStateMixin {
+  late final rive.FileLoader _fileLoader;
+  late final AnimationController _breath;
+  late final AnimationController _bonkSquash;
 
   @override
   void initState() {
     super.initState();
+    _fileLoader = rive.FileLoader.fromAsset(
+      widget.assetPath,
+      riveFactory: rive.Factory.rive,
+    );
+    _breath = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2400),
+    );
+    _bonkSquash = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 140),
+    );
     if (widget.breathe) {
       _breath.repeat(reverse: true);
     }
@@ -89,8 +107,13 @@ class _OwlArtboardPlayerState extends State<_OwlArtboardPlayer>
   @override
   void dispose() {
     _breath.dispose();
+    _bonkSquash.dispose();
     _fileLoader.dispose();
     super.dispose();
+  }
+
+  void _playBonkSquash() {
+    _bonkSquash.forward(from: 0);
   }
 
   @override
@@ -113,15 +136,18 @@ class _OwlArtboardPlayerState extends State<_OwlArtboardPlayer>
                 textAlign: TextAlign.center,
               ),
             ),
-          rive.RiveLoaded(:final controller) => GestureDetector(
-              key: const Key('crumbo_rive'),
-              onTap: widget.onTap,
+          rive.RiveLoaded(:final controller) => OwlBodyTapShell(
+              onBodyTap: () {
+                _playBonkSquash();
+                widget.onBodyTap();
+              },
               child: AnimatedBuilder(
-                animation: _breath,
+                animation: Listenable.merge([_breath, _bonkSquash]),
                 builder: (context, child) {
                   final t = widget.breathe ? _breath.value : 0.0;
                   final breathScale = 1 + 0.055 * t;
                   final dy = widget.breathe ? -6.0 * t : 0.0;
+                  final squash = 1 - 0.08 * Curves.easeOut.transform(_bonkSquash.value);
                   return Transform.translate(
                     offset: Offset(0, dy),
                     child: AnimatedScale(
@@ -129,13 +155,14 @@ class _OwlArtboardPlayerState extends State<_OwlArtboardPlayer>
                       duration: const Duration(milliseconds: 220),
                       curve: Curves.easeInOut,
                       child: Transform.scale(
-                        scale: breathScale,
+                        scale: breathScale * squash,
                         child: child,
                       ),
                     ),
                   );
                 },
                 child: rive.RiveWidget(
+                  key: const Key('crumbo_rive'),
                   controller: controller,
                   fit: rive.Fit.contain,
                 ),

@@ -1,20 +1,22 @@
 # Crumbo: Complete Build Guide (Flutter + Rive + LLM Workflow)
 
-Date: 2026-10-20
-Owner: Haris
-Goal: "Crumbo" naam ki talking toast kids app (US kids 4-10) banana, ads se revenue, Flutter + Rive mein, LLM (Claude Code) ki madad se, **bina animation ka experience ke**.
+Date: 2026-10-20 (refresh 2026-10-25)  
+Owner: Haris  
+Goal: **Crumbo** (owl mascot) kids app (US kids 4-10) banana, ads se revenue, Flutter + Rive mein, LLM (Cursor / Claude Code) ki madad se.
 
-> Note: Rive/MCP ki details tezi se badalti hain. Jo cheez "verify karo" likhi hai usay kaam shuru karne se pehle official page pe confirm kar lena. Sources aakhir mein hain.
+> **Day-to-day tasks:** [`DAILY_CHECKLIST.md`](DAILY_CHECKLIST.md) — pehla unchecked Core sprint item.  
+> **Product / features:** [`MASTER_PLAN.md`](MASTER_PLAN.md). **Agent rules:** [`../AGENTS.md`](../AGENTS.md).  
+> Note: Rive/MCP details badalti hain — pehle official docs verify karo.
 
 ---
 
 ## 0. Is guide ko kaise use karna hai
 
-1. Section 1-2 padho aur setup karo (1 din)
-2. Section 3 se Rive ka basic concept samjho (1-2 ghante, itna hi kaafi hai)
-3. Section 4-5 se decide karo ke animation kaise aayegi (AI se, artist se, ya fallback)
-4. Section 7 se LLM ko project par set karo (CLAUDE.md)
-5. Section 9 ka week-by-week plan follow karo, har step ka prompt ready hai
+1. Section 1-2 padho (setup reference; project pehle se live hai)
+2. Section 3 se Rive concept (optional; owl pack already integrated)
+3. Section 5–6 = historical art brief — **primary contract ab AGENTS.md + owl.riv**
+4. Root `AGENTS.md` use karo (CLAUDE.md template Section 7.2 outdated bread text — sync AGENTS)
+5. **Roz ka kaam = DAILY_CHECKLIST**, not Section 9 alone (Section 9 = reference prompts)
 
 ---
 
@@ -23,34 +25,31 @@ Goal: "Crumbo" naam ki talking toast kids app (US kids 4-10) banana, ads se reve
 | Kaam | Kaun karega | Tool |
 | --- | --- | --- |
 | Idea, decisions, testing, store listing | Tum (Haris) | Phone + Play Console |
-| Flutter code (UI, logic, ads, storage) | LLM + tumhara review | Claude Code (ya Cursor) |
-| Crumbo ki art (character drawing) | Artist ya AI-generated concept + vector cleanup | Figma / Illustrator / freelancer |
-| Crumbo ki animation (blink, chew, sleep, react) | Rive file (`.riv`) | Rive editor (+ MCP agar kaam kare) |
+| Flutter code (UI, logic, ads, storage) | LLM + tumhara review | Cursor (ya Claude Code) |
+| Owl character animation | Marketplace pack + custom sleep riv | `assets/rive/owl.riv`, `owl_sleep.riv` (+ MCP for extras) |
 | Awaaz repeat (voice) | Flutter packages, device par | `record` + audio player with pitch |
-| Ads | AdMob (child-directed settings ke saath) | `google_mobile_ads` |
+| Ads | AdMob (child-directed) — Week D | `google_mobile_ads` |
 
-**Sabse bada risk animation hai.** Code LLM likh dega, lekin ek acchi character animation ke liye ya artist chahiye ya Rive seekhna. Is liye Section 5 mein 3 raaste diye hain aur ek "bina Rive" fallback bhi.
+**Status (Oct 2025):** Owl home + glossy UI + Hive (A4) shipped. Next core: A5 Firebase stub → needs → economy → journey/games/ads.
 
-**Order of work (straight run):**
-1. Setup + project skeleton (code)
-2. Placeholder Crumbo (simple image/emoji-style) ke saath poora game loop banao: needs, shop, coins, mini games, ads
-3. Parallel mein art/animation ka kaam chalao
-4. Final Rive character ko placeholder ki jagah laga do
-5. Test, soft launch, release
-
-Yeh order isliye hai ke animation ka intezar kiye bina app 80% bann jaye.
+**Order of work (remaining):**
+1. Hive + needs decay (checklist A4–A8)
+2. Care actions + rooms + economy (A9–B5)
+3. Cards + journey + Flame games + voice (B6–C10)
+4. Ads, parental, polish (D1–D10)
+5. Bug bash + APK (F1–F3); soft launch AFTER 24 Nov
 
 ---
 
 ## 2. Setup checklist
 
 ### Accounts
-- [ ] Google Play Console account (one-time registration fee hoti hai, current amount Play Console pe dekho)
-- [ ] AdMob account (Play Console / Google account se)
-- [ ] Rive account (rive.app, free plan se shuru)
+- [ ] Google Play Console account (release / soft launch ke baad — **not** Day-1 blocker)
+- [ ] AdMob account — **Week D** (checklist D1+)
+- [ ] Rive account (optional; pack pehle se repo mein)
 - [ ] GitHub account (code backup + LLM ke saath kaam)
-- [ ] Firebase project (Analytics, Crashlytics, Remote Config)
-- [ ] Domain ya GitHub Pages (privacy policy ka public URL ke liye)
+- [ ] Firebase project — **A5** jab accounts ready; warna stub + skip note
+- [ ] Domain ya GitHub Pages (privacy policy URL — D6 / pre-store)
 
 ### Tools install
 - [ ] Flutter SDK (latest stable), Android Studio (Android SDK + emulator)
@@ -89,7 +88,7 @@ Rive ek animation tool hai jo ek chhoti `.riv` file banata hai, aur Flutter mein
 
 Tumhe animator banne ki zaroorat nahi. Sirf yeh 6 cheezein samjho:
 
-1. **Artboard**: canvas, jahan Crumbo bana hota hai. Ek file = ek ya zyada artboards (jaise `CrumboMain`, `ToasterScene`).
+1. **Artboard**: canvas / scene. Owl pack mein artboards `"1"`…`"15"`; custom sleep alag file. (Purana bread example: `CrumboMain` — deprecated.)
 2. **Shapes / Layers**: Crumbo ke parts alag alag: body, left eye, right eye, mouth, crust-curl, blush, haath, pair. **Har part alag layer** hona chahiye warna animate nahi hoga.
 3. **Bones / Constraints (optional)**: haath-pair ko hilane ka tareeka. Beginners ke liye zaroori nahi, simple scale/rotate/position se kaam chal jata hai.
 4. **Animations (timeline)**: chhoti loops jaise `idle_breathe`, `blink`, `chew`, `sleep_loop`, `giggle`. Har ek 1-3 second ki.
@@ -104,7 +103,7 @@ Tumhe animator banne ki zaroorat nahi. Sirf yeh 6 cheezein samjho:
 - Triggers (ek baar chalne wale): `poke`, `eat`, `toastPop`, `wake`
 
 ### Export
-Rive editor se `.riv` file export hoti hai, usay `assets/rive/crumbo.riv` mein rakho aur `pubspec.yaml` mein assets mein add karo.
+Rive se export: project mein pehle se `assets/rive/owl.riv` + `owl_sleep.riv` hain (`pubspec.yaml` assets). Naya custom riv add karo to AGENTS contract follow karo — `crumbo.riv` mat banao.
 
 ### Free plan ki limits (verify karo)
 Rive ki free plan mein files ki limit aur kuch export/feature limits hain, aur paid plans (Cadet waghera) production export ke liye hote hain. Plans aur prices badalte rehte hain, is liye `rive.app/pricing` dekho. Planning ke liye: shuru mein free plan par seekho, jab final character ready ho tab ek mahine ka paid plan lena sasta rasta ho sakta hai.
@@ -186,7 +185,7 @@ Phir Claude Code mein bolo: "rive MCP ke tools list karo aur ek chhota bouncing 
 | **C. AI concept + khud cleanup** | AI image tools se concept, phir vector mein redraw/trace | Sasta | Quality mixed, copyright aur originality check zaroori | Time heavy |
 | **D. Bina Rive (fallback)** | Crumbo ki alag alag PNG layers (body, eyes, mouth) aur Flutter ki apni animations (`AnimationController`, scale/rotate/swap) | Bilkul simple, sirf Flutter | Kam smooth, kam "wow" | Sabse sasta aur sabse tez |
 
-**Mera suggestion (direct):** pehle **D (fallback)** se poora app functional banao taake revenue wala hissa test ho, aur parallel mein **A ya B** se asli Crumbo animation karwao. Phir `.riv` aate hi swap kar do. Is tarah artist ka intezar app ko rokta nahi.
+**Ab (Oct 2025):** Owl marketplace pack + custom sleep pehle se integrated — bread SVG path zaroori nahi. Nayi custom animation ke liye MCP / Plan D; contract **AGENTS.md** verify karo (`owl.riv`, artboard switch).
 
 ### Copyright aur originality ka dhyan
 - Crumbo ka design original rakho (kisi mashhoor character jaisa nahi)
@@ -196,55 +195,22 @@ Phir Claude Code mein bolo: "rive MCP ke tools list karo aur ek chhota bouncing 
 
 ---
 
-## 6. Crumbo animation spec (artist ko dene ke liye brief)
+## 6. Owl Rive contract (primary) + deprecated bread brief
 
-### Character brief
-- Round-square bread slice, golden-brown crust, cream andar
-- 2 bade sleepy aankhein, chhota blush, upar crust ka curl
-- Chhote haath pair, soft rounded shapes
-- Palette: cream, golden brown, butter yellow (accent), 2-3 colors
-- Tone: pyara, sleepy, kids-safe (koi daraawna ya gussa wala expression nahi)
+### Primary (use this)
+Verify against **`AGENTS.md`** + files on disk:
 
-### Deliverables
-- Artboard: `CrumboMain` (portrait, 1080x1080 base) aur `ToasterScene`
-- **Layers alag**: body, crust, eye_L, eye_R, eyelid_L/R, mouth (alag shapes: closed, open, smile, chew), blush, arm_L/R, leg_L/R
-- Naming: sab layers ka naam English snake_case
-- Format: `.riv` (aur source `.rev` ya SVG bhi do)
-- Size target: 1-2 MB se kam
+| Item | Value |
+| --- | --- |
+| Pack | `assets/rive/owl.riv` (AnggaMotion, CC BY) |
+| Sleep | `assets/rive/owl_sleep.riv` artboard `sleep` |
+| Control | Flutter `CrumboCubit` switches artboards (`"1"`…`"15"`); pack SMs have no mood Inputs |
+| Idle | `11` (think); wink=`2`; eat=`10`; dance=`1`; poke=`9`; bubbles=`13` |
 
-### Animations list
+Extras / MCP: perch polish, talk placeholder before C10. Plan D = PNG layers.
 
-| Animation | Length | Kab chalti hai |
-| --- | --- | --- |
-| `idle_breathe` | 2-3s loop | Hamesha (halka saans) |
-| `blink` | 0.3s | Random har 3-5s |
-| `sleep_loop` | 3s loop | Crumbo so raha ho (Zzz) |
-| `wake_up` | 1.5s | Tap/shake/alarm par |
-| `talk` | loop | Voice repeat ke waqt mooh hilta hai |
-| `listen` | loop | Bacha bol raha ho (kaan/aankh bade) |
-| `eat_chew` | 1.5s | Khana khate waqt |
-| `happy_jump` | 1s | Reward milne par |
-| `giggle` | 1s | Tickle/poke |
-| `hungry` | loop | Bhook idle (pet par haath) |
-| `toast_light/golden/dark` | color states | Toaster mein |
-| `sneeze` | 1s | Random surprise |
-| `dress_slot_hat / glasses` | static slots | Outfit lagane ke liye |
-
-### State machine (data binding ke saath)
-View model properties (names fix karo taake code aur art match karein):
-
-| Property | Type | Values / Kaam |
-| --- | --- | --- |
-| `mood` | enum | idle, sleepy, hungry, happy, excited |
-| `isTalking` | bool | Mooh hilana |
-| `isListening` | bool | Sun raha hai |
-| `isChewing` | bool | Chew animation |
-| `toastLevel` | number | 0 = bread, 1 = golden, 2 = dark |
-| `pokeTrigger` | trigger | Tickle/giggle |
-| `wakeTrigger` | trigger | Jaagna |
-| `hatId` | number | Outfit slot (0 = none) |
-
-> Artist ko yeh table do: Flutter code in exact names par kaam karega.
+### Deprecated (bread-era — do not implement)
+Old brief used artboard `CrumboMain`, `toastLevel`, `hatId`, bread layers (`crust`, `curl`, …). See `MASTER_PLAN.md` Section 12 appendix.
 
 ---
 
@@ -261,40 +227,26 @@ cd crumbo && git init && git add . && git commit -m "init"
 
 ### 7.2 `CLAUDE.md` template (copy karo)
 
+> **Prefer root [`AGENTS.md`](../AGENTS.md)** — yeh template sync rakho; bread `CrumboMain` contract **mat** copy karo.
+
 ```markdown
-# Crumbo (kids talking-toast app)
+# Crumbo (kids talking-owl app)
 
 ## Product
-- Flutter app for US kids 4-10. Android first.
-- Monetization: ads only (AdMob, child-directed). One optional "Remove Ads" purchase behind a parental gate.
-- Character: Crumbo the sleepy bread slice (Rive animation `assets/rive/crumbo.riv`).
+- Flutter app for US kids 4-10. Android first. Ads only (AdMob, child-directed).
+- Character: Owl — `assets/rive/owl.riv` + `owl_sleep.riv` (see AGENTS.md artboard map).
+- Active schedule: docs/DAILY_CHECKLIST.md. Master: docs/MASTER_PLAN.md.
 
-## Stack and architecture
-- Clean Architecture: lib/core, lib/features/<feature>/{data,domain,presentation}
-- State: Cubit/BLoC (flutter_bloc). DI: GetIt. Routing: GoRouter.
-- Local storage only (Hive). No backend, no accounts, no personal data.
-- Games: Flame. Animation: Rive (use Data Binding, NOT deprecated state machine Inputs).
+## Stack
+- Clean Architecture; Cubit/BLoC; GetIt; GoRouter; Hive (A4); Flame (games); Rive artboard switch from Flutter.
 
-## Hard rules (kids app compliance)
-- Never collect personal data. No login, no chat, no social features.
-- Ads: only through `AdService`. Child-directed treatment ON, max ad content rating G, non-personalized.
-- Never show an ad during gameplay, on app open, or near gameplay buttons.
-- Rewarded ads are always opt-in with a clear button.
-- External links, purchases, sharing, privacy policy open only behind `ParentalGate`.
-- Mic audio is processed on device only; never uploaded or stored beyond the current session.
-- No new SDK or permission without asking me first.
+## Hard rules
+- No personal data / login / chat. Ads only via AdService. ParentalGate for purchases/links/privacy.
+- Mic on-device only. No new SDK without asking.
 
-## Workflow rules
-- Work in small steps. One feature per task. Show the plan first, then code.
-- Run `flutter analyze` and `flutter test` after each change and fix issues.
-- Commit after each working step with a clear message.
-- Before using any package API, read its current docs (Rive docs index: https://rive.app/docs/llms.txt). Do not guess APIs.
-- Ask me if something is unclear instead of assuming.
-- Keep files small; no giant widgets.
-
-## Rive contract (names must match the artist's file)
-Artboard: CrumboMain
-View model: mood(enum), isTalking(bool), isListening(bool), isChewing(bool), toastLevel(number), pokeTrigger, wakeTrigger, hatId(number)
+## Workflow
+- 5-line plan → approve → code → flutter analyze + flutter test → commit when asked.
+- End with: Kya bana / Kaise test (3 steps) / Kya review.
 ```
 
 ### 7.3 Prompt likhne ke rules
@@ -317,30 +269,20 @@ lib/
   main.dart
   app.dart
   core/
-    di/            (GetIt setup)
-    router/        (GoRouter)
-    ads/           (AdService interface + admob_ad_service.dart)
-    audio/         (VoiceService: record, pitch, play)
-    storage/       (Hive boxes)
-    theme/
-    parental_gate/
-    config/        (RemoteConfig keys: ad frequency, rewards)
+    di/ router/ theme/ ui/
+    # target: ads/ audio/ storage/ parental_gate/ config/
   features/
-    home/          (Crumbo screen, mood UI)
-    crumbo/        (character state, needs, rive controller)
-    rooms/         (kitchen, bedroom, bath, playroom, ...)
-    shop/          (items, outfits, purchases with coins)
-    economy/       (coins, gems, daily reward, chests)
-    games/         (flame games: topping_catch, toaster_pop, ...)
-    settings/      (sound, parent area, privacy policy)
+    splash/ home/ crumbo/ play/ shop/ store/ settings/
+    rewards/ profile/ level/ owls/
+    # target: rooms/ economy/ journey/ cards/ games/
 assets/
-  rive/crumbo.riv
-  audio/
-  images/
-  fallback/        (PNG layers for Plan D)
+  rive/owl.riv
+  rive/owl_sleep.riv
+  data/ (home_themes, owl_skins, play_content; target journey/cards/items)
+  backgrounds/ images/ fonts/
 ```
 
-Har feature mein: `data/` (storage), `domain/` (entities, usecases), `presentation/` (cubit + widgets).
+Har feature mein: `data/` / `domain/` / `presentation/` (cubit + widgets).
 
 **Zaroori interface:** `AdService` (abstract) taake AdMob/mediation baad mein badal sako:
 ```dart
@@ -356,17 +298,19 @@ abstract class AdService {
 
 ## 9. Week-by-week build plan (LLM prompts ke saath)
 
-> Har step ke aakhir mein: `flutter analyze` clean, commit, phone par test.
+> **Roz ka source of truth:** [`DAILY_CHECKLIST.md`](DAILY_CHECKLIST.md) (A4 pehle unchecked).  
+> Neeche prompts **reference** hain; owl home + glossy UI pehle se maujood — placeholder / bread riv mat dobara banao.  
+> Har step: tests, `flutter analyze` + `flutter test` clean, phone test, commit jab bolo.
 
-### Week 1: Foundation
-**Tasks:** project skeleton, DI, routing, theme, storage
+### Week 1: Foundation → Hive (A4)
+**Tasks:** (skeleton DONE) Hive boxes + theme/skin prefs migrate
 **Prompt:**
-> CLAUDE.md padho. Clean Architecture folders banao jaise CLAUDE.md mein hain. GetIt, GoRouter, flutter_bloc setup karo. Ek `HomePage` banao jis par placeholder Crumbo (ek simple Image) dikhe. Pehle plan dikhao, phir code. Done = `flutter analyze` clean aur app chale.
+> `AGENTS.md` aur `docs/DAILY_CHECKLIST.md` padho. Aaj ka task A4: Hive boxes `crumbo_state`, `inventory`, `economy`, `settings`. Owl home pehle se hai — UI mat toodo. Pehle 5-line plan, phir code + tests.
 
-### Week 2: Crumbo needs + core actions (placeholder art ke saath)
-**Tasks:** `CrumboCubit` (hunger, sleep, fun, clean, love), feed/sleep/pet actions, mood calculation, Hive mein save
+### Week 2: Needs + care (A6–A10)
+**Tasks:** `NeedsCubit` / pet needs 0–100 (keep `CrumboCubit` for owl expressions), decay, feed/sleep polish
 **Prompt:**
-> `features/crumbo` mein `CrumboState` (needs 0-100) aur `CrumboCubit` banao. Needs time ke saath girein (app band hone par bhi: last-seen timestamp se calculate), lekin zero par koi punishment nahi, sirf mood badle. Hive mein save karo. Unit tests likho for decay logic.
+> Needs entity + cubit banao (hunger, sleep, fun, clean, love). Decay last-seen timestamp se. Hive save. Unit tests. Expression Moods sheet already hai — need icons alag.
 
 ### Week 3: Rooms + shop + economy
 **Tasks:** Bedroom/Kitchen/Bathroom screens, coins/gems, shop (food, outfits), daily reward
@@ -393,16 +337,16 @@ abstract class AdService {
 **Prompt:**
 > `core/parental_gate` banao: random math sawal (bade numbers, bachon ke liye mushkil). Isse purchases, external links, sharing, notification settings, aur privacy policy khulne se pehle guzarna hoga.
 
-### Week 8: Rive integration (jab art ready ho)
-**Tasks:** placeholder ko `.riv` se replace karna
+### Week 8: Owl Rive polish (D10 — pack already integrated)
+**Tasks:** journey-gated moods, perch tuning, talk placeholder; Plan D if needed
 **Prompt:**
-> Rive ki current Flutter docs (https://rive.app/docs/llms.txt se shuru karo) padho. `assets/rive/crumbo.riv` load karo aur `CrumboView` widget banao jo view model properties (`mood`, `isTalking`, `isListening`, `isChewing`, `toastLevel`, triggers) `CrumboCubit` se bind kare. Purana Inputs API mat use karna. Agar file mein property ka naam alag ho to mujhe batao.
+> `AGENTS.md` Rive contract + https://rive.app/docs/llms.txt. `CrumboView` pehle se `owl.riv` / `owl_sleep.riv` use karta hai. Bread-era `crumbo.riv` / `CrumboMain` / `toastLevel` mat banao.
 
 ### Week 9: Polish + analytics + test
-Sounds, haptics, onboarding (3 screens), Firebase Analytics events (anonymous), Crashlytics, low-end phone testing.
+Sounds, haptics, onboarding (3 screens), Firebase Analytics events (anonymous), Crashlytics, low-end phone testing. (Checklist D7–D9, F1.)
 
-### Week 10: Soft launch
-Chhote country mein release, ad frequency aur economy tune karo (Remote Config se bina update ke).
+### Week 10: Soft launch (AFTER 24 Nov full-dev deadline)
+Chhote country mein release, ad frequency aur economy tune (Remote Config).
 
 ---
 
@@ -426,9 +370,9 @@ await MobileAds.instance.initialize();
 
 ### 10.2 Voice repeat
 - Mic permission ek baar, simple parent-friendly explanation ke saath
-- Record \u2192 silence detect \u2192 pitch/speed change \u2192 play, aur Rive mein `isListening` / `isTalking` flip karo
-- Audio device par hi process hoga, server par kabhi nahi (COPPA ke liye safe)
-- Test real phone par: echo aur speaker feedback ka masla aata hai (playback ke dauran recording band rakho)
+- Record → silence detect → pitch/speed change → play; owl talk/listen expression (C10) — bread `isTalking` VM nahi
+- Audio device par hi process; server par kabhi nahi (COPPA)
+- Test real phone par: echo / speaker feedback (playback ke dauran recording band)
 
 ### 10.3 Economy tuning (Remote Config se)
 ```
@@ -489,11 +433,11 @@ Hive boxes: `crumbo_state`, `inventory`, `economy`, `settings`. Koi personal dat
 
 ---
 
-## 13. Pehle 3 din ka mukhtasar plan
+## 13. Where we are now (2026-10-25)
 
-- **Din 1:** accounts + tools install, `flutter create`, `CLAUDE.md`, git
-- **Din 2:** Rive free account, 1 tutorial, MCP connection ka chhota test (Section 4), artist ke liye brief (Section 6) post karo
-- **Din 3:** Week 1 ka prompt chalao aur placeholder Crumbo home screen par dikhao
+- Owl glossy home + static shells **done** — see checklist Done / A-UI block
+- **Next:** [`DAILY_CHECKLIST.md`](DAILY_CHECKLIST.md) **A5** (Firebase stub / skeleton)
+- Soft launch / Play Console **after** 24 Nov full-dev deadline
 
 ---
 

@@ -1,13 +1,16 @@
+import 'package:crumbo/core/di/injection.dart';
+import 'package:crumbo/features/crumbo/data/skin_preferences.dart';
 import 'package:crumbo/features/crumbo/domain/owl_skin.dart';
 import 'package:crumbo/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../helpers/hive_test_setup.dart';
 
 void main() {
-  setUp(() {
-    SharedPreferences.setMockInitialValues({});
+  setUp(() async {
     OwlSkinCatalog.debugReset();
+    await configureMemoryPreferences();
   });
 
   testWidgets('Skins button on home opens 20-theme grid and applies', (
@@ -39,7 +42,6 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('skins_sheet')), findsNothing);
 
-    final prefs = await SharedPreferences.getInstance();
-    expect(prefs.getString('owl_skin_id'), 'blue_sky');
+    expect(await getIt<SkinPreferences>().readSkinId(), 'blue_sky');
   });
 }

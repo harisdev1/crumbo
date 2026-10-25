@@ -16,8 +16,21 @@ abstract final class CrumboColors {
   static const butterYellow = accentYellow;
 }
 
+/// Chunky game-screen colors (glossy buttons, coins, gems).
+abstract final class GameColors {
+  static const purple = Color(0xFF7C4DFF);
+  static const purpleDeep = Color(0xFF5B2FD6);
+  static const pink = Color(0xFFFF6FAE);
+  static const coin = Color(0xFFFFC107);
+  static const gem = Color(0xFF9B6DFF);
+  static const green = Color(0xFF3DDC97);
+  static const ink = Color(0xFF3A2A6A);
+  static const coral = Color(0xFFFF5A7A);
+}
+
 abstract final class AppTheme {
   static const fontFamily = 'Fredoka';
+  static const displayFamily = 'Lilita One';
 
   static ThemeData get light {
     final scheme = ColorScheme.fromSeed(

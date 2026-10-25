@@ -1,7 +1,9 @@
 # Crumbo: Full Vibe-Coding Plan (Rive MCP + LLM, tum sirf review karoge)
 
-Date: 2026-10-20
-Yeh file `crumbo-build-guide.md` ka "AI-only" version hai: koi animator nahi, Rive seekhna nahi, tum sirf review aur approve karoge.
+Date: 2026-10-20  
+**SUPERSEDED for character path (2026-10-25):** App ab **owl** pack use karti hai (`AGENTS.md` + `owl.riv` / `owl_sleep.riv`). Neeche bread-slice SVG / `CrumboMain` prompts **historical** hain — naye kaam ke liye mat follow. Roz ka schedule: [`DAILY_CHECKLIST.md`](DAILY_CHECKLIST.md).
+
+Yeh file `crumbo-build-guide.md` ka purana "AI-only" version hai.
 
 ---
 

@@ -1,3 +1,4 @@
+import 'package:crumbo/features/crumbo/domain/owl_bonk.dart';
 import 'package:crumbo/features/crumbo/domain/owl_expression.dart';
 import 'package:crumbo/features/crumbo/presentation/cubit/crumbo_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -64,6 +65,26 @@ void main() {
     expect(cubit.state.expression, OwlExpression.idle);
   });
 
+  test('three quick body bonks end in sleep', () {
+    final t0 = DateTime(2026, 1, 1, 12);
+    cubit.onCharacterTapped(now: t0);
+    expect(cubit.state.artboardName, '8');
+    cubit.onCharacterTapped(now: t0.add(const Duration(milliseconds: 400)));
+    expect(cubit.state.artboardName, '6');
+    cubit.onCharacterTapped(now: t0.add(const Duration(milliseconds: 800)));
+    expect(cubit.state.expression, OwlExpression.sleep);
+  });
+
+  test('slow bonk restarts at angry', () {
+    final t0 = DateTime(2026, 1, 1, 12);
+    cubit.onCharacterTapped(now: t0);
+    expect(cubit.state.artboardName, '8');
+    cubit.onCharacterTapped(
+      now: t0.add(owlBonkComboWindow + const Duration(seconds: 1)),
+    );
+    expect(cubit.state.artboardName, '8');
+  });
+
   test('poke uses wave then returns idle', () async {
     cubit.poke();
     expect(cubit.state.artboardName, '9');
@@ -78,10 +99,17 @@ void main() {
     expect(OwlExpression.poke.artboardName, '9');
   });
 
-  test('care bar + more tray cover all expressions', () {
-    final all = {...OwlExpression.careBar, ...OwlExpression.moreTray};
-    expect(all.length, OwlExpression.values.length);
-    expect(all, OwlExpression.values.toSet());
+  test('mood picker lists every face except sleep and eat', () {
+    expect(
+      OwlExpression.moodPicker,
+      hasLength(OwlExpression.values.length - 2),
+    );
+    expect(OwlExpression.moodPicker, isNot(contains(OwlExpression.sleep)));
+    expect(OwlExpression.moodPicker, isNot(contains(OwlExpression.eat)));
+    expect(
+      {...OwlExpression.moodPicker, OwlExpression.sleep, OwlExpression.eat},
+      OwlExpression.values.toSet(),
+    );
   });
 
   test('day-one unlocks are the starter care set', () {

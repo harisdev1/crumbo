@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/ui/glass_panel.dart';
+import '../../../../core/ui/glossy_icon_button.dart';
 import '../../../crumbo/domain/owl_expression.dart';
 import '../../../crumbo/presentation/cubit/crumbo_cubit.dart';
 
@@ -19,7 +22,7 @@ String actionKeyFor(OwlExpression expression) {
   };
 }
 
-/// Bottom care row: Sleep / Eat / Happy / Wink + More.
+/// Bottom care row: Sleep / Eat / Play / Moods (all faces in one sheet).
 class CareActionBar extends StatelessWidget {
   const CareActionBar({super.key});
 
@@ -30,7 +33,7 @@ class CareActionBar extends StatelessWidget {
         return Container(
           key: const Key('care_action_bar'),
           margin: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.92),
             borderRadius: BorderRadius.circular(28),
@@ -46,7 +49,10 @@ class CareActionBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              for (final expression in OwlExpression.careBar)
+              for (final expression in const [
+                OwlExpression.sleep,
+                OwlExpression.eat,
+              ])
                 CareBubbleButton(
                   key: Key(actionKeyFor(expression)),
                   expression: expression,
@@ -55,13 +61,22 @@ class CareActionBar extends StatelessWidget {
                   onTap: () => _onExpressionTap(context, expression),
                 ),
               CareBubbleButton(
-                key: const Key('action_more'),
-                icon: Icons.apps_rounded,
-                label: 'More',
-                color: const Color(0xFF90CAF9),
+                key: const Key('action_play'),
+                icon: Icons.sports_esports_rounded,
+                label: 'Play',
+                color: GameColors.purple,
                 selected: false,
                 locked: false,
-                onTap: () => showMoreMoodsSheet(context),
+                onTap: () => pushAppRoute(context, AppRoutes.play),
+              ),
+              CareBubbleButton(
+                key: const Key('action_moods'),
+                icon: Icons.emoji_emotions_rounded,
+                label: 'Moods',
+                color: const Color(0xFFFF8A65),
+                selected: false,
+                locked: false,
+                onTap: () => showMoodsSheet(context),
               ),
             ],
           ),
@@ -93,7 +108,7 @@ void _onExpressionTap(BuildContext context, OwlExpression expression) {
   }
 }
 
-Future<void> showMoreMoodsSheet(BuildContext context) {
+Future<void> showMoodsSheet(BuildContext context) {
   final cubit = context.read<CrumboCubit>();
   return showModalBottomSheet<void>(
     context: context,
@@ -102,97 +117,102 @@ Future<void> showMoreMoodsSheet(BuildContext context) {
     builder: (sheetContext) {
       return BlocProvider.value(
         value: cubit,
-        child: const _MoreMoodsSheet(),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+            12,
+            0,
+            12,
+            12 + MediaQuery.viewPaddingOf(sheetContext).bottom,
+          ),
+          child: GlassPanel(
+            key: const Key('moods_sheet'),
+            child: _MoodPicker(
+              onClose: () => Navigator.of(sheetContext).pop(),
+            ),
+          ),
+        ),
       );
     },
   );
 }
 
-class _MoreMoodsSheet extends StatelessWidget {
-  const _MoreMoodsSheet();
+class _MoodPicker extends StatelessWidget {
+  const _MoodPicker({required this.onClose});
+
+  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      key: const Key('more_moods_sheet'),
-      margin: const EdgeInsets.fromLTRB(10, 0, 10, 12),
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 20),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF8EF),
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: Colors.white, width: 3),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.12),
-            blurRadius: 18,
-            offset: const Offset(0, 8),
-          ),
-        ],
+    final moods = OwlExpression.moodPicker;
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.sizeOf(context).height * 0.55,
       ),
-      child: SafeArea(
-        top: false,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 40,
-              height: 4,
-              margin: const EdgeInsets.only(bottom: 12),
-              decoration: BoxDecoration(
-                color: CrumboColors.detail.withValues(alpha: 0.25),
-                borderRadius: BorderRadius.circular(4),
-              ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Align(
+            alignment: Alignment.centerRight,
+            child: GlossyIconButton(
+              key: const Key('moods_close'),
+              icon: Icons.close_rounded,
+              color: GameColors.coral,
+              size: 36,
+              onTap: onClose,
             ),
-            Text(
-              'More moods',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: CrumboColors.crust,
-                    fontWeight: FontWeight.w800,
-                  ),
+          ),
+          const Text(
+            'Pick a mood',
+            style: TextStyle(
+              fontFamily: AppTheme.displayFamily,
+              fontSize: 22,
+              color: GameColors.ink,
             ),
-            const SizedBox(height: 4),
-            Text(
-              'New ones unlock as you play',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: CrumboColors.detail.withValues(alpha: 0.8),
-                  ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Tap one — locked ones need more play',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: AppTheme.fontFamily,
+              fontSize: 12,
+              color: GameColors.ink.withValues(alpha: 0.75),
             ),
-            const SizedBox(height: 16),
-            BlocBuilder<CrumboCubit, CrumboCharacterState>(
+          ),
+          const SizedBox(height: 12),
+          Flexible(
+            child: BlocBuilder<CrumboCubit, CrumboCharacterState>(
               builder: (context, state) {
-                return Wrap(
-                  spacing: 14,
-                  runSpacing: 14,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    for (final expression in OwlExpression.moreTray)
-                      CareBubbleButton(
+                return GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisExtent: 82,
+                    mainAxisSpacing: 4,
+                  ),
+                  itemCount: moods.length,
+                  itemBuilder: (context, index) {
+                    final expression = moods[index];
+                    return Center(
+                      child: CareBubbleButton(
                         key: Key(actionKeyFor(expression)),
                         expression: expression,
                         selected: state.expression == expression,
                         locked: !OwlExpression.isUnlocked(expression),
                         onTap: () {
-                          if (!OwlExpression.isUnlocked(expression)) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content:
-                                    Text('Locked — play more to unlock!'),
-                                duration: Duration(seconds: 2),
-                                behavior: SnackBarBehavior.floating,
-                              ),
-                            );
-                            return;
-                          }
                           _onExpressionTap(context, expression);
-                          Navigator.of(context).pop();
+                          if (OwlExpression.isUnlocked(expression)) {
+                            Navigator.of(context).pop();
+                          }
                         },
                       ),
-                  ],
+                    );
+                  },
                 );
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -208,7 +228,9 @@ class CareBubbleButton extends StatelessWidget {
     required this.selected,
     required this.locked,
     required this.onTap,
-  }) : assert(expression != null || (icon != null && label != null && color != null));
+  }) : assert(
+         expression != null || (icon != null && label != null && color != null),
+       );
 
   final OwlExpression? expression;
   final IconData? icon;
@@ -220,75 +242,14 @@ class CareBubbleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedIcon = expression?.icon ?? icon!;
-    final resolvedLabel = expression?.label ?? label!;
-    final resolvedColor = expression?.color ?? color!;
-    final size = selected ? 60.0 : 54.0;
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: onTap,
-            customBorder: const CircleBorder(),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 180),
-              width: size,
-              height: size,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: locked
-                    ? resolvedColor.withValues(alpha: 0.45)
-                    : resolvedColor,
-                border: Border.all(
-                  color: Colors.white,
-                  width: selected ? 5 : 4,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: resolvedColor.withValues(alpha: 0.45),
-                    blurRadius: selected ? 12 : 8,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Icon(
-                    resolvedIcon,
-                    color: Colors.white.withValues(alpha: locked ? 0.55 : 1),
-                    size: selected ? 28 : 24,
-                  ),
-                  if (locked)
-                    const Positioned(
-                      right: 4,
-                      bottom: 4,
-                      child: Icon(
-                        Icons.lock_rounded,
-                        size: 14,
-                        color: Colors.white,
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          resolvedLabel,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: CrumboColors.detail,
-                fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
-                fontSize: 11,
-              ),
-        ),
-      ],
+    return GlossyIconButton(
+      icon: expression?.icon ?? icon!,
+      label: expression?.label ?? label!,
+      color: expression?.color ?? color!,
+      selected: selected,
+      locked: locked,
+      size: 46,
+      onTap: onTap,
     );
   }
 }

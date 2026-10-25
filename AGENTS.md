@@ -6,7 +6,7 @@ Read docs/MASTER_PLAN.md first.
 ## Product
 - Flutter, Android first, US kids 4-10. Ads only (AdMob, child-directed). No backend, no accounts.
 - Content (journey nodes, cards, shop items) is JSON in assets/data. New content must not need code changes.
-- Character: Owl mascot — AnggaMotion Expression Pack (`assets/rive/owl.riv`, CC BY). Home: big owl + bottom care bar (Sleep/Eat/Happy/Wink/More). Day-1 unlocks few moods; rest locked until journey.
+- Character: Owl mascot — AnggaMotion Expression Pack (`assets/rive/owl.riv`, CC BY). Home: big owl + bottom care bar (Sleep/Eat/Play/Moods). Day-1 unlocks few moods; rest locked until journey.
 
 ## Architecture
 - Clean Architecture: lib/core, lib/features/<feature>/{data,domain,presentation}

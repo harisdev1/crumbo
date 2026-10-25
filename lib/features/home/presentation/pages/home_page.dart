@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/theme/app_theme.dart';
 import '../../../crumbo/presentation/cubit/crumbo_cubit.dart';
 import '../../../crumbo/presentation/widgets/crumbo_view.dart';
-import '../widgets/care_action_bar.dart';
 import '../cubit/home_theme_cubit.dart';
+import '../widgets/care_action_bar.dart';
+import '../widgets/exit_dialog.dart';
+import '../widgets/home_top_bar.dart';
+import '../widgets/owl_perch_layer.dart';
 import '../widgets/skins_sheet.dart';
 import '../widgets/themed_background.dart';
 import '../widgets/themes_sheet.dart';
@@ -37,64 +39,64 @@ class _HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF9FD6FF),
-      body: Stack(
-        fit: StackFit.expand,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        showExitDialog(context);
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xFF9FD6FF),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            const ThemedBackground(key: Key('home_background')),
+            OwlPerchLayer(child: character ?? const CrumboView()),
+            SafeArea(
+              child: Column(
+                children: [
+                  const HomeTopBar(),
+                  const SizedBox(height: 6),
+                  const _TitleRow(),
+                  // Let taps reach the owl below; only [OwlBodyTapShell] handles bonks.
+                  const Expanded(child: SizedBox.shrink()),
+                  // "Tap me!" / mood status line hidden for now.
+                  // _StatusBubble(),
+                  const _ThemedCaptions(),
+                  const SizedBox(height: 8),
+                  const CareActionBar(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _TitleRow extends StatelessWidget {
+  const _TitleRow();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
         children: [
-          const ThemedBackground(key: Key('home_background')),
-          SafeArea(
-            child: Column(
-              children: [
-                const SizedBox(height: 10),
-                const _BubbleTitle(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: _OwlStage(
-                            child: character ?? const CrumboView(),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        // "Tap me!" / mood status line hidden for now.
-                        // const _StatusBubble(),
-                        const _ThemedCaptions(),
-                        const SizedBox(height: 8),
-                      ],
-                    ),
-                  ),
-                ),
-                const CareActionBar(),
-              ],
-            ),
-          ),
-          const SafeArea(
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 8, 16, 0),
-                child: SkinsButton(),
-              ),
-            ),
-          ),
-          const SafeArea(
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(16, 8, 0, 0),
-                child: ThemesButton(),
-              ),
-            ),
-          ),
+          ThemesButton(),
+          Expanded(child: SizedBox.shrink()),
+          // Center "Owl" title pill hidden for now.
+          // Expanded(child: Center(child: _BubbleTitle())),
+          SkinsButton(),
         ],
       ),
     );
   }
 }
 
+// Center "Owl" title pill hidden for now.
+/*
 class _BubbleTitle extends StatelessWidget {
   const _BubbleTitle();
 
@@ -117,72 +119,16 @@ class _BubbleTitle extends StatelessWidget {
       child: Text(
         'Owl',
         key: const Key('home_title'),
-        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-          fontSize: 26,
-          color: CrumboColors.crust,
+        style: const TextStyle(
+          fontFamily: AppTheme.displayFamily,
+          fontSize: 28,
+          color: GameColors.ink,
         ),
       ),
     );
   }
 }
-
-/// Sizes the owl without a painted circle, so the SVG background shows through.
-class _OwlStage extends StatelessWidget {
-  const _OwlStage({required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final side = constraints.biggest.shortestSide;
-        final diameter = (side * 0.98).clamp(300.0, 560.0);
-        final placement = context
-            .select<HomeThemeCubit, ({double offsetY, double scale})>(
-              (cubit) => (
-                offsetY: cubit.activeTheme.owlOffsetY,
-                scale: cubit.activeTheme.owlScale,
-              ),
-            );
-        final drop = MediaQuery.sizeOf(context).height * placement.offsetY;
-        return Center(
-          child: SizedBox(
-            key: const Key('owl_stage'),
-            width: diameter,
-            height: diameter,
-            child: TweenAnimationBuilder<double>(
-              duration: const Duration(milliseconds: 700),
-              curve: Curves.easeInOutCubic,
-              tween: Tween(end: drop),
-              builder: (context, animatedDrop, translatedChild) {
-                return Transform.translate(
-                  key: const Key('owl_theme_offset'),
-                  offset: Offset(0, animatedDrop),
-                  transformHitTests: true,
-                  child: translatedChild,
-                );
-              },
-              child: TweenAnimationBuilder<double>(
-                duration: const Duration(milliseconds: 700),
-                curve: Curves.easeInOutCubic,
-                tween: Tween(end: placement.scale),
-                builder: (context, scale, scaledChild) {
-                  return Transform.scale(
-                    key: const Key('owl_theme_scale'),
-                    scale: scale,
-                    child: scaledChild,
-                  );
-                },
-                child: child,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
+*/
 
 /// Tagline + credit; colors animate with the background theme.
 class _ThemedCaptions extends StatelessWidget {
@@ -190,29 +136,29 @@ class _ThemedCaptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // "A cute little owl with big feelings." hidden for now.
+    // Text(HomePage.tagline, key: Key('home_tagline')),
+    // Owl art credit hidden for now.
+    /*
     final dark = context.select<HomeThemeCubit, bool>(
       (c) => c.activeTheme.isDark,
     );
     final base = Theme.of(context).textTheme;
-    return Column(
-      children: [
-        // "A cute little owl with big feelings." hidden for now.
-        // Text(HomePage.tagline, key: Key('home_tagline')),
-        AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 700),
-          style: (base.labelSmall ?? const TextStyle()).copyWith(
-            color: dark
-                ? Colors.white.withValues(alpha: 0.7)
-                : CrumboColors.detail.withValues(alpha: 0.65),
-            fontSize: 10,
-          ),
-          child: const Text(
-            'Owl art © AnggaMotion (CC BY)',
-            key: Key('owl_attribution'),
-          ),
-        ),
-      ],
+    return AnimatedDefaultTextStyle(
+      duration: const Duration(milliseconds: 700),
+      style: (base.labelSmall ?? const TextStyle()).copyWith(
+        color: dark
+            ? Colors.white.withValues(alpha: 0.7)
+            : CrumboColors.detail.withValues(alpha: 0.65),
+        fontSize: 10,
+      ),
+      child: const Text(
+        'Owl art © AnggaMotion (CC BY)',
+        key: Key('owl_attribution'),
+      ),
     );
+    */
+    return const SizedBox.shrink();
   }
 }
 

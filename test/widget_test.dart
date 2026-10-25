@@ -1,12 +1,12 @@
-import 'package:crumbo/core/di/injection.dart';
 import 'package:crumbo/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'helpers/hive_test_setup.dart';
+
 void main() {
   setUp(() async {
-    await getIt.reset();
-    await configureDependencies();
+    await configureMemoryPreferences();
   });
 
   testWidgets('App home boots with care bar and character', (tester) async {
@@ -22,10 +22,10 @@ void main() {
     );
     await tester.pump();
 
-    expect(find.byKey(const Key('home_title')), findsOneWidget);
+    expect(find.byKey(const Key('home_title')), findsNothing);
     expect(find.text(HomePage.tagline), findsNothing);
     expect(find.byKey(const Key('care_action_bar')), findsOneWidget);
-    expect(find.byKey(const Key('action_more')), findsOneWidget);
+    expect(find.byKey(const Key('action_moods')), findsOneWidget);
     expect(find.byKey(const Key('crumbo_rive')), findsOneWidget);
   });
 }

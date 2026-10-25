@@ -1,6 +1,9 @@
 import 'package:crumbo/features/crumbo/domain/owl_expression.dart';
 import 'package:crumbo/features/crumbo/presentation/cubit/crumbo_cubit.dart';
+import 'package:crumbo/features/crumbo/presentation/widgets/owl_body_tap.dart';
+import 'package:crumbo/features/home/domain/scene_anchor.dart';
 import 'package:crumbo/features/home/presentation/pages/home_page.dart';
+import 'package:crumbo/features/home/presentation/widgets/owl_perch_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,25 +26,25 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const Key('home_title')), findsOneWidget);
+    expect(find.byKey(const Key('home_title')), findsNothing);
     expect(find.byKey(const Key('home_background')), findsOneWidget);
     expect(find.byKey(const Key('theme_motion')), findsOneWidget);
     expect(find.byKey(const Key('theme_parallax')), findsOneWidget);
-    expect(tester.widget(find.byKey(const Key('owl_stage'))), isA<SizedBox>());
-    final drop = tester.widget<Transform>(
-      find.byKey(const Key('owl_theme_offset')),
+    final stage = tester.widget<AnimatedPositioned>(
+      find.byKey(const Key('owl_stage')),
     );
-    final scale = tester.widget<Transform>(
+    final scale = tester.widget<AnimatedScale>(
       find.byKey(const Key('owl_theme_scale')),
     );
-    final screenHeight = MediaQuery.sizeOf(
-      tester.element(find.byKey(const Key('owl_stage'))),
-    ).height;
-    expect(
-      drop.transform.getTranslation().y / screenHeight,
-      inInclusiveRange(0.02, 0.08),
+    final screen = tester.getSize(find.byType(OwlPerchLayer));
+    final expectedTop = owlBoxTop(
+      screen: screen,
+      perchY: 1290,
+      boxSize: stage.width!,
+      owlScale: scale.scale,
     );
-    expect(scale.transform.getMaxScaleOnAxis(), inInclusiveRange(0.84, 1.0));
+    expect((stage.top! - expectedTop).abs(), lessThan(2));
+    expect(scale.scale, inInclusiveRange(0.84, 1));
     expect(
       find.ancestor(
         of: find.byKey(const Key('owl_stage')),
@@ -54,14 +57,33 @@ void main() {
       ),
       findsNothing,
     );
-    expect(find.text('Owl'), findsWidgets);
+    expect(find.text('Owl'), findsNothing);
     expect(find.text(HomePage.tagline), findsNothing);
     expect(find.text('Tap me!'), findsNothing);
-    expect(find.byKey(const Key('owl_attribution')), findsOneWidget);
+    expect(find.byKey(const Key('owl_attribution')), findsNothing);
     expect(find.byKey(const Key('care_action_bar')), findsOneWidget);
     expect(find.byKey(const Key('action_sleep')), findsOneWidget);
     expect(find.byKey(const Key('action_eat')), findsOneWidget);
-    expect(find.byKey(const Key('action_more')), findsOneWidget);
+    expect(find.byKey(const Key('action_moods')), findsOneWidget);
+    expect(find.byKey(const Key('action_play')), findsOneWidget);
+    expect(find.byKey(const Key('action_more')), findsNothing);
+    expect(find.byKey(const Key('action_mood')), findsNothing);
+    expect(find.byKey(const Key('coin_pill')), findsOneWidget);
+    expect(find.byKey(const Key('gem_pill')), findsOneWidget);
+    expect(
+      find.descendant(
+        of: find.byKey(const Key('coin_pill')),
+        matching: find.text('0'),
+      ),
+      findsOneWidget,
+    );
+    expect(
+      find.descendant(
+        of: find.byKey(const Key('gem_pill')),
+        matching: find.text('0'),
+      ),
+      findsOneWidget,
+    );
     expect(find.byKey(const Key('action_rail_left')), findsNothing);
   });
 
@@ -89,27 +111,67 @@ void main() {
     expect(crumbo.state.artboardName, '11');
   });
 
-  testWidgets('More sheet allows cool when unlock-all flag is on', (
-    tester,
-  ) async {
+  testWidgets('Moods sheet shows all faces including cool', (tester) async {
     await tester.pumpWidget(
       MaterialApp(home: HomePage(character: _fakeCharacter())),
     );
     await tester.pump();
 
-    await tester.tap(find.byKey(const Key('action_more')));
+    await tester.tap(find.byKey(const Key('action_moods')));
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const Key('more_moods_sheet')), findsOneWidget);
+    expect(find.byKey(const Key('moods_sheet')), findsOneWidget);
     expect(find.byKey(const Key('action_cool')), findsOneWidget);
+    expect(find.byKey(const Key('action_dance')), findsOneWidget);
+    expect(find.byKey(const Key('action_wink')), findsOneWidget);
     expect(OwlExpression.unlockAllExpressions, isTrue);
 
     await tester.tap(find.byKey(const Key('action_cool')));
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const Key('more_moods_sheet')), findsNothing);
-    expect(find.text('Locked — play more to unlock!'), findsNothing);
+    expect(find.byKey(const Key('moods_sheet')), findsNothing);
     final homeContext = tester.element(find.byKey(const Key('action_sleep')));
     expect(homeContext.read<CrumboCubit>().state.artboardName, '4');
+  });
+
+  testWidgets('Owl body tap runs bonk combo', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: HomePage(
+          character: Builder(
+            builder: (context) => OwlBodyTapShell(
+              onBodyTap: () =>
+                  context.read<CrumboCubit>().onCharacterTapped(),
+              child: _fakeCharacter(),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byKey(const Key('owl_body_tap')));
+    await tester.pump();
+
+    final cubit = tester
+        .element(find.byKey(const Key('owl_body_tap')))
+        .read<CrumboCubit>();
+    expect(cubit.state.artboardName, '8');
+  });
+
+  testWidgets('Android back asks before leaving home', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(home: HomePage(character: SizedBox())),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const Key('exit_dialog')), findsOneWidget);
+    await tester.tap(find.byKey(const Key('exit_no')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('exit_dialog')), findsNothing);
+    expect(find.byKey(const Key('home_title')), findsNothing);
   });
 }

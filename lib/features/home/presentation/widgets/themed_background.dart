@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../domain/home_theme.dart';
+import '../../domain/scene_anchor.dart';
 import '../cubit/home_theme_cubit.dart';
 import 'theme_motion_layer.dart';
 
@@ -97,8 +98,9 @@ class _ThemeSceneState extends State<_ThemeScene>
               final angle = _parallax.value * math.pi * 2;
               return Transform.translate(
                 key: const Key('theme_parallax'),
-                offset: Offset(math.sin(angle) * 4, math.cos(angle) * 3),
-                child: Transform.scale(scale: 1.025, child: child),
+                // Horizontal only, so the owl's feet stay on the perch.
+                offset: Offset(math.sin(angle) * 5, 0),
+                child: Transform.scale(scale: sceneZoom, child: child),
               );
             },
             child: SvgPicture.asset(

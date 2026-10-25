@@ -181,6 +181,11 @@ enum OwlExpression {
     wink,
   ];
 
+  /// Single Moods sheet on home (everything except Sleep / Eat on the care bar).
+  static List<OwlExpression> get moodPicker => values
+      .where((e) => e != sleep && e != eat)
+      .toList(growable: false);
+
   /// Extra moods in the More sheet (unlocked ones usable; rest locked).
   static const moreTray = <OwlExpression>[
     think,

@@ -51,9 +51,9 @@ void main() {
       final catalog = await HomeThemeCatalog.load();
       for (final theme in catalog.themes) {
         expect(
-          theme.owlOffsetY,
-          inInclusiveRange(0.02, 0.08),
-          reason: '${theme.id} offset',
+          theme.perchY,
+          inInclusiveRange(1100, 1600),
+          reason: '${theme.id} perch',
         );
         expect(
           theme.owlScale,
@@ -61,7 +61,7 @@ void main() {
           reason: '${theme.id} scale',
         );
       }
-      expect(catalog.byId('morning_glow').owlOffsetY, 0.055);
+      expect(catalog.byId('morning_glow').perchY, 1290);
       expect(catalog.byId('classic_calm').owlScale, 0.90);
     });
   });
