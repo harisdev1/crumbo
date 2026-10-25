@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
   <defs>
-    <linearGradient id="cl" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#FFE0F0"/>
-    <stop offset="55%" stop-color="#FFD0E8"/>
-    <stop offset="100%" stop-color="#E8D0FF"/>
+    <linearGradient id="candy_land_sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFEAF5"/>
+      <stop offset="1" stop-color="#F6B8D5"/>
     </linearGradient>
+    <linearGradient id="candy_land_shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".45"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#1E2440" stop-opacity=".12"/>
+    </linearGradient>
+    <radialGradient id="candy_land_glow">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="candy_land_grain" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="10" r="1.3" fill="#FFFFFF" opacity=".12"/>
+      <circle cx="33" cy="29" r="1" fill="#24304A" opacity=".06"/>
+      <path d="M4 36 Q13 31 22 36" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".07"/>
+    </pattern>
   </defs>
-  <rect width="1080" height="1920" fill="url(#cl)"/>
-  <g opacity="0.8">
-    <ellipse cx="200.0" cy="200.0" rx="66.0" ry="33.0" fill="#FFFFFF"/>
-    <ellipse cx="167.0" cy="204.8" rx="42.0" ry="27.0" fill="#FFFFFF"/>
-    <ellipse cx="233.0" cy="203.0" rx="45.0" ry="28.799999999999997" fill="#FFFFFF"/>
-    <ellipse cx="200.0" cy="183.2" rx="33.0" ry="24.0" fill="#FFFFFF"/>
-  </g>
-  <g opacity="0.7">
-    <ellipse cx="750.0" cy="160.0" rx="55.00000000000001" ry="27.500000000000004" fill="#FFFFFF"/>
-    <ellipse cx="722.5" cy="164.0" rx="35.0" ry="22.5" fill="#FFFFFF"/>
-    <ellipse cx="777.5" cy="162.5" rx="37.5" ry="24.0" fill="#FFFFFF"/>
-    <ellipse cx="750.0" cy="146.0" rx="27.500000000000004" ry="20.0" fill="#FFFFFF"/>
-  </g>
-  <rect x="140" y="900" width="70" height="400" rx="20" fill="#FF80AB"/>
-  <ellipse cx="175" cy="880" rx="55" ry="40" fill="#F48FB1"/>
-  <rect x="820" y="950" width="60" height="350" rx="18" fill="#80CBC4"/>
-  <ellipse cx="850" cy="930" rx="50" ry="35" fill="#4DB6AC"/>
-  <circle cx="400" cy="1200" r="90" fill="#FFECB3"/>
-  <circle cx="400" cy="1200" r="55" fill="#FFE082"/>
-  <circle cx="650" cy="1150" r="70" fill="#E1BEE7"/>
-  <circle cx="650" cy="1150" r="40" fill="#CE93D8"/>
-  <path d="M0 1450 Q280 1320 540 1420 T1080 1360 L1080 1920 L0 1920 Z" fill="#F8BBD0" opacity="0.8"/>
-  <path d="M0 1650 Q300 1550 560 1630 T1080 1580 L1080 1920 L0 1920 Z" fill="#F48FB1" opacity="1.0"/>
-  <circle cx="180" cy="500" r="22" fill="#FF8A80" opacity="0.7"/>
-  <circle cx="900" cy="420" r="28" fill="#80D8FF" opacity="0.65"/>
-  <circle cx="520" cy="350" r="18" fill="#CCFF90" opacity="0.7"/>
+<rect width="1080" height="1920" fill="url(#candy_land_sky)"/>
+<rect y="1050" width="1080" height="870" fill="#D8A879"/>
+<path d="M0 1050 H1080" stroke="#6D4938" stroke-width="34"/>
+<path d="M0 1240 H1080 M0 1430 H1080 M0 1620 H1080 M0 1810 H1080"
+      stroke="#FFFFFF" stroke-width="5" opacity=".1"/>
+<path d="M180 1050 L120 1920 M460 1050 L440 1920 M740 1050 L780 1920 M960 1050 L1060 1920"
+      stroke="#5E3D31" stroke-width="5" opacity=".26"/>
+<path d="M0 1040 H1080" stroke="#FFF4E4" stroke-width="22" opacity=".86"/>
+<ellipse cx="540" cy="1510" rx="390" ry="165" fill="#4D3540" opacity=".18"/>
+<ellipse cx="540" cy="1478" rx="380" ry="150" fill="#D56DB0"/>
+<ellipse cx="540" cy="1478" rx="326" ry="112" fill="none" stroke="#FFFFFF" stroke-width="12" opacity=".3"/>
+<path d="M250 1478 Q540 1360 830 1478 Q540 1595 250 1478Z" fill="#FFFFFF" opacity=".11"/>
 
+
+<path d="M0 0 H1080 V1040 H0Z" fill="#FFF2F7" opacity=".7"/>
+<path d="M0 240 H1080 M0 520 H1080 M0 800 H1080" stroke="#F6C8DA" stroke-width="16" opacity=".65"/>
+<g><path d="M55 450 Q190 280 325 450 V940 H55Z" fill="#D978A6"/><path d="M75 455 Q190 325 305 455" fill="none" stroke="#FFF4FB" stroke-width="40"/><rect x="100" y="550" width="180" height="280" rx="30" fill="#FFE8F2"/><g fill="#F8B84E"><circle cx="145" cy="625" r="30"/><circle cx="235" cy="700" r="36"/></g></g>
+<g><rect x="745" y="390" width="250" height="520" rx="32" fill="#79B9C4"/><path d="M755 520 H985 M755 680 H985" stroke="#E9FFFF" stroke-width="18"/><g fill="#F3A4BF"><circle cx="810" cy="470" r="38"/><circle cx="910" cy="610" r="42"/><circle cx="825" cy="770" r="35"/></g></g>
+<ellipse cx="540" cy="1370" rx="290" ry="80" fill="#5D4050" opacity=".16"/><rect x="310" y="1180" width="460" height="180" rx="70" fill="#F5D074"/><path d="M380 1190 v-130 M700 1190 v-130" stroke="#8A6551" stroke-width="28"/>
+
+  <rect width="1080" height="1920" fill="url(#candy_land_grain)" opacity=".55"/>
+  <path d="M0 0 H1080 V110 Q820 70 540 105 T0 100 Z" fill="#FFFFFF" opacity=".06"/>
 </svg>

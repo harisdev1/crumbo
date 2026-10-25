@@ -33,11 +33,13 @@ void main() {
 
     expect(find.byKey(const Key('themes_sheet')), findsOneWidget);
     expect(find.text('30 Background Themes'), findsOneWidget);
-    expect(find.text('1. Morning Glow'), findsWidgets);
+    expect(find.text('Morning Glow'), findsWidgets);
+    expect(find.text('1. Morning Glow'), findsNothing);
 
     await tester.tap(find.byKey(const Key('theme_sleepy_night')));
     await tester.pumpAndSettle();
-    expect(find.text('3. Sleepy Night'), findsWidgets);
+    expect(find.text('Sleepy Night'), findsWidgets);
+    expect(find.text('3. Sleepy Night'), findsNothing);
     expect(find.text('Use this'), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('themes_apply_button')));

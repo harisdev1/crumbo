@@ -1,42 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
   <defs>
-    <linearGradient id="ct" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#1A237E"/>
-    <stop offset="55%" stop-color="#283593"/>
-    <stop offset="100%" stop-color="#3949AB"/>
+    <linearGradient id="camping_tent_sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#142746"/>
+      <stop offset="1" stop-color="#36506B"/>
     </linearGradient>
+    <linearGradient id="camping_tent_shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".45"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#1E2440" stop-opacity=".12"/>
+    </linearGradient>
+    <radialGradient id="camping_tent_glow">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="camping_tent_grain" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="10" r="1.3" fill="#FFFFFF" opacity=".12"/>
+      <circle cx="33" cy="29" r="1" fill="#24304A" opacity=".06"/>
+      <path d="M4 36 Q13 31 22 36" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".07"/>
+    </pattern>
   </defs>
-  <rect width="1080" height="1920" fill="url(#ct)"/>
-  <circle cx="120" cy="180" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="260" cy="90" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="420" cy="150" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="580" cy="70" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="740" cy="130" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="900" cy="100" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="180" cy="320" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="500" cy="250" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="820" cy="280" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="960" cy="220" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="60" cy="420" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="340" cy="380" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="680" cy="360" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="880" cy="400" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="200" cy="520" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="450" cy="480" r="2.5" fill="#FFF9C4" opacity="0.9"/>
-  <circle cx="720" cy="500" r="2.5" fill="#FFF9C4" opacity="0.9"/>
+<rect width="1080" height="1920" fill="url(#camping_tent_sky)"/>
+<g fill="#FFF3B0"><circle cx="120" cy="220" r="5"/><circle cx="280" cy="340" r="7"/><circle cx="540" cy="180" r="5"/><circle cx="820" cy="270" r="7"/><circle cx="950" cy="430" r="5"/></g>
+<circle cx="860" cy="260" r="80" fill="#FFE9A8"/><circle cx="892" cy="240" r="75" fill="#142746"/>
+<path d="M0 1100 Q290 920 560 1060 T1080 980 V1920 H0Z" fill="#214C3A"/>
+<g transform="translate(80 900)"><path d="M0 450 L250-20 L510 450Z" fill="#E56B52"/><path d="M250-20 V450 H510Z" fill="#B94D48"/><path d="M205 450 L250 190 L300 450Z" fill="#2D3045"/><path d="M-25 470 H535" stroke="#142E2A" stroke-width="28"/></g>
+<g transform="translate(810 1240)"><path d="M-85 145 Q-45 60-15 0 Q0 90 35 35 Q95 105 55 160Z" fill="#F08B45"/><path d="M-35 145 Q-10 90 10 62 Q20 115 43 95 Q60 130 40 160Z" fill="#FFD461"/><path d="M-105 170 L95 170 M-80 200 L70 140" stroke="#76503B" stroke-width="22" stroke-linecap="round"/></g>
+<ellipse cx="540" cy="1370" rx="225" ry="42" fill="#0D2923" opacity=".25"/>
 
-  <circle cx="880.0" cy="220.0" r="84.0" fill="#E8F0FF" opacity="0.2"/>
-  <circle cx="880.0" cy="220.0" r="60.0" fill="#F5F7FF"/>
-  <circle cx="901.0" cy="211.0" r="46.800000000000004" fill="#1A2748"/>
-  <path d="M0 1200 Q300 1100 560 1180 T1080 1120 L1080 1920 L0 1920 Z" fill="#1B5E20" opacity="1.0"/>
-  <path d="M0 1450 Q280 1360 540 1440 T1080 1380 L1080 1920 L0 1920 Z" fill="#2E7D32" opacity="1.0"/>
-  <polygon points="300,1500 540,950 780,1500" fill="#E53935"/>
-  <polygon points="540,950 540,1500 780,1500" fill="#C62828"/>
-  <polygon points="480,1500 540,1200 600,1500" fill="#1A237E" opacity="0.7"/>
-  <circle cx="200" cy="1400" r="35" fill="#FF8F00" opacity="0.8"/>
-  <circle cx="200" cy="1400" r="20" fill="#FFCA28"/>
-  <path d="M185 1420 Q200 1480 215 1420" fill="#FF5722" opacity="0.6"/>
-  <rect x="150" y="1550" width="50" height="12" rx="3" fill="#5D4037"/>
-
+  <rect width="1080" height="1920" fill="url(#camping_tent_grain)" opacity=".55"/>
+  <path d="M0 0 H1080 V110 Q820 70 540 105 T0 100 Z" fill="#FFFFFF" opacity=".06"/>
 </svg>

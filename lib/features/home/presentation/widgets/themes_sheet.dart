@@ -131,7 +131,6 @@ class _ThemesSheet extends StatelessWidget {
                               p.themeId != n.themeId,
                           builder: (context, state) => _ThemeCard(
                             theme: theme,
-                            number: index + 1,
                             selected: state.activeThemeId == theme.id,
                             applied: state.themeId == theme.id,
                             onTap: () => context
@@ -182,7 +181,7 @@ class _SelectedPreview extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  '${catalog.numberOf(theme)}. ${theme.name}',
+                  theme.name,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: theme.isDark ? Colors.white : CrumboColors.detail,
                         fontWeight: FontWeight.w800,
@@ -232,14 +231,12 @@ class _ApplyButton extends StatelessWidget {
 class _ThemeCard extends StatelessWidget {
   const _ThemeCard({
     required this.theme,
-    required this.number,
     required this.selected,
     required this.applied,
     required this.onTap,
   });
 
   final HomeTheme theme;
-  final int number;
   final bool selected;
   final bool applied;
   final VoidCallback onTap;
@@ -277,7 +274,7 @@ class _ThemeCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(6, 6, 6, 8),
                     child: Text(
-                      '$number. ${theme.name}',
+                      theme.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,

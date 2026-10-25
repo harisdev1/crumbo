@@ -23,7 +23,7 @@ void main() {
     await tester.pump();
 
     expect(find.byKey(const Key('home_title')), findsOneWidget);
-    expect(find.text(HomePage.tagline), findsOneWidget);
+    expect(find.text(HomePage.tagline), findsNothing);
     expect(find.byKey(const Key('care_action_bar')), findsOneWidget);
     expect(find.byKey(const Key('action_more')), findsOneWidget);
     expect(find.byKey(const Key('crumbo_rive')), findsOneWidget);

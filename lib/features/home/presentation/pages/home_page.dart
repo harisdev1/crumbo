@@ -11,10 +11,7 @@ import '../widgets/themed_background.dart';
 import '../widgets/themes_sheet.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({
-    super.key,
-    this.character,
-  });
+  const HomePage({super.key, this.character});
 
   static const tagline = 'A cute little owl with big feelings.';
 
@@ -62,8 +59,8 @@ class _HomeBody extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        const _StatusBubble(),
-                        const SizedBox(height: 6),
+                        // "Tap me!" / mood status line hidden for now.
+                        // const _StatusBubble(),
                         const _ThemedCaptions(),
                         const SizedBox(height: 8),
                       ],
@@ -121,15 +118,15 @@ class _BubbleTitle extends StatelessWidget {
         'Owl',
         key: const Key('home_title'),
         style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              fontSize: 26,
-              color: CrumboColors.crust,
-            ),
+          fontSize: 26,
+          color: CrumboColors.crust,
+        ),
       ),
     );
   }
 }
 
-/// Wide soft stage so the owl is the hero of the screen.
+/// Sizes the owl without a painted circle, so the SVG background shows through.
 class _OwlStage extends StatelessWidget {
   const _OwlStage({required this.child});
 
@@ -139,41 +136,46 @@ class _OwlStage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Use almost full stage so the owl reads large on phone.
         final side = constraints.biggest.shortestSide;
         final diameter = (side * 0.98).clamp(300.0, 560.0);
-        final stage = context.select<HomeThemeCubit, Color>(
-          (c) => c.activeTheme.stageColor,
-        );
+        final placement = context
+            .select<HomeThemeCubit, ({double offsetY, double scale})>(
+              (cubit) => (
+                offsetY: cubit.activeTheme.owlOffsetY,
+                scale: cubit.activeTheme.owlScale,
+              ),
+            );
+        final drop = MediaQuery.sizeOf(context).height * placement.offsetY;
         return Center(
-          child: AnimatedContainer(
+          child: SizedBox(
             key: const Key('owl_stage'),
-            duration: const Duration(milliseconds: 700),
-            curve: Curves.easeInOut,
             width: diameter,
             height: diameter,
-            decoration: BoxDecoration(
-              gradient: RadialGradient(
-                colors: [
-                  Color.lerp(stage, Colors.white, 0.35)!.withValues(alpha: 0.92),
-                  stage.withValues(alpha: 0.88),
-                ],
+            child: TweenAnimationBuilder<double>(
+              duration: const Duration(milliseconds: 700),
+              curve: Curves.easeInOutCubic,
+              tween: Tween(end: drop),
+              builder: (context, animatedDrop, translatedChild) {
+                return Transform.translate(
+                  key: const Key('owl_theme_offset'),
+                  offset: Offset(0, animatedDrop),
+                  transformHitTests: true,
+                  child: translatedChild,
+                );
+              },
+              child: TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 700),
+                curve: Curves.easeInOutCubic,
+                tween: Tween(end: placement.scale),
+                builder: (context, scale, scaledChild) {
+                  return Transform.scale(
+                    key: const Key('owl_theme_scale'),
+                    scale: scale,
+                    child: scaledChild,
+                  );
+                },
+                child: child,
               ),
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 5),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFF7EB8DA).withValues(alpha: 0.4),
-                  blurRadius: 28,
-                  spreadRadius: 4,
-                  offset: const Offset(0, 10),
-                ),
-              ],
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: child,
             ),
           ),
         );
@@ -188,28 +190,18 @@ class _ThemedCaptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.select<HomeThemeCubit, ({Color tagline, bool dark})>(
-      (c) => (tagline: c.activeTheme.taglineColor, dark: c.activeTheme.isDark),
+    final dark = context.select<HomeThemeCubit, bool>(
+      (c) => c.activeTheme.isDark,
     );
     final base = Theme.of(context).textTheme;
     return Column(
       children: [
-        AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 700),
-          style: (base.bodySmall ?? const TextStyle()).copyWith(
-            color: theme.tagline,
-            fontStyle: FontStyle.italic,
-          ),
-          child: const Text(
-            HomePage.tagline,
-            key: Key('home_tagline'),
-            textAlign: TextAlign.center,
-          ),
-        ),
+        // "A cute little owl with big feelings." hidden for now.
+        // Text(HomePage.tagline, key: Key('home_tagline')),
         AnimatedDefaultTextStyle(
           duration: const Duration(milliseconds: 700),
           style: (base.labelSmall ?? const TextStyle()).copyWith(
-            color: theme.dark
+            color: dark
                 ? Colors.white.withValues(alpha: 0.7)
                 : CrumboColors.detail.withValues(alpha: 0.65),
             fontSize: 10,
@@ -224,6 +216,8 @@ class _ThemedCaptions extends StatelessWidget {
   }
 }
 
+// Mood line ("Tap me!", "Zzz — tap to wake", …). Hidden for now.
+/*
 class _StatusBubble extends StatelessWidget {
   const _StatusBubble();
 
@@ -258,3 +252,4 @@ class _StatusBubble extends StatelessWidget {
     );
   }
 }
+*/

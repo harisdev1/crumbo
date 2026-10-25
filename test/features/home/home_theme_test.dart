@@ -28,19 +28,41 @@ void main() {
     });
 
     test('every theme SVG exists and parses', () async {
-      final json = jsonDecode(
-        File('assets/data/home_themes.json').readAsStringSync(),
-      ) as Map<String, dynamic>;
+      final json =
+          jsonDecode(File('assets/data/home_themes.json').readAsStringSync())
+              as Map<String, dynamic>;
       for (final t in (json['themes'] as List).cast<Map<String, dynamic>>()) {
         final file = File(t['svg'] as String);
         expect(file.existsSync(), isTrue, reason: '${t['id']} svg missing');
-        final info = await vg.loadPicture(
-          SvgStringLoader(file.readAsStringSync()),
-          null,
+        final raw = file.readAsStringSync();
+        expect(
+          raw.length,
+          greaterThan(2000),
+          reason: '${t['id']} scene is too sparse',
         );
+        expect(raw, contains('_grain'), reason: '${t['id']} has no texture');
+        final info = await vg.loadPicture(SvgStringLoader(raw), null);
         expect(info.size.width, greaterThan(0), reason: '${t['id']}');
         info.picture.dispose();
       }
+    });
+
+    test('every theme has safe per-scene owl placement', () async {
+      final catalog = await HomeThemeCatalog.load();
+      for (final theme in catalog.themes) {
+        expect(
+          theme.owlOffsetY,
+          inInclusiveRange(0.02, 0.08),
+          reason: '${theme.id} offset',
+        );
+        expect(
+          theme.owlScale,
+          inInclusiveRange(0.84, 1.0),
+          reason: '${theme.id} scale',
+        );
+      }
+      expect(catalog.byId('morning_glow').owlOffsetY, 0.055);
+      expect(catalog.byId('classic_calm').owlScale, 0.90);
     });
   });
 

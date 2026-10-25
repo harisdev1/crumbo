@@ -1,37 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
   <defs>
-    <linearGradient id="cc" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#7EC8FF"/>
-    <stop offset="55%" stop-color="#B8E4FF"/>
-    <stop offset="100%" stop-color="#FFF0D0"/>
+    <linearGradient id="classic_calm_sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DDF4FF"/>
+      <stop offset="1" stop-color="#9DD9F3"/>
     </linearGradient>
+    <linearGradient id="classic_calm_shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".45"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#1E2440" stop-opacity=".12"/>
+    </linearGradient>
+    <radialGradient id="classic_calm_glow">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="classic_calm_grain" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="10" r="1.3" fill="#FFFFFF" opacity=".12"/>
+      <circle cx="33" cy="29" r="1" fill="#24304A" opacity=".06"/>
+      <path d="M4 36 Q13 31 22 36" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".07"/>
+    </pattern>
   </defs>
-  <rect width="1080" height="1920" fill="url(#cc)"/>
-  <circle cx="880.0" cy="220.0" r="133.0" fill="#FFF59D" opacity="0.45"/>
-  <circle cx="880.0" cy="220.0" r="94.5" fill="#FFF59D" opacity="0.55"/>
-  <circle cx="880.0" cy="220.0" r="70.0" fill="#FFE082"/>
-  <g opacity="0.85">
-    <ellipse cx="160.0" cy="240.0" rx="88.0" ry="44.0" fill="#FFFFFF"/>
-    <ellipse cx="116.0" cy="246.4" rx="56.0" ry="36.0" fill="#FFFFFF"/>
-    <ellipse cx="204.0" cy="244.0" rx="60.0" ry="38.4" fill="#FFFFFF"/>
-    <ellipse cx="160.0" cy="217.6" rx="44.0" ry="32.0" fill="#FFFFFF"/>
-  </g>
-  <g opacity="0.8">
-    <ellipse cx="520.0" cy="160.0" rx="66.0" ry="33.0" fill="#FFFFFF"/>
-    <ellipse cx="487.0" cy="164.8" rx="42.0" ry="27.0" fill="#FFFFFF"/>
-    <ellipse cx="553.0" cy="163.0" rx="45.0" ry="28.799999999999997" fill="#FFFFFF"/>
-    <ellipse cx="520.0" cy="143.2" rx="33.0" ry="24.0" fill="#FFFFFF"/>
-  </g>
-  <g opacity="0.7">
-    <ellipse cx="300.0" cy="360.0" rx="55.00000000000001" ry="27.500000000000004" fill="#FFFFFF"/>
-    <ellipse cx="272.5" cy="364.0" rx="35.0" ry="22.5" fill="#FFFFFF"/>
-    <ellipse cx="327.5" cy="362.5" rx="37.5" ry="24.0" fill="#FFFFFF"/>
-    <ellipse cx="300.0" cy="346.0" rx="27.500000000000004" ry="20.0" fill="#FFFFFF"/>
-  </g>
-  <path d="M0 1200 Q270 1050 540 1150 T1080 1100 L1080 1920 L0 1920 Z" fill="#B8E8C8" opacity="0.85"/>
-  <path d="M0 1450 Q320 1280 600 1400 T1080 1350 L1080 1920 L0 1920 Z" fill="#8FD4A8" opacity="1.0"/>
-  <circle cx="120" cy="820" r="28" fill="#FFB4D6" opacity="0.45"/>
-  <circle cx="960" cy="900" r="34" fill="#A8F0C8" opacity="0.4"/>
+<rect width="1080" height="1920" fill="url(#classic_calm_sky)"/>
+<rect y="1050" width="1080" height="870" fill="#B88761"/>
+<path d="M0 1050 H1080" stroke="#6D4938" stroke-width="34"/>
+<path d="M0 1240 H1080 M0 1430 H1080 M0 1620 H1080 M0 1810 H1080"
+      stroke="#FFFFFF" stroke-width="5" opacity=".1"/>
+<path d="M180 1050 L120 1920 M460 1050 L440 1920 M740 1050 L780 1920 M960 1050 L1060 1920"
+      stroke="#5E3D31" stroke-width="5" opacity=".26"/>
+<path d="M0 1040 H1080" stroke="#FFF4E4" stroke-width="22" opacity=".86"/>
+<ellipse cx="540" cy="1510" rx="390" ry="165" fill="#4D3540" opacity=".18"/>
+<ellipse cx="540" cy="1478" rx="380" ry="150" fill="#5FA8D3"/>
+<ellipse cx="540" cy="1478" rx="326" ry="112" fill="none" stroke="#FFFFFF" stroke-width="12" opacity=".3"/>
+<path d="M250 1478 Q540 1360 830 1478 Q540 1595 250 1478Z" fill="#FFFFFF" opacity=".11"/>
 
+
+<g>
+  <rect x="90" y="220" width="340" height="500" rx="34" fill="#6E5045" opacity=".25"/>
+  <rect x="105" y="205" width="340" height="500" rx="30" fill="#FFF8E8"/>
+  <rect x="132" y="232" width="286" height="446" rx="18" fill="#8ED5F0"/>
+  <circle cx="329" cy="330" r="48" fill="#FFE59A" opacity=".8"/>
+  <path d="M275 232 V678 M132 455 H418" stroke="#FFF8E8" stroke-width="18"/>
+  
+  <path d="M110 705 H440" stroke="#7D5948" stroke-width="30" stroke-linecap="round"/>
+</g>
+<g>
+  <rect x="760" y="300" width="250" height="650" rx="24" fill="#4F382F" opacity=".2"/>
+  <rect x="740" y="280" width="250" height="650" rx="22" fill="#8E664C"/>
+  <path d="M750 470 H980 M750 650 H980 M750 830 H980" stroke="#5B3D32" stroke-width="22"/>
+  <g fill="#F0C45A"><rect x="776" y="350" width="34" height="100" rx="8"/><rect x="818" y="330" width="46" height="120" rx="8"/></g>
+  <g fill="#77B9B4"><rect x="875" y="365" width="38" height="85" rx="8"/><rect x="920" y="345" width="34" height="105" rx="8"/></g>
+  <g fill="#D97878"><rect x="780" y="540" width="44" height="90" rx="8"/><rect x="832" y="515" width="36" height="115" rx="8"/></g>
+  <path d="M900 610 q35-75 70 0Z" fill="#83A85A"/>
+</g>
+<g>
+  <ellipse cx="540" cy="1420" rx="360" ry="72" fill="#3B2C3C" opacity=".22"/>
+  <rect x="242" y="1000" width="596" height="390" rx="115" fill="#4D8EA9"/>
+  <rect x="267" y="1028" width="546" height="300" rx="96" fill="#73B6CF"/>
+  <rect x="196" y="1170" width="160" height="245" rx="74" fill="#4D8EA9"/>
+  <rect x="724" y="1170" width="160" height="245" rx="74" fill="#4D8EA9"/>
+  <rect x="285" y="1220" width="510" height="190" rx="70" fill="#73B6CF"/>
+  <path d="M540 1040 V1218 M302 1228 Q540 1280 778 1228" fill="none" stroke="#FFFFFF" stroke-width="10" opacity=".18"/>
+  <rect x="280" y="1370" width="42" height="90" rx="16" fill="#674A3B"/>
+  <rect x="758" y="1370" width="42" height="90" rx="16" fill="#674A3B"/>
+</g>
+<g transform="translate(890.0 980.0)">
+  <ellipse cx="0" cy="8" rx="135" ry="155" fill="#FFE9A5" opacity=".16"/>
+  <path d="M-68 0 Q0-70 68 0 L48 105 H-48Z" fill="#F6C65D"/>
+  <path d="M-45 12 Q0-35 45 12" fill="none" stroke="#FFFFFF" stroke-width="10" opacity=".4"/>
+  <rect x="-8" y="102" width="16" height="190" rx="8" fill="#6B5144"/>
+  <ellipse cy="298" rx="76" ry="20" fill="#6B5144"/>
+</g>
+<path d="M70 1020 q65-180 130 0" fill="#79A867"/><rect x="118" y="990" width="65" height="75" rx="12" fill="#D57A58"/>
+
+  <rect width="1080" height="1920" fill="url(#classic_calm_grain)" opacity=".55"/>
+  <path d="M0 0 H1080 V110 Q820 70 540 105 T0 100 Z" fill="#FFFFFF" opacity=".06"/>
 </svg>

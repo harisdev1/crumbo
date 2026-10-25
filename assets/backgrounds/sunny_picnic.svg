@@ -1,36 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
   <defs>
-    <linearGradient id="sp" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#4FC3F7"/>
-    <stop offset="55%" stop-color="#81D4FA"/>
-    <stop offset="100%" stop-color="#FFF9C4"/>
+    <linearGradient id="sunny_picnic_sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E1F4FF"/>
+      <stop offset="1" stop-color="#AEDCB4"/>
     </linearGradient>
+    <linearGradient id="sunny_picnic_shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".45"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#1E2440" stop-opacity=".12"/>
+    </linearGradient>
+    <radialGradient id="sunny_picnic_glow">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="sunny_picnic_grain" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="10" r="1.3" fill="#FFFFFF" opacity=".12"/>
+      <circle cx="33" cy="29" r="1" fill="#24304A" opacity=".06"/>
+      <path d="M4 36 Q13 31 22 36" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".07"/>
+    </pattern>
   </defs>
-  <rect width="1080" height="1920" fill="url(#sp)"/>
-  <circle cx="180.0" cy="240.0" r="142.5" fill="#FFF59D" opacity="0.45"/>
-  <circle cx="180.0" cy="240.0" r="101.25" fill="#FFF59D" opacity="0.55"/>
-  <circle cx="180.0" cy="240.0" r="75.0" fill="#FFE082"/>
-  <g opacity="0.8">
-    <ellipse cx="600.0" cy="200.0" rx="60.50000000000001" ry="30.250000000000004" fill="#FFFFFF"/>
-    <ellipse cx="569.75" cy="204.4" rx="38.5" ry="24.75" fill="#FFFFFF"/>
-    <ellipse cx="630.25" cy="202.75" rx="41.25" ry="26.4" fill="#FFFFFF"/>
-    <ellipse cx="600.0" cy="184.6" rx="30.250000000000004" ry="22.0" fill="#FFFFFF"/>
-  </g>
-  <g opacity="0.7">
-    <ellipse cx="900.0" cy="280.0" rx="49.50000000000001" ry="24.750000000000004" fill="#FFFFFF"/>
-    <ellipse cx="875.25" cy="283.6" rx="31.499999999999996" ry="20.25" fill="#FFFFFF"/>
-    <ellipse cx="924.75" cy="282.25" rx="33.75" ry="21.599999999999998" fill="#FFFFFF"/>
-    <ellipse cx="900.0" cy="267.4" rx="24.750000000000004" ry="18.0" fill="#FFFFFF"/>
-  </g>
-  <path d="M0 1200 Q300 1080 560 1180 T1080 1120 L1080 1920 L0 1920 Z" fill="#AED581" opacity="1.0"/>
-  <path d="M0 1450 Q280 1350 540 1430 T1080 1380 L1080 1920 L0 1920 Z" fill="#9CCC65" opacity="1.0"/>
-  <ellipse cx="540" cy="1500" rx="220" ry="80" fill="#EF5350"/>
-  <ellipse cx="540" cy="1500" rx="180" ry="60" fill="#FFEBEE"/>
-  <rect x="460" y="1470" width="50" height="35" rx="6" fill="#FFCA28"/>
-  <rect x="540" y="1465" width="55" height="40" rx="6" fill="#66BB6A"/>
-  <circle cx="640" cy="1490" r="22" fill="#42A5F5"/>
-  <circle cx="200" cy="1350" r="16" fill="#F48FB1"/>
-  <circle cx="850" cy="1400" r="14" fill="#CE93D8"/>
+<rect width="1080" height="1920" fill="url(#sunny_picnic_sky)"/>
+<g transform="translate(155.0 310.0) scale(0.8)">
+  <path d="M-120 24 C-126-22-88-52-48-40 C-28-90 46-96 70-42 C118-48 148-12 132 30
+           C112 54-92 58-120 24Z" fill="#C7D2E2" opacity=".22"/>
+  <path d="M-126 10 C-126-28-91-55-54-44 C-30-102 49-102 74-45
+           C119-48 146-18 136 18 C124 48-105 52-126 10Z" fill="#FFFFFF" opacity=".88"/>
+  <path d="M-82-12 C-48-50 21-60 74-24" fill="none" stroke="#FFFFFF" stroke-width="13" opacity=".6"/>
+</g><g transform="translate(810.0 240.0) scale(0.58)">
+  <path d="M-120 24 C-126-22-88-52-48-40 C-28-90 46-96 70-42 C118-48 148-12 132 30
+           C112 54-92 58-120 24Z" fill="#C7D2E2" opacity=".22"/>
+  <path d="M-126 10 C-126-28-91-55-54-44 C-30-102 49-102 74-45
+           C119-48 146-18 136 18 C124 48-105 52-126 10Z" fill="#FFFFFF" opacity=".88"/>
+  <path d="M-82-12 C-48-50 21-60 74-24" fill="none" stroke="#FFFFFF" stroke-width="13" opacity=".6"/>
+</g>
+<path d="M0 1030 Q240 860 480 1010 T1080 930 V1920 H0Z" fill="#6FBE79" opacity=".42"/>
+<path d="M0 1250 Q280 1110 570 1230 T1080 1170 V1920 H0Z" fill="#6FBE79"/>
+<path d="M0 1530 Q300 1390 610 1510 T1080 1450 V1920 H0Z" fill="#FFFFFF" opacity=".12"/>
 
+<g transform="translate(180.0 290.0) scale(0.66)">
+  <path d="M-120 24 C-126-22-88-52-48-40 C-28-90 46-96 70-42 C118-48 148-12 132 30
+           C112 54-92 58-120 24Z" fill="#C7D2E2" opacity=".22"/>
+  <path d="M-126 10 C-126-28-91-55-54-44 C-30-102 49-102 74-45
+           C119-48 146-18 136 18 C124 48-105 52-126 10Z" fill="#FFFFFF" opacity=".88"/>
+  <path d="M-82-12 C-48-50 21-60 74-24" fill="none" stroke="#FFFFFF" stroke-width="13" opacity=".6"/>
+</g>
+<g transform="translate(75 780)"><path d="M110 560 Q120 220 190 0 Q265 220 265 560" fill="#76523B"/><g fill="#69A95D"><circle cx="60" cy="60" r="115"/><circle cx="190" cy="0" r="145"/><circle cx="325" cy="85" r="115"/></g></g>
+<path d="M300 1390 L730 1330 L840 1600 L230 1645Z" fill="#F5EFE0"/><path d="M300 1390 L730 1330 M350 1383 L285 1638 M470 1366 L420 1625 M590 1350 L555 1615 M710 1334 L690 1604 M250 1450 L785 1390 M238 1540 L815 1480" stroke="#DF665D" stroke-width="24" opacity=".85"/>
+<g transform="translate(820 1270)"><path d="M0 210 Q80-40 160 210" fill="none" stroke="#8C5E3F" stroke-width="20"/><rect y="120" width="165" height="145" rx="25" fill="#B97A4F"/><path d="M0 175 H165 M55 120 V265 M110 120 V265" stroke="#E1B87C" stroke-width="10"/></g>
+
+  <rect width="1080" height="1920" fill="url(#sunny_picnic_grain)" opacity=".55"/>
+  <path d="M0 0 H1080 V110 Q820 70 540 105 T0 100 Z" fill="#FFFFFF" opacity=".06"/>
 </svg>

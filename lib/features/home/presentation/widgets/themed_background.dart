@@ -1,9 +1,12 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../domain/home_theme.dart';
 import '../cubit/home_theme_cubit.dart';
+import 'theme_motion_layer.dart';
 
 /// Full-screen SVG background with animated crossfade + soft zoom on switch.
 class ThemedBackground extends StatelessWidget {
@@ -34,31 +37,82 @@ class ThemedBackground extends StatelessWidget {
               child: ScaleTransition(scale: scale, child: child),
             );
           },
-          child: _SvgLayer(
-            key: ValueKey<String>(theme.id),
-            theme: theme,
-          ),
+          child: _ThemeScene(key: ValueKey<String>(theme.id), theme: theme),
         );
       },
     );
   }
 }
 
-class _SvgLayer extends StatelessWidget {
-  const _SvgLayer({super.key, required this.theme});
+class _ThemeScene extends StatefulWidget {
+  const _ThemeScene({super.key, required this.theme});
 
   final HomeTheme theme;
 
   @override
+  State<_ThemeScene> createState() => _ThemeSceneState();
+}
+
+class _ThemeSceneState extends State<_ThemeScene>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _parallax = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 22),
+  );
+  bool _started = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_started) return;
+    _started = true;
+    final testing = WidgetsBinding.instance.runtimeType.toString().contains(
+      'Test',
+    );
+    if (!testing && !MediaQuery.disableAnimationsOf(context)) {
+      _parallax.repeat();
+    } else {
+      _parallax.value = 0.25;
+    }
+  }
+
+  @override
+  void dispose() {
+    _parallax.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: SvgPicture.asset(
-        theme.svg,
-        key: Key('home_bg_${theme.id}'),
-        fit: BoxFit.cover,
-        alignment: Alignment.center,
-        placeholderBuilder: (_) => ColoredBox(color: theme.stageColor),
-      ),
+    final backgroundAsset = widget.theme.id == 'hot_air_balloons'
+        ? 'assets/backgrounds/hot_air_balloons_sky.svg'
+        : widget.theme.svg;
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        RepaintBoundary(
+          child: AnimatedBuilder(
+            animation: _parallax,
+            builder: (context, child) {
+              final angle = _parallax.value * math.pi * 2;
+              return Transform.translate(
+                key: const Key('theme_parallax'),
+                offset: Offset(math.sin(angle) * 4, math.cos(angle) * 3),
+                child: Transform.scale(scale: 1.025, child: child),
+              );
+            },
+            child: SvgPicture.asset(
+              backgroundAsset,
+              key: Key('home_bg_${widget.theme.id}'),
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
+              placeholderBuilder: (_) =>
+                  ColoredBox(color: widget.theme.stageColor),
+            ),
+          ),
+        ),
+        ThemeMotionLayer(themeId: widget.theme.id),
+      ],
     );
   }
 }

@@ -11,6 +11,8 @@ class HomeTheme {
     required this.svg,
     required this.stageColor,
     required this.isDark,
+    this.owlOffsetY = 0.06,
+    this.owlScale = 1,
   });
 
   final String id;
@@ -18,6 +20,8 @@ class HomeTheme {
   final String svg;
   final Color stageColor;
   final bool isDark;
+  final double owlOffsetY;
+  final double owlScale;
 
   static const morningGlowId = 'morning_glow';
 
@@ -33,6 +37,8 @@ class HomeTheme {
       svg: json['svg'] as String,
       stageColor: _parseColor(json['stageColor'] as String),
       isDark: json['isDark'] as bool? ?? false,
+      owlOffsetY: (json['owlOffsetY'] as num?)?.toDouble() ?? 0.06,
+      owlScale: (json['owlScale'] as num?)?.toDouble() ?? 1,
     );
   }
 
@@ -69,8 +75,9 @@ class HomeThemeCatalog {
 
   static Future<HomeThemeCatalog> load({AssetBundle? bundle}) async {
     if (_cached != null) return _cached!;
-    final raw = await (bundle ?? rootBundle)
-        .loadString('assets/data/home_themes.json');
+    final raw = await (bundle ?? rootBundle).loadString(
+      'assets/data/home_themes.json',
+    );
     final map = jsonDecode(raw) as Map<String, dynamic>;
     final list = (map['themes'] as List<dynamic>)
         .map((e) => HomeTheme.fromJson(e as Map<String, dynamic>))

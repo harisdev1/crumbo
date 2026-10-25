@@ -40,7 +40,7 @@ void main() {
 
     expect(find.byKey(const Key('home_title')), findsOneWidget);
     expect(find.byKey(const Key('home_background')), findsOneWidget);
-    expect(find.text(HomePage.tagline), findsOneWidget);
+    expect(find.text(HomePage.tagline), findsNothing);
     expect(find.byKey(const Key('care_action_bar')), findsOneWidget);
 
     final BuildContext context =

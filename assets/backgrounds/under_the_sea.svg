@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
   <defs>
-    <linearGradient id="us" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#0277BD"/>
-    <stop offset="55%" stop-color="#0288D1"/>
-    <stop offset="100%" stop-color="#4FC3F7"/>
+    <linearGradient id="under_the_sea_sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#72DDE2"/>
+      <stop offset="1" stop-color="#126B91"/>
     </linearGradient>
+    <linearGradient id="under_the_sea_shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".45"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#1E2440" stop-opacity=".12"/>
+    </linearGradient>
+    <radialGradient id="under_the_sea_glow">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="under_the_sea_grain" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="10" r="1.3" fill="#FFFFFF" opacity=".12"/>
+      <circle cx="33" cy="29" r="1" fill="#24304A" opacity=".06"/>
+      <path d="M4 36 Q13 31 22 36" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".07"/>
+    </pattern>
   </defs>
-  <rect width="1080" height="1920" fill="url(#us)"/>
-  <ellipse cx="200" cy="400" rx="40" ry="18" fill="#81D4FA" opacity="0.4"/>
-  <ellipse cx="500" cy="280" rx="55" ry="22" fill="#81D4FA" opacity="0.35"/>
-  <ellipse cx="800" cy="450" rx="35" ry="15" fill="#B3E5FC" opacity="0.4"/>
-  <ellipse cx="350" cy="600" rx="45" ry="18" fill="#81D4FA" opacity="0.3"/>
-  <ellipse cx="900" cy="700" rx="50" ry="20" fill="#B3E5FC" opacity="0.35"/>
-  <circle cx="160" cy="900" r="12" fill="#FFF59D" opacity="0.7"/>
-  <circle cx="420" cy="1100" r="8" fill="#FFFFFF" opacity="0.5"/>
-  <circle cx="780" cy="980" r="10" fill="#FFF59D" opacity="0.6"/>
-  <circle cx="600" cy="1300" r="7" fill="#FFFFFF" opacity="0.45"/>
-  <path d="M80 1600 Q100 1400 120 1600 Q140 1450 160 1600 Q180 1420 200 1600 Z" fill="#26A69A"/>
-  <path d="M240 1650 Q255 1480 270 1650 Q285 1500 300 1650 Z" fill="#00897B"/>
-  <path d="M880 1580 Q900 1380 920 1580 Q940 1420 960 1580 Q980 1400 1000 1580 Z" fill="#26A69A"/>
-  <ellipse cx="540" cy="1500" rx="90" ry="50" fill="#FF8A65" opacity="0.85"/>
-  <circle cx="500" cy="1480" r="12" fill="#5D4037"/>
-  <circle cx="580" cy="1480" r="12" fill="#5D4037"/>
-  <path d="M0 1700 Q300 1620 540 1680 T1080 1640 L1080 1920 L0 1920 Z" fill="#FFCC80" opacity="1.0"/>
-  <path d="M0 1800 Q280 1740 560 1780 T1080 1760 L1080 1920 L0 1920 Z" fill="#FFE0B2" opacity="1.0"/>
+<rect width="1080" height="1920" fill="url(#under_the_sea_sky)"/>
+<path d="M0 290 Q270 240 540 295 T1080 280" fill="none" stroke="#D9FFFF" stroke-width="24" opacity=".4"/>
+<path d="M0 350 Q280 310 580 355 T1080 340" fill="none" stroke="#FFFFFF" stroke-width="10" opacity=".22"/>
+<path d="M0 1350 Q300 1230 550 1325 T1080 1260 V1920 H0Z" fill="#E7C47D"/>
+<path d="M60 1360 q60-230 120 0 M130 1390 q80-300 160 0 M900 1390 q55-250 110 0" fill="none" stroke="#E86F69" stroke-width="28" stroke-linecap="round"/>
+<g fill="#F3A45B"><path d="M90 1510 q80-170 160 0 q-80-75-160 0Z"/><path d="M800 1470 q95-190 190 0 q-95-80-190 0Z"/></g>
+<g fill="#A681CF"><circle cx="190" cy="1240" r="30"/><circle cx="245" cy="1190" r="18"/><circle cx="890" cy="1170" r="38"/></g>
+<path d="M0 1640 Q300 1530 600 1630 T1080 1580" fill="none" stroke="#C39B61" stroke-width="26" opacity=".55"/>
 
+  <rect width="1080" height="1920" fill="url(#under_the_sea_grain)" opacity=".55"/>
+  <path d="M0 0 H1080 V110 Q820 70 540 105 T0 100 Z" fill="#FFFFFF" opacity=".06"/>
 </svg>
