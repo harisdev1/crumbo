@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../crumbo/presentation/cubit/crumbo_cubit.dart';
+import '../../../crumbo/presentation/cubit/needs_cubit.dart';
 import '../../../crumbo/presentation/widgets/crumbo_view.dart';
 import '../cubit/home_theme_cubit.dart';
 import '../widgets/care_action_bar.dart';
 import '../widgets/exit_dialog.dart';
 import '../widgets/home_top_bar.dart';
+import '../widgets/needs_meter_row.dart';
 import '../widgets/owl_perch_layer.dart';
 import '../widgets/skins_sheet.dart';
 import '../widgets/themed_background.dart';
@@ -26,9 +28,47 @@ class HomePage extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => CrumboCubit()..hydrate()),
         BlocProvider(create: (_) => HomeThemeCubit()..hydrate()),
+        BlocProvider(create: (_) => NeedsCubit()..hydrate()),
       ],
-      child: _HomeBody(character: character),
+      child: _HomeLifecycle(character: character),
     );
+  }
+}
+
+/// Re-applies needs decay when the app returns to foreground.
+class _HomeLifecycle extends StatefulWidget {
+  const _HomeLifecycle({this.character});
+
+  final Widget? character;
+
+  @override
+  State<_HomeLifecycle> createState() => _HomeLifecycleState();
+}
+
+class _HomeLifecycleState extends State<_HomeLifecycle>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && mounted) {
+      context.read<NeedsCubit>().touch();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _HomeBody(character: widget.character);
   }
 }
 
@@ -56,6 +96,8 @@ class _HomeBody extends StatelessWidget {
               child: Column(
                 children: [
                   const HomeTopBar(),
+                  const SizedBox(height: 6),
+                  const NeedsMeterRow(),
                   const SizedBox(height: 6),
                   const _TitleRow(),
                   // Let taps reach the owl below; only [OwlBodyTapShell] handles bonks.

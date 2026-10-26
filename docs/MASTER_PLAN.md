@@ -14,7 +14,7 @@ Canonical file: `docs/MASTER_PLAN.md`. LLM ko bolo "pehle isay padho". Roz ka sc
 | Glossy UI shell + static routes | Done | A-UI1–A-UI8 |
 | Character Rive (owl pack + sleep) | Done / Partial | A-UI4; D10 polish + journey gates later |
 | Storage (Hive) | Done | A4 — four boxes + theme/skin in `settings` |
-| Needs meters + decay | Not started | A6–A8 (`NeedsCubit`; `CrumboCubit` = expressions) |
+| Needs meters + decay | Done | A6–A8 (`NeedsCubit` + home meters; `CrumboCubit` = expressions) |
 | Economy / shop / daily | Partial shells | B3–B5; screens exist, logic nahi |
 | Journey / cards | Not started | B6–C2 |
 | Mini games (Flame) | Not started | C3–C7 (Play hub shell + JSON only) |
@@ -22,7 +22,7 @@ Canonical file: `docs/MASTER_PLAN.md`. LLM ko bolo "pehle isay padho". Roz ka sc
 | Ads | Not started | D1–D4 |
 | Parental / settings / onboarding | Partial | D5–D7 shells |
 
-**Aaj ka pehla core task:** checklist **A5** (Firebase stub / skeleton).
+**Aaj ka pehla core task:** checklist **A9** (feed). A5 Firebase still skipped.
 
 ---
 

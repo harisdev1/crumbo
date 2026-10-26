@@ -148,16 +148,12 @@ class _OwlArtboardPlayerState extends State<_OwlArtboardPlayer>
                   final breathScale = 1 + 0.055 * t;
                   final dy = widget.breathe ? -6.0 * t : 0.0;
                   final squash = 1 - 0.08 * Curves.easeOut.transform(_bonkSquash.value);
+                  // Instant stageScale — no tween between artboard / SM switches.
                   return Transform.translate(
                     offset: Offset(0, dy),
-                    child: AnimatedScale(
-                      scale: widget.stageScale,
-                      duration: const Duration(milliseconds: 220),
-                      curve: Curves.easeInOut,
-                      child: Transform.scale(
-                        scale: breathScale * squash,
-                        child: child,
-                      ),
+                    child: Transform.scale(
+                      scale: widget.stageScale * breathScale * squash,
+                      child: child,
                     ),
                   );
                 },

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:crumbo/core/di/injection.dart';
+import 'package:crumbo/features/crumbo/data/needs_repository.dart';
 import 'package:crumbo/features/crumbo/data/skin_preferences.dart';
 import 'package:crumbo/features/home/data/theme_preferences.dart';
 import 'package:hive_ce/hive.dart';
@@ -12,6 +13,7 @@ Future<void> configureMemoryPreferences() async {
   await getIt.reset();
   getIt.registerSingleton<SkinPreferences>(MemorySkinPreferences());
   getIt.registerSingleton<ThemePreferences>(MemoryThemePreferences());
+  getIt.registerSingleton<NeedsRepository>(MemoryNeedsRepository());
 }
 
 /// Full Hive DI on a temp path. Prefer `--concurrency=1` or serial use only.

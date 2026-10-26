@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 
+import '../../features/crumbo/data/needs_repository.dart';
 import '../../features/crumbo/data/skin_preferences.dart';
 import '../../features/home/data/theme_preferences.dart';
 import '../storage/hive_boxes.dart';
@@ -18,5 +19,8 @@ Future<void> configureDependencies({String? hivePath}) async {
   );
   getIt.registerSingleton<ThemePreferences>(
     HiveThemePreferences(boxes.settings),
+  );
+  getIt.registerSingleton<NeedsRepository>(
+    HiveNeedsRepository(boxes.crumboState),
   );
 }

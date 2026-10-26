@@ -62,13 +62,13 @@ Honest status — economy / journey / ads se pehle complete mat samjho:
 
 ## Core sprint — Week A (24–31 Oct): Storage + needs
 
-**Pehla unchecked = A5.**
+**Pehla unchecked = A9** (A5 Firebase skipped for now).
 
 - [x] A4: Hive storage (boxes: `crumbo_state`, `inventory`, `economy`, `settings`) + migrate theme/skin prefs where appropriate
 - [ ] A5: Firebase skeleton (Analytics kids, Crashlytics, Remote Config) jab accounts ready; warna stub + skip note
-- [ ] A6: Pet needs (`NeedsCubit` / repo; keep `CrumboCubit` for expressions) — hunger, sleep, fun, clean, love 0–100
-- [ ] A7: Needs decay (last-seen timestamp) + unit tests
-- [ ] A8: Computed mood + home need icons (expression hints; Moods sheet duplicate nahi)
+- [x] A6: Pet needs (`NeedsCubit` / repo; keep `CrumboCubit` for expressions) — hunger, sleep, fun, clean, love 0–100
+- [x] A7: Needs decay (last-seen timestamp) + unit tests
+- [x] A8: Computed mood + home need icons (expression hints; Moods sheet duplicate nahi)
 - [ ] A9: Feed action (drag food to owl) — single home scene OK until B2
 - [ ] A10: Sleep polish (light off, lullaby) + Pet/tickle beyond bonk if needed
 
