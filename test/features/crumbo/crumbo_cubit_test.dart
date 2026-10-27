@@ -39,6 +39,23 @@ void main() {
     expect(cubit.state.expression, OwlExpression.sleep);
   });
 
+  test('listen and talk custom rivs hold until endVoice', () async {
+    cubit.beginListening();
+    expect(cubit.state.expression, OwlExpression.listen);
+    expect(cubit.state.artboardName, 'listen');
+    expect(cubit.state.expression.assetPath, 'assets/rive/owl_listen.riv');
+    await Future<void>.delayed(const Duration(milliseconds: 3000));
+    expect(cubit.state.expression, OwlExpression.listen);
+
+    cubit.beginTalking();
+    expect(cubit.state.expression, OwlExpression.talk);
+    expect(cubit.state.artboardName, 'talk');
+    expect(cubit.state.expression.assetPath, 'assets/rive/owl_talk.riv');
+
+    cubit.endVoice();
+    expect(cubit.state.expression, OwlExpression.idle);
+  });
+
   test('eat auto-returns to idle', () async {
     cubit.setExpression(OwlExpression.eat);
     expect(cubit.state.artboardName, '10');
@@ -99,15 +116,27 @@ void main() {
     expect(OwlExpression.poke.artboardName, '9');
   });
 
-  test('mood picker lists every face except sleep and eat', () {
+  test('mood picker excludes care/voice/bath expressions', () {
     expect(
       OwlExpression.moodPicker,
-      hasLength(OwlExpression.values.length - 2),
+      hasLength(OwlExpression.values.length - 6),
     );
     expect(OwlExpression.moodPicker, isNot(contains(OwlExpression.sleep)));
     expect(OwlExpression.moodPicker, isNot(contains(OwlExpression.eat)));
+    expect(OwlExpression.moodPicker, isNot(contains(OwlExpression.listen)));
+    expect(OwlExpression.moodPicker, isNot(contains(OwlExpression.talk)));
+    expect(OwlExpression.moodPicker, isNot(contains(OwlExpression.bath)));
+    expect(OwlExpression.moodPicker, isNot(contains(OwlExpression.clean)));
     expect(
-      {...OwlExpression.moodPicker, OwlExpression.sleep, OwlExpression.eat},
+      {
+        ...OwlExpression.moodPicker,
+        OwlExpression.sleep,
+        OwlExpression.eat,
+        OwlExpression.listen,
+        OwlExpression.talk,
+        OwlExpression.bath,
+        OwlExpression.clean,
+      },
       OwlExpression.values.toSet(),
     );
   });
@@ -119,9 +148,20 @@ void main() {
       OwlExpression.eat,
       OwlExpression.happy,
       OwlExpression.wink,
+      OwlExpression.listen,
+      OwlExpression.talk,
+      OwlExpression.bath,
+      OwlExpression.clean,
     });
     expect(OwlExpression.dayOneUnlocked.contains(OwlExpression.cool), isFalse);
     expect(OwlExpression.dayOneUnlocked.contains(OwlExpression.eat), isTrue);
+  });
+
+  test('bath and clean use front-facing custom rivs', () {
+    expect(OwlExpression.bath.artboardName, 'bath');
+    expect(OwlExpression.bath.assetPath, 'assets/rive/owl_bath.riv');
+    expect(OwlExpression.clean.artboardName, 'clean');
+    expect(OwlExpression.clean.assetPath, 'assets/rive/owl_clean.riv');
   });
 
   test('unlockAllExpressions flag allows every mood for now', () {

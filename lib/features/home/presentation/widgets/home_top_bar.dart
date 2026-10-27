@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/ui/currency_pill.dart';
 import '../../../../core/ui/glass_panel.dart';
 import '../../../../core/ui/glossy_icon_button.dart';
+import '../../../economy/domain/wallet.dart';
+import '../../../economy/presentation/cubit/economy_cubit.dart';
 
 class HomeTopBar extends StatelessWidget {
   const HomeTopBar({super.key});
@@ -15,16 +18,24 @@ class HomeTopBar extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(12, 4, 12, 0),
       child: Row(
         children: [
-          const CurrencyPill(
-            key: Key('coin_pill'),
-            kind: CurrencyKind.coin,
-            amount: 0,
+          BlocBuilder<EconomyCubit, Wallet>(
+            builder: (context, wallet) {
+              return CurrencyPill(
+                key: const Key('coin_pill'),
+                kind: CurrencyKind.coin,
+                amount: wallet.coins,
+              );
+            },
           ),
           const SizedBox(width: 8),
-          const CurrencyPill(
-            key: Key('gem_pill'),
-            kind: CurrencyKind.gem,
-            amount: 0,
+          BlocBuilder<EconomyCubit, Wallet>(
+            builder: (context, wallet) {
+              return CurrencyPill(
+                key: const Key('gem_pill'),
+                kind: CurrencyKind.gem,
+                amount: wallet.gems,
+              );
+            },
           ),
           const Spacer(),
           GlossyIconButton(
@@ -68,6 +79,8 @@ const _links = <_NavLink>[
   ),
   _NavLink(AppRoutes.scores, 'Scores', Icons.leaderboard_rounded, 'nav_scores'),
   _NavLink(AppRoutes.daily, 'Daily', Icons.calendar_month_rounded, 'nav_daily'),
+  _NavLink(AppRoutes.album, 'Album', Icons.style_rounded, 'nav_album'),
+  _NavLink(AppRoutes.journey, 'Journey', Icons.map_rounded, 'nav_journey'),
   _NavLink(AppRoutes.food, 'Food', Icons.restaurant_rounded, 'nav_food'),
   _NavLink(AppRoutes.market, 'Market', Icons.checkroom_rounded, 'nav_market'),
   _NavLink(

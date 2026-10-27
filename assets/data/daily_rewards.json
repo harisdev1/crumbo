@@ -1,0 +1,11 @@
+{
+  "days": [
+    {"day": 1, "coins": 50},
+    {"day": 2, "coins": 50},
+    {"day": 3, "coins": 75},
+    {"day": 4, "coins": 75},
+    {"day": 5, "coins": 100},
+    {"day": 6, "coins": 100},
+    {"day": 7, "coins": 250}
+  ]
+}

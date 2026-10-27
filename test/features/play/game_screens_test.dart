@@ -21,6 +21,7 @@ import 'package:crumbo/features/rewards/presentation/food_page.dart';
 import 'package:crumbo/features/rewards/presentation/market_page.dart';
 import 'package:crumbo/features/rewards/presentation/theme_shop_page.dart';
 import 'package:crumbo/features/settings/presentation/settings_page.dart';
+import 'package:crumbo/features/shop/domain/shop_catalog.dart';
 import 'package:crumbo/features/shop/presentation/shop_page.dart';
 import 'package:crumbo/features/store/presentation/parental_gate.dart';
 import 'package:crumbo/features/store/presentation/store_page.dart';
@@ -29,12 +30,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../helpers/hive_test_setup.dart';
+
 void main() {
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
     PlayContent.debugReset();
     OwlSkinCatalog.debugReset();
     HomeThemeCatalog.debugReset();
+    ShopCatalog.debugReset();
     await PlayContent.load();
     await OwlSkinCatalog.load();
     await HomeThemeCatalog.load();
@@ -111,16 +115,19 @@ void main() {
     expect(find.byKey(const Key('level_up_particles')), findsOneWidget);
   });
 
-  testWidgets('Shop prices cannot be bought', (tester) async {
+  testWidgets('Shop loads items.json and Buy is enabled', (tester) async {
+    await configureMemoryPreferences();
+    ShopCatalog.debugReset();
     await tester.pumpWidget(const MaterialApp(home: ShopPage()));
     await tester.pumpAndSettle();
+    expect(find.byKey(const Key('shop_page')), findsOneWidget);
+    expect(find.text('Cookie Pack'), findsOneWidget);
     expect(
       tester
-          .widget<GlossyButton>(find.byKey(const Key('shop_buy_coin_sack')))
+          .widget<GlossyButton>(find.byKey(const Key('shop_buy_snack_cookie')))
           .onPressed,
-      isNull,
+      isNotNull,
     );
-    expect(find.text('Coming soon'), findsWidgets);
   });
 
   testWidgets('Profile, achievements, scores and daily rewards render', (
@@ -141,10 +148,13 @@ void main() {
     expect(find.text('My Best Scores'), findsOneWidget);
     expect(find.text('Sam'), findsNothing);
 
+    await configureMemoryPreferences();
     await tester.pumpWidget(const MaterialApp(home: DailyRewardsPage()));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
     expect(find.byKey(const Key('reward_day_1')), findsOneWidget);
-    expect(find.byIcon(Icons.lock_rounded), findsNWidgets(6));
+    expect(find.byKey(const Key('daily_claim_button')), findsOneWidget);
+    expect(find.byIcon(Icons.lock_rounded), findsAtLeastNWidgets(5));
   });
 
   testWidgets('Food tap starts eat', (tester) async {

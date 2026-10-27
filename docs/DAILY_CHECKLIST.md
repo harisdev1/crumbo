@@ -1,6 +1,6 @@
 # Crumbo: Daily Checklist (FULL DEV — deadline 24 Nov 2026)
 
-**Last updated:** 2026-10-25  
+**Last updated:** 2026-10-26  
 **Deadline:** 24 Nov 2026 — saari development features complete, installable APK.  
 **Bahar:** Play Console / soft launch / store listing (baad mein).  
 **Pace:** roz ~2–3 tasks; phone USB se test (emulator zaroori nahi).
@@ -52,8 +52,6 @@ Foundation + glossy shell already shipped. Purana “A3 placeholder image” is 
 
 Honest status — economy / journey / ads se pehle complete mat samjho:
 
-- [~] B4-partial: Shop **screen** shell — no `items.json` / purchase logic
-- [~] B5-partial: Daily rewards **screen** shell — no 7-day streak logic
 - [~] D5-partial: Parental math gate on Store — missing privacy URL / all gated surfaces
 - [~] D6-partial: Settings page shell — privacy policy content + parent area incomplete
 - [~] D10-partial: Owl artboard switching works — not bread-era data-binding VM; journey mood gates still mock
@@ -62,30 +60,30 @@ Honest status — economy / journey / ads se pehle complete mat samjho:
 
 ## Core sprint — Week A (24–31 Oct): Storage + needs
 
-**Pehla unchecked = A9** (A5 Firebase skipped for now).
+**Pehla unchecked = C1** (A5 Firebase skipped; B5–B10 done).
 
 - [x] A4: Hive storage (boxes: `crumbo_state`, `inventory`, `economy`, `settings`) + migrate theme/skin prefs where appropriate
 - [ ] A5: Firebase skeleton (Analytics kids, Crashlytics, Remote Config) jab accounts ready; warna stub + skip note
 - [x] A6: Pet needs (`NeedsCubit` / repo; keep `CrumboCubit` for expressions) — hunger, sleep, fun, clean, love 0–100
 - [x] A7: Needs decay (last-seen timestamp) + unit tests
 - [x] A8: Computed mood + home need icons (expression hints; Moods sheet duplicate nahi)
-- [ ] A9: Feed action (drag food to owl) — single home scene OK until B2
-- [ ] A10: Sleep polish (light off, lullaby) + Pet/tickle beyond bonk if needed
+- [x] A9: Feed action (drag food to owl) — single home scene OK until B2
+- [x] A10: Sleep polish (light off, lullaby) + Pet/tickle beyond bonk if needed
 
 ---
 
 ## Core sprint — Week B (1–7 Nov): Rooms, economy, cards, journey start
 
-- [ ] B1: Bath + Clean actions (owl care)
-- [ ] B2: Room navigation (Kitchen, Bedroom, Bathroom) — themed BGs already exist; add nav + room-specific actions
-- [ ] B3: Coins + Gems (repository + cubit) — wire home currency bar
-- [ ] B4: Shop screen wired to `assets/data/items.json` (replace shell)
-- [ ] B5: Daily reward calendar (7 din streak) — replace shell
-- [ ] B6: `cards.json` + card models
-- [ ] B7: Card album (locked cards dhundhle)
-- [ ] B8: Card flip/reveal animation
-- [ ] B9: Unlock methods (task, coins, journey) + duplicates → coins + Hive
-- [ ] B10: `journey.json` + models + scrollable map UI
+- [x] B1: Bath + Clean actions (owl care)
+- [x] B2: Room navigation (Kitchen, Bedroom, Bathroom) — themed BGs already exist; add nav + room-specific actions
+- [x] B3: Coins + Gems (repository + cubit) — wire home currency bar
+- [x] B4: Shop screen wired to `assets/data/items.json` (replace shell)
+- [x] B5: Daily reward calendar (7 din streak) — replace shell
+- [x] B6: `cards.json` + card models
+- [x] B7: Card album (locked cards dhundhle)
+- [x] B8: Card flip/reveal animation
+- [x] B9: Unlock methods (task, coins, journey) + duplicates → coins + Hive
+- [x] B10: `journey.json` + models + scrollable map UI
 
 ---
 
@@ -98,9 +96,9 @@ Honest status — economy / journey / ads se pehle complete mat samjho:
 - [ ] C5: Bubble Pop
 - [ ] C6: Crumb Runner
 - [ ] C7: Match the Breakfast + shared result screen (2x coins placeholder)
-- [ ] C8: Mic permission + recording
-- [ ] C9: Silence detection + pitch/speed playback + presets; delete after play
-- [ ] C10: Voice + owl talk/listen state; real phone test
+- [x] C8: Mic permission + recording
+- [x] C9: Silence detection + pitch/speed playback + presets; delete after play
+- [x] C10: Voice + owl talk/listen state; real phone test
 
 ---
 

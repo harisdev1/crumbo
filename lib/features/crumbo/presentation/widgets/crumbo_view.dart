@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rive/rive.dart' as rive;
 
+import '../../domain/need_kind.dart';
 import '../../domain/owl_expression.dart';
 import '../cubit/crumbo_cubit.dart';
+import '../cubit/needs_cubit.dart';
 import 'owl_body_tap.dart';
 
 /// Loads owl Rive files and switches expression artboards from [CrumboCubit].
@@ -41,6 +43,14 @@ class CrumboView extends StatelessWidget {
               HapticFeedback.lightImpact();
             }
           },
+          onBodyLongPress: () {
+            HapticFeedback.selectionClick();
+            context.read<CrumboCubit>().pet();
+            context.read<NeedsCubit>().boost(
+                  NeedKind.love,
+                  CrumboCubit.loveBoost,
+                );
+          },
         );
       },
     );
@@ -55,6 +65,7 @@ class _OwlArtboardPlayer extends StatefulWidget {
     required this.stageScale,
     required this.breathe,
     required this.onBodyTap,
+    this.onBodyLongPress,
   });
 
   final String assetPath;
@@ -62,6 +73,7 @@ class _OwlArtboardPlayer extends StatefulWidget {
   final double stageScale;
   final bool breathe;
   final VoidCallback onBodyTap;
+  final VoidCallback? onBodyLongPress;
 
   @override
   State<_OwlArtboardPlayer> createState() => _OwlArtboardPlayerState();
@@ -141,6 +153,7 @@ class _OwlArtboardPlayerState extends State<_OwlArtboardPlayer>
                 _playBonkSquash();
                 widget.onBodyTap();
               },
+              onBodyLongPress: widget.onBodyLongPress,
               child: AnimatedBuilder(
                 animation: Listenable.merge([_breath, _bonkSquash]),
                 builder: (context, child) {

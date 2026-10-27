@@ -128,6 +128,42 @@ enum OwlExpression {
     Color(0xFF7EB8DA),
     'Zzz — tap to wake',
     assetPath: 'assets/rive/owl_sleep.riv',
+  ),
+  /// Mic listening — sound waves (`assets/rive/owl_listen.riv`).
+  listen(
+    'listen',
+    'Listen',
+    Icons.hearing_rounded,
+    Color(0xFF348EA0),
+    'Listening…',
+    assetPath: 'assets/rive/owl_listen.riv',
+  ),
+  /// Voice playback — mouth bob (`assets/rive/owl_talk.riv`).
+  talk(
+    'talk',
+    'Talk',
+    Icons.record_voice_over_rounded,
+    Color(0xFFFF8A65),
+    'Talking!',
+    assetPath: 'assets/rive/owl_talk.riv',
+  ),
+  /// Front-facing bath — bubbles (`assets/rive/owl_bath.riv`).
+  bath(
+    'bath',
+    'Bath',
+    Icons.bathtub_rounded,
+    Color(0xFF4FC3F7),
+    'Bubble bath!',
+    assetPath: 'assets/rive/owl_bath.riv',
+  ),
+  /// Front-facing clean — sparkles (`assets/rive/owl_clean.riv`).
+  clean(
+    'clean',
+    'Clean',
+    Icons.auto_awesome_rounded,
+    Color(0xFFFFC107),
+    'All sparkly!',
+    assetPath: 'assets/rive/owl_clean.riv',
   );
 
   const OwlExpression(
@@ -164,9 +200,12 @@ enum OwlExpression {
   /// Poke shortcut → wave.
   static const OwlExpression poke = OwlExpression.wave;
 
-  /// Stays until user wakes / picks Idle — no auto-return.
+  /// Stays until user wakes / picks Idle / voice ends — no auto-return.
   bool get holdsUntilDismissed =>
-      this == OwlExpression.sleep || this == OwlExpression.think;
+      this == OwlExpression.sleep ||
+      this == OwlExpression.think ||
+      this == OwlExpression.listen ||
+      this == OwlExpression.talk;
 
   /// Pack MAIN boards only (`"1"`…`"15"`).
   static List<OwlExpression> get packExpressions => values
@@ -181,9 +220,17 @@ enum OwlExpression {
     wink,
   ];
 
-  /// Single Moods sheet on home (everything except Sleep / Eat on the care bar).
+  /// Moods sheet — care/tray/voice-driven expressions stay out.
   static List<OwlExpression> get moodPicker => values
-      .where((e) => e != sleep && e != eat)
+      .where(
+        (e) =>
+            e != sleep &&
+            e != eat &&
+            e != listen &&
+            e != talk &&
+            e != bath &&
+            e != clean,
+      )
       .toList(growable: false);
 
   /// Extra moods in the More sheet (unlocked ones usable; rest locked).
@@ -209,6 +256,10 @@ enum OwlExpression {
     eat,
     happy,
     wink,
+    listen,
+    talk,
+    bath,
+    clean,
   };
 
   /// Dev/playtest flag: when true, every expression is usable (no locks).

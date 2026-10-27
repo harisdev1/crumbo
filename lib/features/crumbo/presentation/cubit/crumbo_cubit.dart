@@ -45,7 +45,7 @@ class CrumboCharacterState {
 /// Drives owl marketplace artboards + skin theme.
 ///
 /// After a short action, returns to [OwlExpression.idle] automatically.
-/// Sleep holds until tap / Idle. Talk is not in this pack (mic later).
+/// Sleep / listen / talk hold until dismiss (wake or [endVoice]).
 class CrumboCubit extends Cubit<CrumboCharacterState> {
   CrumboCubit({
     SkinPreferences? skinPreferences,
@@ -128,8 +128,47 @@ class CrumboCubit extends Cubit<CrumboCharacterState> {
   /// Brief wave, then auto-idle (care bar / moods — not body bonk).
   void poke() => setExpression(OwlExpression.poke);
 
+  /// Long-press pet / tickle — happy giggle, then auto-idle.
+  void pet() {
+    if (state.expression == OwlExpression.sleep) {
+      goIdle();
+      return;
+    }
+    if (state.expression == OwlExpression.listen ||
+        state.expression == OwlExpression.talk) {
+      return;
+    }
+    setExpression(OwlExpression.happy);
+  }
+
+  /// Voice mic — hold listen face until [beginTalking] / [endVoice].
+  void beginListening() {
+    _autoIdleTimer?.cancel();
+    emit(state.copyWith(expression: OwlExpression.listen));
+  }
+
+  /// Voice playback — hold talk face until [endVoice].
+  void beginTalking() {
+    _autoIdleTimer?.cancel();
+    emit(state.copyWith(expression: OwlExpression.talk));
+  }
+
+  /// Leave listen/talk and return to idle.
+  void endVoice() {
+    if (state.expression == OwlExpression.listen ||
+        state.expression == OwlExpression.talk) {
+      goIdle();
+    }
+  }
+
+  static const loveBoost = 10.0;
+
   /// Tap on the owl body: bonk combo (angry → dizzy → sleep) or wake from sleep.
   void onCharacterTapped({DateTime? now}) {
+    if (state.expression == OwlExpression.listen ||
+        state.expression == OwlExpression.talk) {
+      return;
+    }
     if (state.expression == OwlExpression.sleep) {
       _bonkStreak = 0;
       _lastBonkAt = null;

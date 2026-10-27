@@ -33,7 +33,7 @@ Read docs/MASTER_PLAN.md first.
 
 ## Rive contract (owl pack)
 - File: `assets/rive/owl.riv` (marketplace pack; credit AnggaMotion CC BY)
-- Pack artboards `"1"`…`"15"` in `owl.riv`; idle=`11` think (no wink); wink=`2`; eat=`10`; dance=`1`; poke=`9`; pack `13`=bubble wand. Sleep = custom `owl_sleep.riv` artboard `sleep` (pack-11 look, closed eyes, breathing bob + floating Zzz; transparent bg). Talk = future mic. Actions auto-return to idle except sleep. Oversized boards use `stageScale`.
+- Pack artboards `"1"`…`"15"` in `owl.riv`; idle=`11` think (no wink); wink=`2`; eat=`10`; dance=`1`; poke=`9`; pack `13`=bubble wand. Sleep = custom `owl_sleep.riv` artboard `sleep` (pack-11 look, closed eyes, breathing bob + floating Zzz; transparent bg). Listen = `owl_listen.riv` artboard `listen` (sound waves). Talk = `owl_talk.riv` artboard `talk` (mouth bob). Bath = `owl_bath.riv` artboard `bath` (front-facing + bubbles). Clean = `owl_clean.riv` artboard `clean` (front-facing + sparkles). Actions auto-return to idle except sleep / listen / talk (voice hold). Oversized boards use `stageScale`.
 - Switch artboards from Flutter cubit; pack SMs have no mood inputs
 - Rive APIs ke liye https://rive.app/docs/llms.txt padho. Do not guess.
 

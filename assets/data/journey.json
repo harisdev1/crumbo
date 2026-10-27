@@ -1,0 +1,68 @@
+{
+  "zones": [
+    {
+      "id": "cozy_kitchen",
+      "name": "Cozy Kitchen",
+      "nodes": [
+        {"id": "k1", "type": "care", "task": "feed", "count": 2, "reward": {"coins": 20}},
+        {"id": "k2", "type": "game", "game": "topping_catch", "target": 30, "reward": {"coins": 30}},
+        {"id": "k3", "type": "card_reveal", "card": "outfit_chef_hat"},
+        {"id": "k4", "type": "chest", "cards": 2, "reward": {"coins": 50}},
+        {
+          "id": "k5",
+          "type": "gate",
+          "options": [
+            {"method": "task", "need": {"cards": 1}},
+            {"method": "coins", "need": 40},
+            {"method": "ad", "placement": "gate_k5"}
+          ]
+        },
+        {"id": "k6", "type": "care", "task": "feed", "count": 1, "reward": {"coins": 15}},
+        {"id": "k7", "type": "card_reveal", "card": "food_toast_card"},
+        {"id": "k8", "type": "game", "game": "toaster_pop", "target": 20, "reward": {"coins": 25}},
+        {"id": "k9", "type": "card_reveal", "card": "friend_butter_buddy"},
+        {
+          "id": "k10",
+          "type": "gate",
+          "options": [
+            {"method": "coins", "need": 60},
+            {"method": "task", "need": {"feed": 3}},
+            {"method": "ad", "placement": "gate_k10"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bubble_bay",
+      "name": "Bubble Bay",
+      "nodes": [
+        {"id": "b1", "type": "care", "task": "bath", "count": 1, "reward": {"coins": 20}},
+        {"id": "b2", "type": "game", "game": "bubble_pop", "target": 25, "reward": {"coins": 30}},
+        {"id": "b3", "type": "card_reveal", "card": "room_tiny_sink"},
+        {"id": "b4", "type": "chest", "cards": 1, "reward": {"coins": 40}},
+        {
+          "id": "b5",
+          "type": "gate",
+          "options": [
+            {"method": "coins", "need": 50},
+            {"method": "task", "need": {"bath": 2}},
+            {"method": "ad", "placement": "gate_b5"}
+          ]
+        },
+        {"id": "b6", "type": "care", "task": "clean", "count": 2, "reward": {"coins": 20}},
+        {"id": "b7", "type": "card_reveal", "card": "sticker_bubble"},
+        {"id": "b8", "type": "game", "game": "bubble_pop", "target": 40, "reward": {"coins": 35}},
+        {"id": "b9", "type": "chest", "cards": 2, "reward": {"coins": 60}},
+        {
+          "id": "b10",
+          "type": "gate",
+          "options": [
+            {"method": "coins", "need": 80},
+            {"method": "task", "need": {"cards": 5}},
+            {"method": "ad", "placement": "gate_b10"}
+          ]
+        }
+      ]
+    }
+  ]
+}

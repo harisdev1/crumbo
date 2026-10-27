@@ -18,6 +18,8 @@ const _links = <_Link>[
   _Link('Achievements', AppRoutes.achievements, 'link_achievements'),
   _Link('Best Scores', AppRoutes.scores, 'link_scores'),
   _Link('Daily Rewards', AppRoutes.daily, 'link_daily'),
+  _Link('Album', AppRoutes.album, 'link_album'),
+  _Link('Journey', AppRoutes.journey, 'link_journey'),
   _Link('Food', AppRoutes.food, 'link_food'),
   _Link('Market', AppRoutes.market, 'link_market'),
   _Link('Theme Shop', AppRoutes.themeShop, 'link_theme_shop'),

@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 
+import '../../features/cards/presentation/album_page.dart';
 import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/journey/presentation/journey_page.dart';
 import '../../features/level/presentation/level_up_page.dart';
 import '../../features/owls/presentation/coloring_page.dart';
 import '../../features/owls/presentation/my_owls_page.dart';
@@ -71,6 +73,14 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.daily,
       builder: (context, state) => const DailyRewardsPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.album,
+      builder: (context, state) => const AlbumPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.journey,
+      builder: (context, state) => const JourneyPage(),
     ),
     GoRoute(
       path: AppRoutes.food,

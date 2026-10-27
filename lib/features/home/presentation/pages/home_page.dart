@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../crumbo/presentation/cubit/crumbo_cubit.dart';
 import '../../../crumbo/presentation/cubit/needs_cubit.dart';
 import '../../../crumbo/presentation/widgets/crumbo_view.dart';
+import '../../../economy/presentation/cubit/economy_cubit.dart';
+import '../../../voice/data/fake_voice_services.dart';
+import '../../../voice/data/voice_preset_store.dart';
+import '../../../voice/domain/voice_player.dart';
+import '../../../voice/domain/voice_recorder.dart';
+import '../../../voice/presentation/cubit/voice_cubit.dart';
+import '../../../voice/presentation/widgets/voice_bar.dart';
+import '../../domain/home_room.dart';
 import '../cubit/home_theme_cubit.dart';
+import '../cubit/room_cubit.dart';
+import '../widgets/bath_tray.dart';
 import '../widgets/care_action_bar.dart';
 import '../widgets/exit_dialog.dart';
+import '../widgets/food_tray.dart';
 import '../widgets/home_top_bar.dart';
 import '../widgets/needs_meter_row.dart';
+import '../widgets/owl_feed_target.dart';
 import '../widgets/owl_perch_layer.dart';
+import '../widgets/room_chip_bar.dart';
 import '../widgets/skins_sheet.dart';
+import '../widgets/sleep_dim.dart';
 import '../widgets/themed_background.dart';
 import '../widgets/themes_sheet.dart';
 
@@ -24,15 +39,51 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => CrumboCubit()..hydrate()),
-        BlocProvider(create: (_) => HomeThemeCubit()..hydrate()),
-        BlocProvider(create: (_) => NeedsCubit()..hydrate()),
-      ],
-      child: _HomeLifecycle(character: character),
+    return BlocProvider(
+      create: (_) => CrumboCubit()..hydrate(),
+      child: Builder(
+        builder: (context) {
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => HomeThemeCubit()..hydrate()),
+              BlocProvider(create: (_) => NeedsCubit()..hydrate()),
+              BlocProvider(create: (_) => EconomyCubit()..hydrate()),
+              BlocProvider(
+                create: (ctx) {
+                  final rooms = RoomCubit()..hydrate();
+                  rooms.bindThemeCubit(ctx.read<HomeThemeCubit>());
+                  return rooms;
+                },
+              ),
+              BlocProvider(
+                create: (_) => _createVoiceCubit(context.read<CrumboCubit>())
+                  ..hydrate(),
+              ),
+            ],
+            child: _HomeLifecycle(character: character),
+          );
+        },
+      ),
     );
   }
+}
+
+VoiceCubit _createVoiceCubit(CrumboCubit crumbo) {
+  final gi = GetIt.instance;
+  final recorder = gi.isRegistered<VoiceRecorder>()
+      ? gi.get<VoiceRecorder>()
+      : FakeVoiceRecorder();
+  final player =
+      gi.isRegistered<VoicePlayer>() ? gi.get<VoicePlayer>() : FakeVoicePlayer();
+  final presets = gi.isRegistered<VoicePresetStore>()
+      ? gi.get<VoicePresetStore>()
+      : MemoryVoicePresetStore();
+  return VoiceCubit(
+    recorder: recorder,
+    player: player,
+    presetStore: presets,
+    crumboCubit: crumbo,
+  );
 }
 
 /// Re-applies needs decay when the app returns to foreground.
@@ -91,21 +142,26 @@ class _HomeBody extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             const ThemedBackground(key: Key('home_background')),
-            OwlPerchLayer(child: character ?? const CrumboView()),
+            OwlPerchLayer(
+              child: OwlFeedTarget(child: character ?? const CrumboView()),
+            ),
+            const SleepDim(),
             SafeArea(
               child: Column(
                 children: [
                   const HomeTopBar(),
                   const SizedBox(height: 6),
+                  const RoomChipBar(),
+                  const SizedBox(height: 4),
                   const NeedsMeterRow(),
                   const SizedBox(height: 6),
                   const _TitleRow(),
                   // Let taps reach the owl below; only [OwlBodyTapShell] handles bonks.
                   const Expanded(child: SizedBox.shrink()),
-                  // "Tap me!" / mood status line hidden for now.
-                  // _StatusBubble(),
                   const _ThemedCaptions(),
-                  const SizedBox(height: 8),
+                  const _RoomTrays(),
+                  // Presets / Allow Mic only while voice active — keeps owl taps clear.
+                  const VoiceBar(),
                   const CareActionBar(),
                 ],
               ),
@@ -113,6 +169,25 @@ class _HomeBody extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _RoomTrays extends StatelessWidget {
+  const _RoomTrays();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<RoomCubit, HomeRoom>(
+      builder: (context, room) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (room.showsFoodTray) const FoodTray(),
+            if (room.showsBathTray) const BathTray(),
+          ],
+        );
+      },
     );
   }
 }

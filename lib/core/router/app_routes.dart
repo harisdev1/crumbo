@@ -14,6 +14,8 @@ abstract final class AppRoutes {
   static const achievements = '/achievements';
   static const scores = '/scores';
   static const daily = '/daily';
+  static const album = '/album';
+  static const journey = '/journey';
   static const food = '/food';
   static const market = '/market';
   static const themeShop = '/theme-shop';

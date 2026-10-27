@@ -6,10 +6,12 @@ class OwlBodyTapShell extends StatelessWidget {
     super.key,
     required this.child,
     required this.onBodyTap,
+    this.onBodyLongPress,
   });
 
   final Widget child;
   final VoidCallback onBodyTap;
+  final VoidCallback? onBodyLongPress;
 
   static const _padL = 0.14;
   static const _padT = 0.08;
@@ -35,6 +37,7 @@ class OwlBodyTapShell extends StatelessWidget {
                 key: const Key('owl_body_tap'),
                 behavior: HitTestBehavior.opaque,
                 onTap: onBodyTap,
+                onLongPress: onBodyLongPress,
                 child: const SizedBox.expand(),
               ),
             ),

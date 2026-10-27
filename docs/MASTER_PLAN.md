@@ -15,14 +15,14 @@ Canonical file: `docs/MASTER_PLAN.md`. LLM ko bolo "pehle isay padho". Roz ka sc
 | Character Rive (owl pack + sleep) | Done / Partial | A-UI4; D10 polish + journey gates later |
 | Storage (Hive) | Done | A4 — four boxes + theme/skin in `settings` |
 | Needs meters + decay | Done | A6–A8 (`NeedsCubit` + home meters; `CrumboCubit` = expressions) |
-| Economy / shop / daily | Partial shells | B3–B5; screens exist, logic nahi |
-| Journey / cards | Not started | B6–C2 |
+| Economy / shop / daily | Done (MVP) | B3–B5 wallet, shop, daily streak |
+| Journey / cards | Partial | B6–B10 album/flip/unlock + map UI; C1–C2 node completion next |
 | Mini games (Flame) | Not started | C3–C7 (Play hub shell + JSON only) |
-| Voice | Not started | C8–C10 |
+| Voice | Done (C8–C10) — mic on-device, listen/talk rivs, presets; phone USB verify | — |
 | Ads | Not started | D1–D4 |
 | Parental / settings / onboarding | Partial | D5–D7 shells |
 
-**Aaj ka pehla core task:** checklist **A9** (feed). A5 Firebase still skipped.
+**Aaj ka pehla core task:** checklist **C1** (journey node completion). B5–B10 done. A5 Firebase still skipped.
 
 ---
 
@@ -399,7 +399,7 @@ assets/
 | Bubbles | `13` |
 | Sleep | `owl_sleep.riv` → `sleep` |
 
-Pack state machines have **no mood Inputs**; Flutter `CrumboCubit` switches artboards. Actions auto-return to idle except sleep. Oversized boards use `stageScale`. Talk = future mic (C10).
+Pack state machines have **no mood Inputs**; Flutter `CrumboCubit` switches artboards. Actions auto-return to idle except sleep / listen / talk. Oversized boards use `stageScale`. Listen = `owl_listen.riv`; Talk = `owl_talk.riv` (C8–C10).
 
 ### Appendix: bread-era contract (DEPRECATED)
 

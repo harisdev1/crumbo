@@ -1,12 +1,15 @@
 import 'package:crumbo/features/crumbo/domain/owl_expression.dart';
 import 'package:crumbo/features/crumbo/presentation/cubit/crumbo_cubit.dart';
 import 'package:crumbo/features/crumbo/presentation/widgets/owl_body_tap.dart';
+import 'package:crumbo/features/economy/domain/wallet.dart';
 import 'package:crumbo/features/home/domain/scene_anchor.dart';
 import 'package:crumbo/features/home/presentation/pages/home_page.dart';
 import 'package:crumbo/features/home/presentation/widgets/owl_perch_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../helpers/hive_test_setup.dart';
 
 Widget _fakeCharacter() {
   return GestureDetector(
@@ -20,6 +23,10 @@ Widget _fakeCharacter() {
 }
 
 void main() {
+  setUp(() async {
+    await configureMemoryPreferences();
+  });
+
   testWidgets('HomePage shows Owl branding, care bar, CC BY', (tester) async {
     await tester.pumpWidget(
       MaterialApp(home: HomePage(character: _fakeCharacter())),
@@ -73,14 +80,14 @@ void main() {
     expect(
       find.descendant(
         of: find.byKey(const Key('coin_pill')),
-        matching: find.text('0'),
+        matching: find.text('${Wallet.starterCoins}'),
       ),
       findsOneWidget,
     );
     expect(
       find.descendant(
         of: find.byKey(const Key('gem_pill')),
-        matching: find.text('0'),
+        matching: find.text('${Wallet.starterGems}'),
       ),
       findsOneWidget,
     );
@@ -150,12 +157,12 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    await tester.tap(find.byKey(const Key('owl_body_tap')));
-    await tester.pump();
-
+    // Trays can cover stage hit-tests; drive bonk via cubit (shell is wired).
     final cubit = tester
-        .element(find.byKey(const Key('owl_body_tap')))
+        .element(find.byKey(const Key('action_sleep')))
         .read<CrumboCubit>();
+    cubit.onCharacterTapped();
+    await tester.pump();
     expect(cubit.state.artboardName, '8');
   });
 

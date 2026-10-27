@@ -5,8 +5,14 @@ import '../../../../core/router/app_routes.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/ui/glass_panel.dart';
 import '../../../../core/ui/glossy_icon_button.dart';
+import '../../../crumbo/domain/need_kind.dart';
 import '../../../crumbo/domain/owl_expression.dart';
 import '../../../crumbo/presentation/cubit/crumbo_cubit.dart';
+import '../../../crumbo/presentation/cubit/needs_cubit.dart';
+import '../../../voice/domain/voice_phase.dart';
+import '../../../voice/presentation/cubit/voice_cubit.dart';
+import '../../domain/bath_item.dart';
+import '../../domain/food_item.dart';
 
 String actionKeyFor(OwlExpression expression) {
   return switch (expression) {
@@ -18,6 +24,8 @@ String actionKeyFor(OwlExpression expression) {
     OwlExpression.wave => 'action_poke',
     OwlExpression.cool => 'action_cool',
     OwlExpression.bubbles => 'action_bubbles',
+    OwlExpression.bath => 'action_bath',
+    OwlExpression.clean => 'action_clean',
     _ => 'action_${expression.name}',
   };
 }
@@ -30,56 +38,92 @@ class CareActionBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CrumboCubit, CrumboCharacterState>(
       builder: (context, state) {
-        return Container(
-          key: const Key('care_action_bar'),
-          margin: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-          decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.92),
-            borderRadius: BorderRadius.circular(28),
-            border: Border.all(color: Colors.white, width: 3),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.1),
-                blurRadius: 16,
-                offset: const Offset(0, 6),
+        return BlocBuilder<VoiceCubit, VoiceState>(
+          buildWhen: (prev, next) =>
+              prev.phase != next.phase || prev.preset != next.preset,
+          builder: (context, voice) {
+            final listening = voice.phase == VoicePhase.listening;
+            final talking = voice.phase == VoicePhase.talking;
+            return Container(
+              key: const Key('care_action_bar'),
+              margin: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.92),
+                borderRadius: BorderRadius.circular(28),
+                border: Border.all(color: Colors.white, width: 3),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.1),
+                    blurRadius: 16,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
               ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              for (final expression in const [
-                OwlExpression.sleep,
-                OwlExpression.eat,
-              ])
-                CareBubbleButton(
-                  key: Key(actionKeyFor(expression)),
-                  expression: expression,
-                  selected: state.expression == expression,
-                  locked: !OwlExpression.isUnlocked(expression),
-                  onTap: () => _onExpressionTap(context, expression),
-                ),
-              CareBubbleButton(
-                key: const Key('action_play'),
-                icon: Icons.sports_esports_rounded,
-                label: 'Play',
-                color: GameColors.purple,
-                selected: false,
-                locked: false,
-                onTap: () => pushAppRoute(context, AppRoutes.play),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onLongPress: talking
+                        ? null
+                        : () {
+                            final voiceCubit = context.read<VoiceCubit>();
+                            voiceCubit.setPreset(voiceCubit.state.preset.next);
+                          },
+                    child: CareBubbleButton(
+                      key: const Key('action_mic'),
+                      icon: listening
+                          ? Icons.stop_rounded
+                          : Icons.mic_rounded,
+                      label: listening
+                          ? 'Stop'
+                          : talking
+                              ? 'Talk…'
+                              : voice.preset.label,
+                      color: listening
+                          ? GameColors.coral
+                          : const Color(0xFF348EA0),
+                      selected: listening || talking,
+                      locked: talking,
+                      onTap: talking
+                          ? () {}
+                          : () => context.read<VoiceCubit>().onMicTap(),
+                    ),
+                  ),
+                  for (final expression in const [
+                    OwlExpression.sleep,
+                    OwlExpression.eat,
+                    OwlExpression.bath,
+                  ])
+                    CareBubbleButton(
+                      key: Key(actionKeyFor(expression)),
+                      expression: expression,
+                      selected: state.expression == expression,
+                      locked: !OwlExpression.isUnlocked(expression),
+                      onTap: () => _onExpressionTap(context, expression),
+                    ),
+                  CareBubbleButton(
+                    key: const Key('action_play'),
+                    icon: Icons.sports_esports_rounded,
+                    label: 'Play',
+                    color: GameColors.purple,
+                    selected: false,
+                    locked: false,
+                    onTap: () => pushAppRoute(context, AppRoutes.play),
+                  ),
+                  CareBubbleButton(
+                    key: const Key('action_moods'),
+                    icon: Icons.emoji_emotions_rounded,
+                    label: 'Moods',
+                    color: const Color(0xFFFF8A65),
+                    selected: false,
+                    locked: false,
+                    onTap: () => showMoodsSheet(context),
+                  ),
+                ],
               ),
-              CareBubbleButton(
-                key: const Key('action_moods'),
-                icon: Icons.emoji_emotions_rounded,
-                label: 'Moods',
-                color: const Color(0xFFFF8A65),
-                selected: false,
-                locked: false,
-                onTap: () => showMoodsSheet(context),
-              ),
-            ],
-          ),
+            );
+          },
         );
       },
     );
@@ -102,7 +146,20 @@ void _onExpressionTap(BuildContext context, OwlExpression expression) {
   if (expression == OwlExpression.wave) {
     cubit.poke();
   } else if (expression == OwlExpression.eat) {
-    cubit.toggleEat();
+    if (cubit.state.expression == OwlExpression.eat) {
+      cubit.goIdle();
+    } else {
+      cubit.setExpression(OwlExpression.eat);
+      context.read<NeedsCubit>().boost(NeedKind.hunger, FoodItem.hungerBoost);
+    }
+  } else if (expression == OwlExpression.bath) {
+    if (cubit.state.expression == OwlExpression.bath) {
+      cubit.goIdle();
+    } else {
+      cubit.setExpression(OwlExpression.bath);
+      context.read<NeedsCubit>().boost(NeedKind.clean, BathItem.cleanBoost);
+      context.read<NeedsCubit>().boost(NeedKind.fun, BathItem.funBoost);
+    }
   } else {
     cubit.setExpression(expression);
   }

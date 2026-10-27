@@ -40,10 +40,14 @@ class OwlSkin {
   /// Rive file to load for [expression] in this skin.
   String riveAssetFor(OwlExpression expression) {
     if (isClassic) return expression.assetPath;
-    final base = expression.assetPath == OwlExpression.packAssetPath
-        ? 'owl'
-        : 'owl_sleep';
-    return '$skinsRiveDir/${base}_$id.riv';
+    if (expression.assetPath == OwlExpression.packAssetPath) {
+      return '$skinsRiveDir/owl_$id.riv';
+    }
+    if (expression.assetPath.contains('owl_sleep')) {
+      return '$skinsRiveDir/owl_sleep_$id.riv';
+    }
+    // listen/talk: classic custom riv until skin variants exist
+    return expression.assetPath;
   }
 
   factory OwlSkin.fromJson(Map<String, dynamic> json) {

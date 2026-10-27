@@ -1,0 +1,84 @@
+{
+  "items": [
+    {
+      "id": "snack_cookie",
+      "name": "Cookie Pack",
+      "category": "food",
+      "currency": "coins",
+      "price": 20,
+      "icon": "cookie"
+    },
+    {
+      "id": "snack_fruit",
+      "name": "Fruit Bowl",
+      "category": "food",
+      "currency": "coins",
+      "price": 15,
+      "icon": "fruit"
+    },
+    {
+      "id": "snack_jam",
+      "name": "Jam Jar",
+      "category": "food",
+      "currency": "coins",
+      "price": 18,
+      "icon": "jam"
+    },
+    {
+      "id": "skin_mint_green",
+      "name": "Mint Green",
+      "category": "skins",
+      "currency": "coins",
+      "price": 40,
+      "icon": "skin"
+    },
+    {
+      "id": "skin_pink_blossom",
+      "name": "Pink Blossom",
+      "category": "skins",
+      "currency": "coins",
+      "price": 45,
+      "icon": "skin"
+    },
+    {
+      "id": "theme_morning_glow",
+      "name": "Morning Glow",
+      "category": "themes",
+      "currency": "coins",
+      "price": 25,
+      "icon": "theme"
+    },
+    {
+      "id": "theme_playful_bubbles",
+      "name": "Playful Bubbles",
+      "category": "themes",
+      "currency": "coins",
+      "price": 30,
+      "icon": "theme"
+    },
+    {
+      "id": "theme_sleepy_night",
+      "name": "Sleepy Night",
+      "category": "themes",
+      "currency": "coins",
+      "price": 28,
+      "icon": "theme"
+    },
+    {
+      "id": "sparkle_pack",
+      "name": "Sparkle Pack",
+      "category": "items",
+      "currency": "gems",
+      "price": 2,
+      "icon": "sparkle"
+    },
+    {
+      "id": "star_sticker",
+      "name": "Star Sticker",
+      "category": "items",
+      "currency": "gems",
+      "price": 3,
+      "icon": "star"
+    }
+  ]
+}

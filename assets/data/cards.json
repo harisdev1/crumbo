@@ -1,0 +1,177 @@
+{
+  "cards": [
+    {
+      "id": "outfit_chef_hat",
+      "name": "Chef Hat",
+      "type": "outfit",
+      "rarity": "common",
+      "set": "chef",
+      "unlock": [
+        {"method": "journey", "node": "k3"},
+        {"method": "coins", "price": 80}
+      ]
+    },
+    {
+      "id": "outfit_chef_apron",
+      "name": "Chef Apron",
+      "type": "outfit",
+      "rarity": "rare",
+      "set": "chef",
+      "unlock": [
+        {"method": "coins", "price": 120},
+        {"method": "task", "need": {"feed": 5}}
+      ]
+    },
+    {
+      "id": "outfit_chef_spoon",
+      "name": "Chef Spoon",
+      "type": "outfit",
+      "rarity": "common",
+      "set": "chef",
+      "unlock": [
+        {"method": "coins", "price": 40},
+        {"method": "ad", "placement": "card_chef_spoon"}
+      ]
+    },
+    {
+      "id": "food_butter_card",
+      "name": "Butter Sticker",
+      "type": "food",
+      "rarity": "common",
+      "set": "breakfast",
+      "unlock": [
+        {"method": "coins", "price": 25},
+        {"method": "task", "need": {"feed": 2}}
+      ]
+    },
+    {
+      "id": "food_jam_card",
+      "name": "Jam Sticker",
+      "type": "food",
+      "rarity": "common",
+      "set": "breakfast",
+      "unlock": [
+        {"method": "coins", "price": 25}
+      ]
+    },
+    {
+      "id": "food_toast_card",
+      "name": "Toast Sticker",
+      "type": "sticker",
+      "rarity": "rare",
+      "set": "breakfast",
+      "unlock": [
+        {"method": "coins", "price": 60},
+        {"method": "journey", "node": "k7"}
+      ]
+    },
+    {
+      "id": "friend_butter_buddy",
+      "name": "Butter Buddy",
+      "type": "friend",
+      "rarity": "super_rare",
+      "set": "friends",
+      "unlock": [
+        {"method": "coins", "price": 200},
+        {"method": "journey", "node": "k9"}
+      ]
+    },
+    {
+      "id": "room_tiny_sink",
+      "name": "Tiny Sink",
+      "type": "room",
+      "rarity": "rare",
+      "set": "bath",
+      "unlock": [
+        {"method": "coins", "price": 90},
+        {"method": "journey", "node": "b3"}
+      ]
+    },
+    {
+      "id": "sticker_bubble",
+      "name": "Bubble Sticker",
+      "type": "sticker",
+      "rarity": "common",
+      "set": "bath",
+      "unlock": [
+        {"method": "coins", "price": 30},
+        {"method": "task", "need": {"bath": 3}}
+      ]
+    },
+    {
+      "id": "surprise_golden_crumb",
+      "name": "Golden Crumb",
+      "type": "surprise",
+      "rarity": "golden",
+      "set": "surprise",
+      "unlock": [
+        {"method": "coins", "price": 400},
+        {"method": "journey", "node": "k10"}
+      ]
+    },
+    {
+      "id": "outfit_rain_boots",
+      "name": "Rain Boots",
+      "type": "outfit",
+      "rarity": "common",
+      "set": "bath",
+      "unlock": [
+        {"method": "coins", "price": 55},
+        {"method": "ad", "placement": "card_rain_boots"}
+      ]
+    },
+    {
+      "id": "food_cookie_card",
+      "name": "Cookie Card",
+      "type": "food",
+      "rarity": "common",
+      "set": "breakfast",
+      "unlock": [
+        {"method": "coins", "price": 35}
+      ]
+    },
+    {
+      "id": "sticker_star",
+      "name": "Star Sticker",
+      "type": "sticker",
+      "rarity": "rare",
+      "set": "surprise",
+      "unlock": [
+        {"method": "coins", "price": 70},
+        {"method": "task", "need": {"play": 3}}
+      ]
+    },
+    {
+      "id": "friend_jam_pal",
+      "name": "Jam Pal",
+      "type": "friend",
+      "rarity": "rare",
+      "set": "friends",
+      "unlock": [
+        {"method": "coins", "price": 150}
+      ]
+    },
+    {
+      "id": "room_soap_shelf",
+      "name": "Soap Shelf",
+      "type": "room",
+      "rarity": "common",
+      "set": "bath",
+      "unlock": [
+        {"method": "coins", "price": 45},
+        {"method": "journey", "node": "b5"}
+      ]
+    },
+    {
+      "id": "surprise_sparkle",
+      "name": "Sparkle Surprise",
+      "type": "surprise",
+      "rarity": "super_rare",
+      "set": "surprise",
+      "unlock": [
+        {"method": "coins", "price": 180},
+        {"method": "ad", "placement": "card_sparkle"}
+      ]
+    }
+  ]
+}

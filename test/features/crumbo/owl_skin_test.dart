@@ -34,12 +34,28 @@ void main() {
     expect(catalog.numberOf(catalog.byId('blue_sky')), 2);
   });
 
-  test('classic uses original pack + sleep files', () {
+  test('classic uses original pack + custom mood files', () {
     final classic = _bundledCatalog().defaultSkin;
     expect(classic.riveAssetFor(OwlExpression.think), 'assets/rive/owl.riv');
     expect(
       classic.riveAssetFor(OwlExpression.sleep),
       'assets/rive/owl_sleep.riv',
+    );
+    expect(
+      classic.riveAssetFor(OwlExpression.listen),
+      'assets/rive/owl_listen.riv',
+    );
+    expect(
+      classic.riveAssetFor(OwlExpression.talk),
+      'assets/rive/owl_talk.riv',
+    );
+    expect(
+      classic.riveAssetFor(OwlExpression.bath),
+      'assets/rive/owl_bath.riv',
+    );
+    expect(
+      classic.riveAssetFor(OwlExpression.clean),
+      'assets/rive/owl_clean.riv',
     );
   });
 
@@ -56,6 +72,15 @@ void main() {
     expect(
       blue.riveAssetFor(OwlExpression.sleep),
       'assets/rive/skins/owl_sleep_blue_sky.riv',
+    );
+    // listen/talk fall back to classic custom rivs until skin variants exist
+    expect(
+      blue.riveAssetFor(OwlExpression.listen),
+      'assets/rive/owl_listen.riv',
+    );
+    expect(
+      blue.riveAssetFor(OwlExpression.talk),
+      'assets/rive/owl_talk.riv',
     );
   });
 
